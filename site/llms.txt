@@ -11,7 +11,7 @@ FORMA is plain HTML + classes. Link `forma.min.css` (and optionally `forma.min.j
 - [Getting started](https://forma-design-five.vercel.app/docs/): install, tokens, layers, browser support, migration
 
 ## Files
-- [forma.min.css](https://forma-design-five.vercel.app/dist/forma.min.css): core, 146.5 KB
+- [forma.min.css](https://forma-design-five.vercel.app/dist/forma.min.css): core, 146.6 KB
 - [forma.min.js](https://forma-design-five.vercel.app/dist/forma.min.js): optional behaviour, 52.8 KB
 - [forma-icons.svg](https://forma-design-five.vercel.app/dist/forma-icons.svg): 277 icons, use as `#fi-<name>`
 - [forma.manifest.json](https://forma-design-five.vercel.app/dist/forma.manifest.json): version, counts, sizes, contrast results

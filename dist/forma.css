@@ -266,6 +266,9 @@ summary::-webkit-details-marker { display: none; }
 :root { color-scheme: light dark; }
 [data-mode="light"] { color-scheme: light; }
 [data-mode="dark"] { color-scheme: dark; }
+/* Hosts (and v5 pages) that put data-theme="light|dark" on <html> get the matching mode. */
+[data-theme="light"]:not([data-mode]) { color-scheme: light; }
+[data-theme="dark"]:not([data-mode]) { color-scheme: dark; }
 
 /* ── Document ─────────────────────────────────────────────────────────────── */
 html { font-size: 100%; scroll-behavior: smooth; scrollbar-color: var(--border-strong) transparent; }

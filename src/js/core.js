@@ -70,7 +70,7 @@ define('mode-toggle', (btn) => { syncToggle(btn); btn.addEventListener('click', 
 /* ── Theme ───────────────────────────────────────────────────────────────── */
 const THEME_KEY = 'forma-theme';
 export const theme = {
-  get current() { return document.documentElement.dataset.theme || 'museum'; },
+  get current() { const t = document.documentElement.dataset.theme; return !t || t === 'light' || t === 'dark' ? 'museum' : t; },
   /**
    * Apply a theme by id. If the theme CSS is not loaded yet, a <link> is added,
    * resolved from `base` (default: the folder of the loaded forma.css + "themes/").

@@ -38,3 +38,11 @@
   @media (max-width: 640px) { [data-theme-picker] { display: none; } }
   .example-frame { inline-size: 100%; block-size: 760px; border: var(--border-width-default) solid var(--border-default); border-radius: var(--radius-lg); background: var(--bg-base); }
 }
+
+/* Unlayered guard. Some hosts (e.g. artifact viewers) wrap the page in their own
+   unlayered :root/body styles, which would beat every FORMA layer. Re-assert the
+   document basics here, outside any layer, so the docs site stays readable. */
+:root { color-scheme: light dark; }
+:root[data-mode="light"], :root[data-theme="light"]:not([data-mode]) { color-scheme: light; }
+:root[data-mode="dark"], :root[data-theme="dark"]:not([data-mode]), :root[data-theme="gaming"]:not([data-mode]), :root[data-theme="biopunk"]:not([data-mode]), :root[data-theme="cyberpunk"]:not([data-mode]), :root[data-theme="nightsky"]:not([data-mode]), :root[data-theme="space"]:not([data-mode]), :root[data-theme="synthwave"]:not([data-mode]), :root[data-theme="terminal"]:not([data-mode]) { color-scheme: dark; }
+body { margin: 0; font: var(--text-base)/var(--leading-normal) var(--font-ui); color: var(--text-primary); background: var(--bg-base); }

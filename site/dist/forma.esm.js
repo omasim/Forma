@@ -201,7 +201,8 @@ define("mode-toggle", (btn) => {
 var THEME_KEY = "forma-theme";
 var theme = {
   get current() {
-    return document.documentElement.dataset.theme || "museum";
+    const t = document.documentElement.dataset.theme;
+    return !t || t === "light" || t === "dark" ? "museum" : t;
   },
   /**
    * Apply a theme by id. If the theme CSS is not loaded yet, a <link> is added,
