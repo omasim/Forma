@@ -1,0 +1,42 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Indian — Marigold, peacock and indigo; Devanagari-ready display. */
+@import url("https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=Poppins:wght@400;500;600&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="indian"] {
+  --bg-base: light-dark(#FDF3EB, #100A05);
+  --bg-surface: light-dark(#FEFDFC, #150F0A);
+  --bg-elevated: light-dark(#FEFDFC, #1C1610);
+  --bg-subtle: light-dark(#F1E7E0, #241D17);
+  --bg-hover: light-dark(#E7DED6, #2B241E);
+  --text-primary: light-dark(#190F07, #F4E5D9);
+  --text-secondary: light-dark(#5F5349, #A99B91);
+  --text-tertiary: light-dark(#73665C, #908378);
+  --text-disabled: light-dark(#968D86, #5C534D);
+  --border-control: light-dark(#9B928B, #6B625B);
+  --accent: light-dark(#A26106, #FC9F30);
+  --accent-contrast: light-dark(#FFFFFF, #100A05);
+  --accent-hover: light-dark(#8E5402, #FFB161);
+  --accent-text: light-dark(#874F00, #FC9F30);
+  --error: light-dark(#A62B2C, #F97770);
+  --success: light-dark(#1D6835, #6FB880);
+  --warning: light-dark(#7C5200, #D49838);
+  --info: light-dark(#175D9B, #67AAED);
+  --on-error: light-dark(#FFFFFF, #100A05);
+  --on-success: light-dark(#FFFFFF, #100A05);
+  --on-warning: light-dark(#FFFFFF, #100A05);
+  --on-info: light-dark(#FFFFFF, #100A05);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Tiro Devanagari Hindi', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 1.25;
+  --weight-display: 400;
+}
+}

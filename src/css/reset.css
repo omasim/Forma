@@ -1,0 +1,21 @@
+/* Modern, minimal reset. Lives in @layer forma.reset so anything you write wins. */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; hanging-punctuation: first last; }
+body { min-height: 100dvh; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+img, picture, video, canvas, svg { display: block; max-inline-size: 100%; }
+input, button, textarea, select { font: inherit; color: inherit; letter-spacing: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+:where(button, [role="button"]):disabled { cursor: not-allowed; }
+p, h1, h2, h3, h4, h5, h6, li, dd, blockquote, figcaption { overflow-wrap: break-word; }
+h1, h2, h3, h4, h5, h6 { text-wrap: balance; font-weight: inherit; font-size: inherit; }
+p { text-wrap: pretty; }
+ul[role="list"], ol[role="list"], menu { list-style: none; padding: 0; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset { border: 0; padding: 0; min-inline-size: 0; }
+a { color: inherit; text-decoration-skip-ink: auto; }
+[hidden]:not([hidden="until-found"]) { display: none !important; }
+dialog { padding: 0; border: 0; color: inherit; background: none; max-inline-size: none; max-block-size: none; }
+[popover] { padding: 0; border: 0; color: inherit; background: none; }
+summary { cursor: pointer; }
+summary::-webkit-details-marker { display: none; }

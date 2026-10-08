@@ -1,0 +1,45 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Biopunk — Bioluminescent green on wet black. */
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="biopunk"] {
+  --bg-base: light-dark(#ECF9EE, #020703);
+  --bg-surface: light-dark(#FBFFFB, #050C06);
+  --bg-elevated: light-dark(#FBFFFB, #0A130C);
+  --bg-subtle: light-dark(#E1EEE3, #111A12);
+  --bg-hover: light-dark(#D7E4D9, #172119);
+  --text-primary: light-dark(#07150A, #DBEEDE);
+  --text-secondary: light-dark(#4A5A4D, #92A495);
+  --text-tertiary: light-dark(#5D6E60, #748677);
+  --text-disabled: light-dark(#879389, #465047);
+  --border-control: light-dark(#8B978D, #586359);
+  --accent: light-dark(#048322, #6EF278);
+  --accent-contrast: light-dark(#FFFFFF, #020703);
+  --accent-hover: light-dark(#04731D, #81FF89);
+  --accent-text: light-dark(#036C1B, #6EF278);
+  --error: light-dark(#A82C2D, #F97770);
+  --success: light-dark(#1E6935, #6FB880);
+  --warning: light-dark(#7D5302, #D49838);
+  --info: light-dark(#185E9C, #67AAED);
+  --on-error: light-dark(#FFFFFF, #020703);
+  --on-success: light-dark(#FFFFFF, #020703);
+  --on-warning: light-dark(#FFFFFF, #020703);
+  --on-info: light-dark(#FFFFFF, #020703);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Rajdhani', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-ui: 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-mono: 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --radius-scale: 0.5;
+  --weight-display: 600;
+  --tracking-display: 0.02em;
+}
+[data-theme="biopunk"]:not([data-mode]) { color-scheme: dark; }
+}

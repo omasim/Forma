@@ -1,0 +1,46 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Art Deco — Gilded geometry: gold on black lacquer. */
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:wght@400;500;600;700&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="artdeco"] {
+  --bg-base: light-dark(#F9F5EE, #090704);
+  --bg-surface: light-dark(#FFFEFD, #0E0C08);
+  --bg-elevated: light-dark(#FFFEFD, #15120E);
+  --bg-subtle: light-dark(#EEEAE3, #1C1914);
+  --bg-hover: light-dark(#E4E0D9, #23201B);
+  --text-primary: light-dark(#15110A, #EDE7DD);
+  --text-secondary: light-dark(#5A554C, #A39E94);
+  --text-tertiary: light-dark(#6F6961, #868178);
+  --text-disabled: light-dark(#938F89, #534F4A);
+  --border-control: light-dark(#97938D, #65615B);
+  --accent: light-dark(#936E03, #E1B75C);
+  --accent-contrast: light-dark(#FFFFFF, #090704);
+  --accent-hover: light-dark(#816002, #EEC469);
+  --accent-text: light-dark(#775902, #E1B75C);
+  --error: light-dark(#A72C2D, #F97770);
+  --success: light-dark(#1E6935, #6FB880);
+  --warning: light-dark(#7D5302, #D49838);
+  --info: light-dark(#185E9C, #67AAED);
+  --on-error: light-dark(#FFFFFF, #090704);
+  --on-success: light-dark(#FFFFFF, #090704);
+  --on-warning: light-dark(#FFFFFF, #090704);
+  --on-info: light-dark(#FFFFFF, #090704);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Raleway', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 0;
+  --weight-display: 500;
+  --tracking-display: 0.06em;
+}
+
+[data-theme="artdeco"] .btn, [data-theme="artdeco"] .badge, [data-theme="artdeco"] .tab, [data-theme="artdeco"] .field-label { letter-spacing: 0.08em; text-transform: uppercase; }
+[data-theme="artdeco"] .card { border-width: 1px; box-shadow: inset 0 0 0 3px var(--bg-surface), inset 0 0 0 4px var(--border-default); }
+}

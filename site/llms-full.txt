@@ -1,0 +1,2761 @@
+# FORMA v6.0.0 — complete reference
+
+> Generated from the same source as the CSS. 126 components · 59 themes · 1770 contrast checks (all pass).
+
+FORMA is a CSS design system with an optional JS behaviour layer. Follow these rules when generating UI.
+
+1. **Use only FORMA classes that exist.** Look them up (llms-full.txt, forma-spec.json, or the MCP tool `get_component`). Never invent classes such as `btn-blue` or `card-shadow`.
+2. **Never hard-code colors, fonts, radii or spacing.** Use tokens: `var(--accent)`, `var(--text-secondary)`, `var(--space-4)`, `var(--radius-lg)`.
+3. **Native elements first.** Modals are `<dialog class="dialog">` opened with `data-forma-open="id"`; menus and popovers use the `popover` attribute + `popovertarget`; accordions are `<details class="disclosure">`; checkboxes are `<input type="checkbox" class="checkbox">`.
+4. **State lives in ARIA attributes, not classes:** `aria-selected`, `aria-pressed`, `aria-current="page"`, `aria-invalid="true"`, `aria-expanded`. Tabs need `role="tablist"/"tab"/"tabpanel"` and `data-forma="tabs"` on the wrapper.
+5. **Every control needs a name:** `<label for>` for inputs; `aria-label` for icon-only buttons; `alt` for images.
+6. **Icons:** `<svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-NAME"/></svg>`.
+7. **Modes and themes:** `data-mode="light|dark"` (omit to follow the OS) and `data-theme="<id>"` after loading `themes/<id>.css`. Never use `data-theme="dark"` — that was v5.
+8. **Layout:** `.container`, `.stack`, `.cluster`, `.split`, `.grid` (`--min`), `.grid-2/3/4`, `.dash` + `.span-N`; gaps via `.gap-N` or `--gap`.
+9. **Charts:** `<figure class="chart" data-forma="chart" data-type="line|area|bar|donut" data-labels="…" data-series='[{"name":"A","values":[…]}]'>` with a `.chart-canvas` child. Never two y-axes.
+10. **Validate before you finish:** run `npx @nage/forma lint file.html` or the MCP tool `validate_html`.
+
+Components: 126 · Themes: 59 · Docs: https://forma-design-five.vercel.app/llms-full.txt
+
+
+## Install
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@nage/forma@6.0.0/dist/forma.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@nage/forma@6.0.0/dist/forma.min.js" defer></script>
+<!-- optional theme -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@nage/forma@6.0.0/dist/themes/swiss.css">
+<html data-theme="swiss" data-mode="dark">
+```
+
+## Tokens
+Color tokens (each is one `light-dark()` value, recomputed per theme): `--bg-base`, `--bg-surface`, `--bg-elevated`, `--bg-subtle`, `--bg-hover`, `--text-primary`, `--text-secondary`, `--text-tertiary`, `--text-disabled`, `--border-control`, `--accent`, `--accent-contrast`, `--accent-hover`, `--accent-text`, `--error`, `--success`, `--warning`, `--info`, `--on-error`, `--on-success`, `--on-warning`, `--on-info`, `--data-1`, `--data-2`, `--data-3`, `--data-4`, `--data-5`, `--data-6`, `--data-7`, `--data-8`.
+Derived: `--border-faint|default|muted|strong`, `--accent-muted`, `--accent-subtle`, `--{error,success,warning,info}-muted`, `--{…}-border`, `--shadow-xs…xl`, `--focus-ring`.
+Use `--accent` for fills/indicators and `--accent-text` for accent-colored text; `--accent-contrast` is text on an accent fill.
+
+- `--font-display`: 'Cormorant Variable', 'Cormorant', 'Cormorant Garamond', Georgia, 'Times New Roman', serif
+- `--font-ui`: 'Syne Variable', 'Syne', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif
+- `--font-mono`: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace
+- `--weight-light`: 300
+- `--weight-regular`: 400
+- `--weight-medium`: 500
+- `--weight-semibold`: 600
+- `--weight-display`: 300
+- `--text-2xs`: 0.6875rem
+- `--text-xs`: 0.75rem
+- `--text-sm`: 0.875rem
+- `--text-base`: 1rem
+- `--text-md`: 1.125rem
+- `--text-lg`: 1.375rem
+- `--text-xl`: 1.875rem
+- `--text-2xl`: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem)
+- `--text-3xl`: clamp(2.125rem, 1.6rem + 2vw, 3rem)
+- `--text-4xl`: clamp(2.5rem, 1.7rem + 3.4vw, 4rem)
+- `--text-5xl`: clamp(3rem, 1.8rem + 5vw, 5.5rem)
+- `--leading-none`: 1
+- `--leading-tight`: 1.1
+- `--leading-snug`: 1.3
+- `--leading-normal`: 1.5
+- `--leading-relaxed`: 1.7
+- `--tracking-tighter`: -0.04em
+- `--tracking-tight`: -0.02em
+- `--tracking-normal`: 0em
+- `--tracking-wide`: 0.04em
+- `--tracking-wider`: 0.08em
+- `--tracking-widest`: 0.14em
+- `--space-0`: 0
+- `--space-1`: 4px
+- `--space-2`: 8px
+- `--space-3`: 12px
+- `--space-4`: 16px
+- `--space-5`: 24px
+- `--space-6`: 32px
+- `--space-7`: 48px
+- `--space-8`: 64px
+- `--space-9`: 96px
+- `--space-10`: 128px
+- `--space-px`: 1px
+- `--space-0-5`: 2px
+- `--radius-none`: 0
+- `--radius-sm`: calc(2px * var(--radius-scale))
+- `--radius-md`: calc(4px * var(--radius-scale))
+- `--radius-lg`: calc(8px * var(--radius-scale))
+- `--radius-xl`: calc(12px * var(--radius-scale))
+- `--radius-2xl`: calc(18px * var(--radius-scale))
+- `--radius-full`: 9999px
+- `--radius-scale`: 1
+- `--border-width-default`: 1px
+- `--border-width-strong`: 2px
+- `--control-sm`: 30px
+- `--control-md`: 36px
+- `--control-lg`: 44px
+- `--control-touch`: 44px
+- `--duration-instant`: 50ms
+- `--duration-fast`: 100ms
+- `--duration-base`: 150ms
+- `--duration-slow`: 250ms
+- `--duration-slower`: 400ms
+- `--ease-default`: cubic-bezier(0.16, 1, 0.3, 1)
+- `--ease-in`: cubic-bezier(0.4, 0, 1, 1)
+- `--ease-out`: cubic-bezier(0, 0, 0.2, 1)
+- `--ease-in-out`: cubic-bezier(0.4, 0, 0.2, 1)
+- `--ease-bounce`: cubic-bezier(0.34, 1.56, 0.64, 1)
+- `--z-base`: 0
+- `--z-raised`: 10
+- `--z-dropdown`: 100
+- `--z-sticky`: 200
+- `--z-overlay`: 300
+- `--z-modal`: 400
+- `--z-popover`: 500
+- `--z-toast`: 600
+- `--z-tooltip`: 700
+- `--container-sm`: 640px
+- `--container-md`: 880px
+- `--container-lg`: 1120px
+- `--container-xl`: 1280px
+- `--container-prose`: 68ch
+- `--breakpoint-sm`: 640px
+- `--breakpoint-md`: 880px
+- `--breakpoint-lg`: 1120px
+
+## Typography helpers
+`.t-display-xl|lg|md|sm` (display serif), `.t-heading`, `.t-subheading`, `.t-body`, `.t-body-sm`, `.t-label`, `.t-caption`, `.t-meta`, `.t-mono`, colors `.t-primary|secondary|tertiary|accent|error|success|warning|info`, `.t-num`, `.t-truncate`, `.t-clamp-2|3`.
+
+## JavaScript (optional)
+Auto-initialises `[data-forma]` elements (also ones added later). Global `Forma` (IIFE) or `import * as Forma from '@nage/forma'`.
+- `Forma.mode.set('light'|'dark'|'system')`, `Forma.mode.toggle()` · `Forma.theme.set(id)`
+- `Forma.dialog.open(id)`, `Forma.dialog.close(id, value)`, `Forma.confirm({ title, text, danger })` → Promise<boolean>
+- `Forma.toast({ type, title, text, duration, action })`, `Forma.toast.success(title, text)`
+- `Forma.chart(el, { type, labels, series, format })`, `Forma.tabs(el)`, `Forma.combobox(el)`, `Forma.datepicker(el)`, `Forma.wizard(el)`, `Forma.validate(form)`, `Forma.chat(el)`
+- Events bubble as `forma:<name>` (forma:change, forma:tab, forma:select, forma:mode, forma:theme…)
+
+---
+
+## Button  ·  Core
+Actions. Eight intents, three sizes, icon-only, loading and grouped forms.
+
+- base: `.btn`
+- variants: `.btn-primary` `.btn-secondary` `.btn-accent` `.btn-soft` `.btn-ghost` `.btn-outline` `.btn-destructive` `.btn-danger` `.btn-link`
+- sizes: `.btn-sm` `.btn-md` `.btn-lg`
+- modifiers: `.btn-icon` `.btn-block` `.is-loading`
+- parts: `.btn-group`
+
+```html
+<div class="cluster">
+  <button class="btn btn-primary">Primary</button>
+  <button class="btn">Secondary</button>
+  <button class="btn btn-accent">Accent</button>
+  <button class="btn btn-soft">Soft</button>
+  <button class="btn btn-ghost">Ghost</button>
+  <button class="btn btn-outline">Outline</button>
+  <button class="btn btn-destructive">Delete</button>
+  <button class="btn btn-danger">Delete forever</button>
+  <button class="btn btn-link">Link</button>
+</div>
+```
+
+Accessibility:
+- Icon-only buttons need aria-label.
+- Loading: set aria-busy="true" — the label stays in the accessibility tree while hidden visually.
+- Toggle groups use aria-pressed; Forma.js keeps it in sync when data-forma="toggle-group" is set.
+- Use <a class="btn"> only for navigation.
+
+From v5: `btn-icon (standalone)` → `btn btn-icon`
+
+---
+
+## Badge  ·  Core
+Compact, non-interactive status labels.
+
+- base: `.badge`
+- variants: `.badge-accent` `.badge-success` `.badge-warning` `.badge-error` `.badge-info` `.badge-outline` `.badge-solid`
+- modifiers: `.badge-pill` `.badge-dot` `.badge-mono` `.badge-plan`
+
+```html
+<div class="cluster">
+  <span class="badge">Draft</span>
+  <span class="badge badge-accent">New</span>
+  <span class="badge badge-success badge-dot">Published</span>
+  <span class="badge badge-warning">Review</span>
+  <span class="badge badge-error">Failed</span>
+  <span class="badge badge-info">Beta</span>
+  <span class="badge badge-outline">Archived</span>
+  <span class="badge badge-solid badge-pill">12</span>
+  <span class="badge badge-plan badge-accent">Pro</span>
+</div>
+```
+
+Accessibility:
+- Color is never the only signal: badges always carry text.
+
+From v5: `plan-badge pb-pro` → `badge badge-plan badge-accent`
+
+---
+
+## Tag & Chip  ·  Core
+Tags are toggleable filters; chips are removable values.
+
+- base: `.tag`
+- states: `aria-pressed` `.is-active`
+- parts: `.chip` `.chip-remove`
+
+```html
+<div class="stack gap-3">
+  <div class="cluster" role="group" aria-label="Filter by medium">
+    <button class="tag" aria-pressed="true">All</button>
+    <button class="tag" aria-pressed="false">Painting</button>
+    <button class="tag" aria-pressed="false">Sculpture</button>
+    <button class="tag" aria-pressed="false">Digital</button>
+  </div>
+  <div class="cluster">
+    <span class="chip">Qwen3-14B <button class="chip-remove" aria-label="Remove Qwen3-14B">×</button></span>
+    <span class="chip">SFT <button class="chip-remove" aria-label="Remove SFT">×</button></span>
+  </div>
+</div>
+```
+
+Accessibility:
+- Tags are buttons with aria-pressed.
+- Each chip-remove button names the value it removes.
+
+---
+
+## Avatar  ·  Core
+People and entities — round or square, six sizes, initials or image, grouped.
+
+- base: `.avatar`
+- sizes: `.avatar-xs` `.avatar-sm` `.avatar-md` `.avatar-lg` `.avatar-xl` `.avatar-2xl`
+- variants: `.avatar-accent` `.avatar-info` `.avatar-success` `.avatar-warning`
+- modifiers: `.avatar-square` `.avatar-status`
+- parts: `.avatar-group`
+
+```html
+<div class="cluster gap-4">
+  <span class="avatar avatar-xs">A</span>
+  <span class="avatar avatar-sm">ÖA</span>
+  <span class="avatar avatar-md avatar-accent">EV</span>
+  <span class="avatar avatar-lg avatar-square avatar-info">CK</span>
+  <span class="avatar avatar-xl avatar-status">SY</span>
+  <div class="avatar-group">
+    <span class="avatar avatar-sm avatar-accent">F</span>
+    <span class="avatar avatar-sm avatar-info">C</span>
+    <span class="avatar avatar-sm avatar-success">E</span>
+    <span class="avatar avatar-sm">+4</span>
+  </div>
+</div>
+```
+
+Accessibility:
+- Images need alt text; decorative initials next to a visible name can be aria-hidden.
+
+From v5: `picon picon-lg` → `avatar avatar-lg avatar-square`
+
+---
+
+## Divider  ·  Core
+Separation through restraint: three weights, vertical and labeled.
+
+- base: `.divider`
+- variants: `.divider-faint` `.divider-strong` `.divider-vertical`
+- parts: `.divider-label`
+
+```html
+<div>
+  <hr class="divider">
+  <div class="divider-label">or continue with email</div>
+  <p class="t-body-sm">Left <span class="divider-vertical" role="separator"></span> Right</p>
+</div>
+```
+
+---
+
+## Icon  ·  Core
+Stroke icons from the forma-icons.svg sprite (Lucide, ISC). Six sizes, semantic colors.
+
+- base: `.fi`
+- sizes: `.fi-xs` `.fi-sm` `.fi-md` `.fi-lg` `.fi-xl` `.fi-2xl`
+- variants: `.fi-primary` `.fi-secondary` `.fi-tertiary` `.fi-accent` `.fi-success` `.fi-warning` `.fi-error` `.fi-info`
+- parts: `.icon-tile` `.icon-tile-accent`
+
+```html
+<div class="cluster gap-4">
+  <svg class="fi fi-xl fi-accent" aria-hidden="true"><use href="forma-icons.svg#fi-brain"/></svg> <svg class="fi fi-xl" aria-hidden="true"><use href="forma-icons.svg#fi-database"/></svg> <svg class="fi fi-xl fi-success" aria-hidden="true"><use href="forma-icons.svg#fi-check-circle"/></svg> <svg class="fi fi-xl fi-warning" aria-hidden="true"><use href="forma-icons.svg#fi-warning"/></svg> <svg class="fi fi-xl fi-error" aria-hidden="true"><use href="forma-icons.svg#fi-x-circle"/></svg>
+  <span class="icon-tile icon-tile-accent"><svg class="fi fi-lg" aria-hidden="true"><use href="forma-icons.svg#fi-sparkle"/></svg></span>
+</div>
+```
+
+Accessibility:
+- Decorative icons: aria-hidden="true". Meaningful standalone icons: role="img" + aria-label, or a visible label.
+
+---
+
+## Spinner  ·  Core
+Indeterminate loading indicator.
+
+- base: `.spinner`
+- sizes: `.spinner-xs` `.spinner-sm` `.spinner-md` `.spinner-lg` `.spinner-xl`
+- variants: `.spinner-accent`
+
+```html
+<div class="cluster gap-4" role="status" aria-label="Loading">
+  <span class="spinner spinner-xs"></span><span class="spinner spinner-sm"></span><span class="spinner"></span>
+  <span class="spinner spinner-lg spinner-accent"></span><span class="spinner spinner-xl"></span>
+</div>
+```
+
+Accessibility:
+- Wrap in role="status" with a label; spinners keep rotating slowly under reduced motion so the state stays visible.
+
+---
+
+## Skeleton  ·  Core
+Shape-preserving placeholders while content loads.
+
+- base: `.skeleton`
+- variants: `.skeleton-text` `.skeleton-title` `.skeleton-avatar` `.skeleton-block` `.skeleton-btn`
+
+```html
+<div class="card stack gap-2" role="status" aria-busy="true" aria-label="Loading card">
+  <div class="cluster"><span class="skeleton skeleton-avatar"></span><span class="skeleton skeleton-title"></span></div>
+  <span class="skeleton skeleton-text"></span><span class="skeleton skeleton-text" style="inline-size:70%"></span>
+  <span class="skeleton skeleton-btn"></span>
+</div>
+```
+
+From v5: `skel-shimmer` → `skeleton`; `skel-text` → `skeleton skeleton-text`
+
+---
+
+## Progress  ·  Core
+Determinate and indeterminate progress. Width comes from --value.
+
+- base: `.progress`
+- parts: `.progress-head` `.progress-value` `.progress-track` `.progress-fill`
+- variants: `.progress-accent` `.progress-success` `.progress-warning` `.progress-error` `.progress-indeterminate`
+- modifiers: `.progress-track-lg` `.progress-native`
+
+```html
+<div class="stack gap-4">
+  <div class="progress progress-accent">
+    <div class="progress-head"><span>DPO training</span><span class="progress-value">62%</span></div>
+    <div class="progress-track" role="progressbar" aria-label="DPO training" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill" style="--value:62%"></div></div>
+  </div>
+  <div class="progress progress-success"><div class="progress-track progress-track-lg" role="progressbar" aria-label="Upload" aria-valuenow="100"><div class="progress-fill" style="--value:100%"></div></div></div>
+  <div class="progress progress-indeterminate"><div class="progress-track" role="progressbar" aria-label="Queued"><div class="progress-fill"></div></div></div>
+</div>
+```
+
+Accessibility:
+- The track carries role="progressbar" with aria-valuenow; omit valuenow for indeterminate.
+
+---
+
+## Status Dot  ·  Core
+Tiny live-state indicators with text.
+
+- base: `.status`
+- parts: `.status-dot`
+- variants: `.status-dot-success` `.status-dot-warning` `.status-dot-error` `.status-dot-info`
+- modifiers: `.status-dot-pulse`
+
+```html
+<div class="stack gap-2">
+  <span class="status"><span class="status-dot status-dot-success status-dot-pulse"></span>API — operational</span>
+  <span class="status"><span class="status-dot status-dot-warning"></span>Benchmark — queued</span>
+  <span class="status"><span class="status-dot status-dot-error"></span>GRPO stage — failed</span>
+  <span class="status"><span class="status-dot"></span>Idle</span>
+</div>
+```
+
+---
+
+## Kbd  ·  Core
+Keyboard keys and shortcuts.
+
+- base: `.kbd`
+
+```html
+<p class="t-body-sm">Open the command palette with <kbd class="kbd">⌘</kbd> <kbd class="kbd">K</kbd></p>
+```
+
+---
+
+## Tooltip  ·  Core
+Short labels on hover and focus. Declarative via data-tooltip; rich variant for longer content.
+
+- base: `.tooltip`
+- modifiers: `.tooltip-rich`
+- parts: `.tooltip-title`
+- attributes: `data-tooltip`
+
+```html
+<div class="cluster">
+  <button class="btn btn-icon" aria-label="Copy" data-tooltip="Copy to clipboard"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-copy"/></svg></button>
+  <button class="btn btn-sm" data-tooltip="Runs SFT then DPO on the current dataset">Start training</button>
+</div>
+```
+
+Accessibility:
+- Forma.js upgrades data-tooltip into a popover linked with aria-describedby, shown on hover and keyboard focus, dismissed with Escape (WCAG 1.4.13).
+- Never put essential or interactive content in a tooltip.
+
+JS: auto `data-tooltip` · API `Forma.tooltip(el)`
+
+---
+
+## Code & Log  ·  Core
+Code blocks with a copy action, inline code, and terminal/log output.
+
+- base: `.code-block`
+- parts: `.code-block-head` `.code-copy` `.code-inline` `.log` `.log-line` `.log-time` `.log-info` `.log-ok` `.log-warn` `.log-error` `.tok-k` `.tok-s` `.tok-c` `.tok-n` `.tok-t`
+- attributes: `data-forma="copy"`
+
+```html
+<div class="stack gap-4">
+  <div>
+    <div class="code-block-head"><span>index.html</span><button class="code-copy" data-forma="copy" data-copy-target="#code-ex">Copy</button></div>
+    <pre class="code-block" id="code-ex"><code><span class="tok-c">&lt;!-- one stylesheet --&gt;</span>
+&lt;link rel=<span class="tok-s">"stylesheet"</span> href=<span class="tok-s">"forma.min.css"</span>&gt;</code></pre>
+  </div>
+  <pre class="log"><span class="log-line"><span class="log-time">09:14:02</span><span class="log-info">INFO</span> Training started — Qwen3-14B</span>
+<span class="log-line"><span class="log-time">09:22:41</span><span class="log-ok">OK  </span> Checkpoint saved</span>
+<span class="log-line"><span class="log-time">09:23:12</span><span class="log-warn">WARN</span> VRAM 74.8 / 80 GB</span>
+<span class="log-line"><span class="log-time">09:41:03</span><span class="log-error">ERR </span> Disk full — retrying</span></pre>
+</div>
+```
+
+Accessibility:
+- Copy buttons announce "Copied" through the shared live region.
+
+JS: auto `data-forma="copy"` · API `Forma.copy(text)`
+
+---
+
+## Field  ·  Forms
+Label, control, hint and message as one accessible unit. Validation state lives on the control via aria-invalid.
+
+- base: `.field`
+- parts: `.field-label` `.field-label-row` `.field-hint` `.field-message` `.field-counter` `.fieldset` `.form-grid` `.span-all` `.form-actions`
+- variants: `.field-message-error` `.field-message-success` `.field-message-warning`
+- modifiers: `.field-required`
+
+```html
+<form class="stack gap-5" data-forma="validate" novalidate>
+  <div class="form-grid">
+    <div class="field">
+      <label class="field-label" for="f-name">Model name</label>
+      <input class="input" id="f-name" name="name" required minlength="3" placeholder="forge-14b" aria-describedby="f-name-hint">
+      <p class="field-hint" id="f-name-hint">Letters, numbers and hyphens.</p>
+    </div>
+    <div class="field">
+      <label class="field-label" for="f-mail">Contact e-mail</label>
+      <input class="input" id="f-mail" type="email" name="email" required placeholder="you@studio.com">
+    </div>
+    <div class="field span-all">
+      <div class="field-label-row"><label class="field-label" for="f-desc">Description</label><span class="field-counter" data-counter-for="f-desc">0 / 280</span></div>
+      <textarea class="textarea" id="f-desc" maxlength="280" placeholder="What does this model do?"></textarea>
+    </div>
+  </div>
+  <div class="form-actions"><button type="button" class="btn btn-ghost">Cancel</button><button class="btn btn-primary">Save</button></div>
+</form>
+```
+
+Accessibility:
+- Every control has a <label for>.
+- Hints and messages are connected with aria-describedby; Forma.validate wires this automatically.
+- Errors set aria-invalid="true" — color is never the only signal (icon + text).
+
+From v5: `field-wrap` → `field`; `form-row form-row-2` → `form-grid`; `field-msg field-msg-error` → `field-message field-message-error`; `field-error (on wrapper)` → `aria-invalid="true" on the control`
+
+---
+
+## Input  ·  Forms
+Text input, textarea and native select. Sizes, addons, icons, search.
+
+- base: `.input`
+- parts: `.textarea` `.select` `.input-group` `.input-addon` `.input-addon-plain` `.search`
+- sizes: `.input-sm` `.input-lg` `.select-sm` `.select-lg`
+- states: `aria-invalid` `.disabled` `.readonly`
+
+```html
+<div class="grid" style="--min:220px">
+  <div class="field"><label class="field-label" for="i1">Website</label><div class="input-group"><span class="input-addon">https://</span><input class="input" id="i1" placeholder="studio.com"></div></div>
+  <div class="field"><label class="field-label" for="i2">Budget</label><div class="input-group"><input class="input" id="i2" inputmode="decimal" value="1,200"><span class="input-addon">USD</span></div></div>
+  <div class="field"><label class="field-label" for="i3">Medium</label><select class="select" id="i3"><option>Oil on canvas</option><option>Digital</option><option>Mixed media</option></select></div>
+  <div class="field"><label class="field-label" for="i4">Search</label><div class="search"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-search"/></svg><input class="input" id="i4" type="search" placeholder="Search works"><kbd class="kbd">/</kbd></div></div>
+  <div class="field"><label class="field-label" for="i5">Small</label><input class="input input-sm" id="i5" placeholder="Small"></div>
+  <div class="field"><label class="field-label" for="i6">Disabled</label><input class="input" id="i6" disabled value="Locked"></div>
+</div>
+```
+
+Accessibility:
+- Placeholder is never a label.
+- Textareas grow with content (field-sizing) up to 320px.
+
+From v5: `input-addon-wrap` → `input-group`; `search-field` → `search`; `select-wrap > select.select` → `select.select`
+
+---
+
+## Checkbox & Radio  ·  Forms
+Native inputs, restyled. Indeterminate state, descriptions, and selectable cards.
+
+- base: `.checkbox`
+- parts: `.radio` `.check` `.check-desc` `.choice-group` `.choice-group-row` `.choice-card` `.choice-card-body` `.choice-card-title` `.choice-card-desc` `.choice-card-meta`
+
+```html
+<div class="grid-2">
+  <fieldset class="choice-group"><legend class="field-label">Notify me</legend>
+    <label class="check"><input type="checkbox" class="checkbox" checked> Training complete</label>
+    <label class="check"><input type="checkbox" class="checkbox" data-indeterminate> Some evals</label>
+    <label class="check"><input type="checkbox" class="checkbox"><span>Weekly digest<span class="check-desc">Every Monday, 09:00</span></span></label>
+    <label class="check"><input type="checkbox" class="checkbox" disabled> Disabled</label>
+  </fieldset>
+  <fieldset class="choice-group"><legend class="field-label">Visibility</legend>
+    <label class="check"><input type="radio" class="radio" name="vis" checked> Private</label>
+    <label class="check"><input type="radio" class="radio" name="vis"> Team</label>
+    <label class="check"><input type="radio" class="radio" name="vis"> Public</label>
+  </fieldset>
+</div>
+```
+
+Accessibility:
+- Real <input type="checkbox|radio">: native keyboard, forms and screen-reader support.
+- Group with <fieldset><legend>.
+- Control borders meet 3:1 (WCAG 1.4.11) in every theme.
+- data-indeterminate sets the indeterminate property via Forma.js.
+
+From v5: `checkbox + checkbox-box span` → `<label class="check"><input class="checkbox">`; `radio-card / checkbox-card / opt` → `choice-card`
+
+---
+
+## Switch  ·  Forms
+Immediate on/off settings, as a native checkbox with role="switch".
+
+- base: `.switch`
+- modifiers: `.switch-lg`
+- parts: `.setting-row` `.setting-row-label` `.setting-row-desc`
+
+```html
+<div class="card">
+  <label class="setting-row"><span><span class="setting-row-label">E-mail notifications</span><span class="setting-row-desc">When a training run finishes.</span></span><input type="checkbox" class="switch" role="switch" checked></label>
+  <label class="setting-row"><span><span class="setting-row-label">Auto checkpoint</span><span class="setting-row-desc">Save after each epoch.</span></span><input type="checkbox" class="switch" role="switch"></label>
+  <label class="setting-row"><span><span class="setting-row-label">Early stopping</span><span class="setting-row-desc">Stop on validation loss increase.</span></span><input type="checkbox" class="switch switch-lg" role="switch" checked></label>
+</div>
+```
+
+Accessibility:
+- <input type="checkbox" role="switch"> — announced as on/off, toggled with Space.
+
+From v5: `sw > sw-track > input + sw-bg + sw-dot` → `<input type="checkbox" class="switch" role="switch">`
+
+---
+
+## Range  ·  Forms
+Native range slider with filled track; dual-thumb min/max via Forma.js.
+
+- base: `.range`
+- parts: `.range-scale` `.range-output` `.range-dual`
+
+```html
+<div class="stack gap-5">
+  <div class="field"><div class="field-label-row"><label class="field-label" for="r1">Temperature</label><output class="range-output" for="r1">0.7</output></div>
+    <input type="range" class="range" id="r1" min="0" max="2" step="0.1" value="0.7" data-forma="range"><div class="range-scale"><span>0</span><span>1</span><span>2</span></div></div>
+  <div class="field"><div class="field-label-row"><span class="field-label" id="r2l">Price</span><output class="range-output">$20 – $80</output></div>
+    <div class="range-dual" data-forma="range-dual" role="group" aria-labelledby="r2l"><input type="range" class="range" min="0" max="100" value="20" aria-label="Minimum price"><input type="range" class="range" min="0" max="100" value="80" aria-label="Maximum price"></div></div>
+</div>
+```
+
+Accessibility:
+- Each thumb is a real range input with its own label.
+- Dual range: the two inputs share one track, so their boxes overlap; each thumb stays individually operable by pointer and keyboard (arrow keys, Page Up/Down, Home/End).
+
+JS: auto `data-forma="range" | "range-dual"`
+
+---
+
+## Segmented Control  ·  Forms
+A compact single choice between 2–5 options. Radio-backed for forms.
+
+- base: `.segmented`
+- parts: `.segmented-badge`
+
+```html
+<div class="segmented" role="radiogroup" aria-label="Billing">
+  <label><input type="radio" name="bill" checked> Monthly</label>
+  <label><input type="radio" name="bill"> Annual <span class="segmented-badge">−20%</span></label>
+</div>
+```
+
+From v5: `billing-toggle / billing-opt` → `segmented`; `tab-list-pill` → `segmented (for choices) or tabs-pill (for panels)`
+
+---
+
+## Number Stepper  ·  Forms
+Numeric input with − / + buttons; respects min, max and step.
+
+- base: `.stepper`
+- modifiers: `.stepper-sm`
+
+```html
+<div class="stepper" data-forma="stepper">
+  <button type="button" aria-label="Decrease" data-step="-1">−</button>
+  <input type="number" value="2" min="1" max="10" aria-label="Quantity">
+  <button type="button" aria-label="Increase" data-step="1">+</button>
+</div>
+```
+
+JS: auto `data-forma="stepper"`
+
+From v5: `cart-qty` → `stepper stepper-sm`
+
+---
+
+## OTP Input  ·  Forms
+One-time codes: auto-advance, backspace, paste-to-fill.
+
+- base: `.otp`
+- parts: `.otp-sep`
+
+```html
+<div class="otp" data-forma="otp" role="group" aria-label="Verification code">
+  <input inputmode="numeric" maxlength="1" aria-label="Digit 1" autocomplete="one-time-code"><input inputmode="numeric" maxlength="1" aria-label="Digit 2"><input inputmode="numeric" maxlength="1" aria-label="Digit 3">
+  <span class="otp-sep" aria-hidden="true">–</span>
+  <input inputmode="numeric" maxlength="1" aria-label="Digit 4"><input inputmode="numeric" maxlength="1" aria-label="Digit 5"><input inputmode="numeric" maxlength="1" aria-label="Digit 6">
+</div>
+```
+
+JS: auto `data-forma="otp"` · events `forma:complete`
+
+---
+
+## Combobox  ·  Forms
+Searchable single or multi select (WAI-ARIA combobox + listbox). Replaces v5 .cselect.
+
+- base: `.combobox`
+- parts: `.combobox-control` `.combobox-input` `.listbox` `.listbox-group` `.listbox-empty` `.option` `.option-desc`
+
+```html
+<div class="field" style="max-inline-size:360px">
+  <label class="field-label" id="cb1-l" for="cb1">Base models</label>
+  <div class="combobox" data-forma="combobox" data-multiple>
+    <div class="combobox-control"><input class="combobox-input" id="cb1" placeholder="Search models…"></div>
+    <div class="listbox" role="listbox" aria-labelledby="cb1-l" hidden>
+      <div class="listbox-group">Qwen</div>
+      <div class="option" role="option" data-value="qwen3-14b" aria-selected="true">Qwen3-14B <span class="option-desc">14B</span></div>
+      <div class="option" role="option" data-value="qwen3-8b">Qwen3-8B <span class="option-desc">8B</span></div>
+      <div class="listbox-group">Meta</div>
+      <div class="option" role="option" data-value="llama-70b">Llama-3.3-70B <span class="option-desc">70B</span></div>
+      <div class="option" role="option" data-value="llama-8b" aria-disabled="true">Llama-3.1-8B <span class="option-desc">deprecated</span></div>
+    </div>
+  </div>
+</div>
+```
+
+Accessibility:
+- role=combobox with aria-expanded, aria-controls and aria-activedescendant is applied by Forma.js.
+- Arrow keys move, Enter selects, Escape closes, typing filters.
+
+JS: auto `data-forma="combobox"` · API `Forma.combobox(el)` · events `forma:change`
+
+From v5: `cselect / cselect-trigger / cselect-option` → `combobox / combobox-control / option`
+
+---
+
+## File Upload  ·  Forms
+Drag-and-drop zone backed by a real file input, with a file list and per-file progress.
+
+- base: `.dropzone`
+- parts: `.dropzone-icon` `.dropzone-title` `.dropzone-hint` `.file-list` `.file-item` `.file-item-name` `.file-item-meta`
+- states: `data-dragover` `aria-invalid`
+
+```html
+<div class="stack gap-3">
+  <label class="dropzone" data-forma="dropzone">
+    <span class="dropzone-icon"><svg class="fi fi-2xl" aria-hidden="true"><use href="forma-icons.svg#fi-cloud-upload"/></svg></span>
+    <span class="dropzone-title"><strong>Click to upload</strong> or drag and drop</span>
+    <span class="dropzone-hint">CSV, JSONL or Parquet · up to 2 GB</span>
+    <input type="file" multiple accept=".csv,.jsonl,.parquet">
+  </label>
+  <ul class="file-list">
+    <li class="file-item"><svg class="fi fi-lg fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-file-text"/></svg><div><div class="file-item-name">conversations-alpha-50k.jsonl</div><div class="file-item-meta">35.2 MB · 72%</div><div class="progress-track"><div class="progress-fill progress-fill-accent" style="--value:72%"></div></div></div><button class="btn btn-icon btn-ghost btn-sm" aria-label="Remove file"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-x"/></svg></button></li>
+    <li class="file-item" data-state="error"><svg class="fi fi-lg fi-error" aria-hidden="true"><use href="forma-icons.svg#fi-file-text"/></svg><div><div class="file-item-name">eval-set.csv</div><div class="file-item-meta">Unsupported encoding</div></div><button class="btn btn-icon btn-ghost btn-sm" aria-label="Remove file"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-x"/></svg></button></li>
+  </ul>
+</div>
+```
+
+JS: auto `data-forma="dropzone"` · API `Forma.formatBytes(n)` · events `forma:files`
+
+From v5: `upload-zone` → `dropzone`; `upload-item` → `file-item`
+
+---
+
+## Date Picker  ·  Forms
+Calendar grid with keyboard navigation, single date or range. Rendered by Forma.js from a native date input.
+
+- base: `.datepicker`
+- parts: `.datepicker-head` `.datepicker-title` `.datepicker-grid` `.datepicker-weekday` `.datepicker-day` `.datepicker-foot` `.date-field`
+
+```html
+<div class="datepicker" data-forma="datepicker" data-value="2026-10-08" aria-label="Choose a date"></div>
+```
+
+Accessibility:
+- Grid pattern: arrow keys move by day/week, PageUp/PageDown by month, Home/End to week edges.
+- Today is marked with aria-current="date".
+
+JS: auto `data-forma="datepicker"` · API `Forma.datepicker(el, { value, range, min, max, locale })` · events `forma:change`
+
+---
+
+## Validation  ·  Forms
+Native constraint validation, enhanced: inline messages, an error summary, password strength. Messages in English and Turkish.
+
+- base: `.form-summary`
+- parts: `.form-summary-title` `.strength` `.strength-bar` `.strength-label`
+- attributes: `data-forma="validate"` `data-strength`
+
+```html
+<div class="stack gap-4">
+  <div class="form-summary" role="alert" tabindex="-1"><p class="form-summary-title">2 fields need attention</p><ul><li><a href="#f-name">Model name is required</a></li><li><a href="#f-mail">Enter a valid e-mail</a></li></ul></div>
+  <div class="field"><label class="field-label" for="pw">Password</label><input class="input" id="pw" type="password" data-strength aria-describedby="pw-s">
+    <div class="strength" id="pw-s" data-score="3" aria-live="polite"><span class="strength-bar"></span><span class="strength-bar"></span><span class="strength-bar"></span><span class="strength-bar"></span><span class="strength-label">Good</span></div></div>
+</div>
+```
+
+Accessibility:
+- Uses the browser constraint API (required, type, minlength, pattern) — no custom rule syntax to learn.
+- On submit, focus moves to the summary; each entry links to its field.
+- Messages are localised: Forma.validate.locale = "tr".
+
+JS: auto `data-forma="validate"` · API `Forma.validate(form) · Forma.validate.messages.tr` · events `forma:invalid` `forma:valid`
+
+From v5: `data-validate="required|email"` → `native required / type="email"`; `pw-strength` → `strength`
+
+---
+
+## Card  ·  Surfaces
+The container. Five tones, header/body/footer parts, media, horizontal layout, interactive.
+
+- base: `.card`
+- variants: `.card-elevated` `.card-subtle` `.card-ghost` `.card-accent`
+- modifiers: `.card-flush` `.card-compact` `.card-interactive` `.card-horizontal`
+- parts: `.card-header` `.card-title` `.card-title-display` `.card-desc` `.card-body` `.card-footer` `.card-media` `.card-eyebrow`
+
+```html
+<div class="grid" style="--min:180px">
+  <div class="card"><p class="card-title">card</p><p class="card-desc">Default panel.</p></div>
+  <div class="card card-elevated"><p class="card-title">card-elevated</p><p class="card-desc">Lifted surface.</p></div>
+  <div class="card card-subtle"><p class="card-title">card-subtle</p><p class="card-desc">Filled, no border.</p></div>
+  <div class="card card-ghost"><p class="card-title">card-ghost</p><p class="card-desc">Border only.</p></div>
+  <div class="card card-accent"><p class="card-title">card-accent</p><p class="card-desc">Highlighted.</p></div>
+</div>
+```
+
+Accessibility:
+- Use <article> for self-contained cards; make the whole card a link only when it has a single destination.
+
+From v5: `card-media-thumb` → `card-media`; `imgtxt-card imgtxt-md` → `card card-flush card-horizontal`
+
+---
+
+## Feature Card  ·  Surfaces
+Icon + title + description, for capabilities and product features.
+
+- base: `.feature`
+- parts: `.feature-title` `.feature-desc` `.icon-tile`
+
+```html
+<div class="grid" style="--min:200px">
+  <div class="card feature"><span class="icon-tile icon-tile-accent"><svg class="fi fi-lg" aria-hidden="true"><use href="forma-icons.svg#fi-route"/></svg></span><p class="feature-title">Cortex Router</p><p class="feature-desc">Routes each request to the right model.</p></div>
+  <div class="card feature"><span class="icon-tile"><svg class="fi fi-lg" aria-hidden="true"><use href="forma-icons.svg#fi-layout"/></svg></span><p class="feature-title">GenUI Layer</p><p class="feature-desc">Generates structured visual components.</p></div>
+  <div class="card feature"><span class="icon-tile"><svg class="fi fi-lg" aria-hidden="true"><use href="forma-icons.svg#fi-git-merge"/></svg></span><p class="feature-title">Conflux</p><p class="feature-desc">Multi-source fine-tuning.</p></div>
+</div>
+```
+
+From v5: `card-feature` → `card feature`
+
+---
+
+## Metric Card  ·  Surfaces
+A single number with label and trend. Display serif numerals, tabular figures.
+
+- base: `.metric`
+- parts: `.metric-label` `.metric-value` `.metric-delta` `.delta-up` `.delta-down`
+- attributes: `data-trend="up|down"`
+
+```html
+<div class="grid" style="--min:160px">
+  <div class="card card-subtle metric"><span class="metric-label">Loss</span><span class="metric-value">0.34</span><span class="metric-delta" data-trend="up">−0.18 better</span></div>
+  <div class="card card-subtle metric"><span class="metric-label">Eval</span><span class="metric-value">84.2</span><span class="metric-delta" data-trend="up">+6.1</span></div>
+  <div class="card card-subtle metric"><span class="metric-label">Cost</span><span class="metric-value">$401</span><span class="metric-delta" data-trend="down">+12%</span></div>
+</div>
+```
+
+Accessibility:
+- Trend direction is shown with an arrow glyph and text, not color alone.
+
+From v5: `card-metric` → `card card-subtle metric`
+
+---
+
+## Row Card  ·  Surfaces
+Horizontal list item for runs, files, people.
+
+- base: `.row-card`
+- parts: `.row-card-body` `.row-card-title` `.row-card-sub`
+
+```html
+<div class="stack gap-2">
+  <div class="row-card"><span class="avatar avatar-sm avatar-square avatar-accent">F</span><div class="row-card-body"><p class="row-card-title">Forge-14B — SFT checkpoint saved</p><p class="row-card-sub">models/forge-sft-v1 · 2h ago</p></div><span class="badge badge-success">OK</span></div>
+  <div class="row-card"><span class="avatar avatar-sm avatar-square avatar-warning">C</span><div class="row-card-body"><p class="row-card-title">Cortex — GRPO queued</p><p class="row-card-sub">Waiting for an A100 slot</p></div><span class="badge badge-warning">Queued</span></div>
+</div>
+```
+
+From v5: `card-row` → `row-card`
+
+---
+
+## Accordion  ·  Surfaces
+Native <details>/<summary> — keyboard and screen-reader support for free, animated height, no height cap.
+
+- base: `.accordion`
+- modifiers: `.accordion-flush`
+- parts: `.disclosure` `.disclosure-meta` `.disclosure-body`
+
+```html
+<div class="accordion">
+  <details class="disclosure" open name="faq"><summary>Is FORMA free? <span class="disclosure-meta">MIT</span></summary><div class="disclosure-body">Yes — MIT licensed, for personal and commercial use.</div></details>
+  <details class="disclosure" name="faq"><summary>Do I need a build step?</summary><div class="disclosure-body">No. Link one stylesheet and, optionally, one script.</div></details>
+  <details class="disclosure" name="faq"><summary>Which browsers?</summary><div class="disclosure-body">Evergreen browsers from 2024 on: Chrome/Edge 123+, Firefox 120+, Safari 17.5+.</div></details>
+</div>
+```
+
+Accessibility:
+- Native disclosure semantics. Shared name="" makes an exclusive group (one open at a time).
+
+From v5: `expand-card + Forma.toggleAccordion()` → `<details class="disclosure"> (no JS)`
+
+---
+
+## Alert  ·  Surfaces
+Prominent messages with title, text and actions. Also a full-width banner.
+
+- base: `.alert`
+- variants: `.alert-info` `.alert-success` `.alert-warning` `.alert-error` `.alert-accent`
+- modifiers: `.alert-banner`
+- parts: `.alert-body` `.alert-title` `.alert-text` `.alert-actions` `.alert-close`
+
+```html
+<div class="stack gap-3">
+  <div class="alert alert-accent" role="status"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-info"/></svg><div class="alert-body"><p class="alert-title">DPO data ready</p><p class="alert-text">15,000 preference pairs generated.</p><div class="alert-actions"><button class="btn btn-sm btn-accent">Open pipeline</button><button class="btn btn-sm btn-ghost">Later</button></div></div></div>
+  <div class="alert alert-success" role="status"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-check-circle"/></svg><div class="alert-body"><p class="alert-title">Checkpoint saved</p><p class="alert-text">forge-14b-sft-v1 written to /models.</p></div><button class="alert-close" aria-label="Dismiss" data-forma="dismiss"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-x"/></svg></button></div>
+  <div class="alert alert-warning" role="alert"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-warning"/></svg><div class="alert-body"><p class="alert-title">VRAM at 94%</p><p class="alert-text">Reduce batch size or raise gradient accumulation.</p></div></div>
+  <div class="alert alert-error" role="alert"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-x-circle"/></svg><div class="alert-body"><p class="alert-title">Training failed</p><p class="alert-text">Not enough disk space (47 / 50 GB).</p></div></div>
+</div>
+```
+
+Accessibility:
+- role="alert" for urgent, role="status" for informational messages.
+- data-forma="dismiss" removes the closest .alert and returns focus sensibly.
+
+---
+
+## Callout  ·  Surfaces
+Quiet inline notes inside content and docs.
+
+- base: `.callout`
+- variants: `.callout-info` `.callout-success` `.callout-warning` `.callout-error` `.callout-accent`
+
+```html
+<div class="stack gap-2">
+  <div class="callout callout-info"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-info"/></svg><p><strong>Tip.</strong> Themes change only tokens — markup stays the same.</p></div>
+  <div class="callout callout-warning"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-warning"/></svg><p><strong>Heads up.</strong> Licensed fonts need your own licence.</p></div>
+</div>
+```
+
+---
+
+## Empty & Error States  ·  Surfaces
+What to show when there is nothing yet, nothing found, or something broke.
+
+- base: `.empty-state`
+- parts: `.empty-state-icon` `.empty-state-title` `.empty-state-text` `.empty-state-actions` `.state-page` `.state-code` `.state-title` `.state-text`
+
+```html
+<div class="card"><div class="empty-state">
+  <span class="empty-state-icon"><svg class="fi fi-xl" aria-hidden="true"><use href="forma-icons.svg#fi-database"/></svg></span>
+  <h3 class="empty-state-title">No datasets yet</h3>
+  <p class="empty-state-text">Upload your first dataset to start training. CSV, JSONL and Parquet are supported.</p>
+  <div class="empty-state-actions"><button class="btn btn-primary"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-upload"/></svg> Upload dataset</button><button class="btn btn-ghost">Read the guide</button></div>
+</div></div>
+```
+
+From v5: `empty-icon / empty-title / empty-desc` → `empty-state-icon / -title / -text`; `error-page / error-code` → `state-page / state-code`
+
+---
+
+## Dialog  ·  Overlays
+Modal dialogs on native <dialog>: real focus trap, inert page, Escape, top layer, animated entry and exit.
+
+- base: `.dialog`
+- sizes: `.dialog-sm` `.dialog-lg` `.dialog-xl`
+- parts: `.dialog-header` `.dialog-title` `.dialog-desc` `.dialog-body` `.dialog-footer` `.dialog-close` `.dialog-icon` `.dialog-icon-error` `.dialog-icon-warning` `.dialog-icon-accent`
+- attributes: `data-forma-open="id"` `data-forma-close`
+
+```html
+<div class="cluster">
+  <button class="btn btn-primary" data-forma-open="dlg-train">Start training</button>
+  <button class="btn btn-destructive" data-forma-open="dlg-delete">Delete account</button>
+</div>
+<dialog class="dialog" id="dlg-train" aria-labelledby="dlg-train-t" aria-describedby="dlg-train-d">
+  <header class="dialog-header"><div><h2 class="dialog-title" id="dlg-train-t">Start training</h2><p class="dialog-desc" id="dlg-train-d">Estimated ≈ 5 hours · ≈ $45</p></div><button class="dialog-close" data-forma-close aria-label="Close"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-x"/></svg></button></header>
+  <div class="dialog-body">
+    <div class="field"><label class="field-label" for="dlg-name">Run name</label><input class="input" id="dlg-name" value="forge-14b-dpo" autofocus></div>
+    <div class="field"><label class="field-label" for="dlg-base">Base model</label><select class="select" id="dlg-base"><option>Qwen3-14B</option><option>Qwen3-8B</option></select></div>
+  </div>
+  <footer class="dialog-footer"><button class="btn btn-ghost" data-forma-close>Cancel</button><button class="btn btn-accent" data-forma-close="launch">Launch</button></footer>
+</dialog>
+<dialog class="dialog dialog-sm" id="dlg-delete" role="alertdialog" aria-labelledby="dlg-del-t" aria-describedby="dlg-del-d">
+  <div class="dialog-header"><div><span class="dialog-icon dialog-icon-error"><svg class="fi fi-lg" aria-hidden="true"><use href="forma-icons.svg#fi-trash"/></svg></span><h2 class="dialog-title" id="dlg-del-t">Delete account?</h2><p class="dialog-desc" id="dlg-del-d">All models and datasets are removed permanently. This cannot be undone.</p></div></div>
+  <footer class="dialog-footer"><button class="btn btn-ghost" data-forma-close autofocus>Keep account</button><button class="btn btn-danger" data-forma-close="delete">Delete</button></footer>
+</dialog>
+```
+
+Accessibility:
+- Opened with showModal(): focus is trapped, the page behind is inert, Escape closes, focus returns to the trigger.
+- Destructive confirms use role="alertdialog" and autofocus the safe action.
+- data-forma-close="value" sets dialog.returnValue; listen to the native close event.
+
+JS: auto `data-forma-open / data-forma-close` · API `Forma.dialog.open(id) · Forma.dialog.close(id, value) · Forma.confirm({ title, text, danger }) → Promise<boolean>`
+
+From v5: `modal-wrap > modal / modal-hd / modal-bd / modal-ft` → `dialog.dialog / dialog-header / dialog-body / dialog-footer`; `alert-dialog` → `dialog.dialog-sm[role=alertdialog]`
+
+---
+
+## Drawer & Sheet  ·  Overlays
+Side drawers and bottom sheets — the same native dialog, different entrance.
+
+- base: `.drawer`
+- modifiers: `.drawer-start`
+- parts: `.sheet` `.sheet-handle`
+
+```html
+<div class="cluster">
+  <button class="btn" data-forma-open="drw-filters"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-filter"/></svg> Filters</button>
+  <button class="btn" data-forma-open="sht-share"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-share"/></svg> Share</button>
+</div>
+<dialog class="dialog drawer" id="drw-filters" aria-labelledby="drw-t">
+  <header class="dialog-header"><h2 class="dialog-title" id="drw-t">Filters</h2><button class="dialog-close" data-forma-close aria-label="Close"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-x"/></svg></button></header>
+  <div class="dialog-body"><fieldset class="choice-group"><legend class="field-label">Status</legend><label class="check"><input type="checkbox" class="checkbox" checked> Running</label><label class="check"><input type="checkbox" class="checkbox"> Queued</label><label class="check"><input type="checkbox" class="checkbox"> Done</label></fieldset></div>
+  <footer class="dialog-footer"><button class="btn btn-ghost" data-forma-close>Reset</button><button class="btn btn-primary" data-forma-close>Apply</button></footer>
+</dialog>
+<dialog class="dialog sheet" id="sht-share" aria-labelledby="sht-t">
+  <span class="sheet-handle" aria-hidden="true"></span>
+  <header class="dialog-header"><h2 class="dialog-title" id="sht-t">Share run</h2><button class="dialog-close" data-forma-close aria-label="Close"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-x"/></svg></button></header>
+  <div class="dialog-body"><div class="input-group"><input class="input" readonly value="https://nage.ai/r/forge-14b" aria-label="Link"><button class="btn btn-sm" data-forma="copy" data-copy-text="https://nage.ai/r/forge-14b">Copy</button></div></div>
+</dialog>
+```
+
+Accessibility:
+- Same guarantees as Dialog. Drawers mirror automatically in RTL.
+
+From v5: `drawer (static demo)` → `dialog.dialog.drawer`; `bottom-sheet` → `dialog.dialog.sheet`; `mobile-drawer` → `dialog.dialog.drawer.drawer-start`
+
+---
+
+## Popover  ·  Overlays
+Non-modal floating panels on the native Popover API — light-dismiss and Escape built in. Positioned to the trigger by Forma.js.
+
+- base: `.popover`
+- parts: `.popover-title`
+- attributes: `popover` `popovertarget`
+
+```html
+<button class="btn" popovertarget="pop-about">About Forge-14B</button>
+<div class="popover" id="pop-about" popover>
+  <p class="popover-title">Forge-14B</p>
+  <p>AI engineering assistant on Qwen3-14B. Trained with SFT + DPO across five domains.</p>
+</div>
+```
+
+Accessibility:
+- popovertarget wires aria-expanded on the trigger automatically.
+- Forma.js flips the panel when it would overflow the viewport.
+
+JS: auto `[popover]` · API `Forma.position(panel, trigger, { placement })`
+
+From v5: `popover-wrap > popover-box popover-bottom` → `[popover].popover + popovertarget`
+
+---
+
+## Menu  ·  Overlays
+Action menus: popover + role="menu" with roving focus, type-ahead, checkable items and shortcuts.
+
+- base: `.menu`
+- modifiers: `.menu-static`
+- parts: `.menu-item` `.menu-item-danger` `.menu-shortcut` `.menu-separator` `.menu-label`
+
+```html
+<button class="btn" popovertarget="menu-actions" aria-haspopup="menu">Actions <svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-chevron-down"/></svg></button>
+<div class="menu" id="menu-actions" popover role="menu" aria-label="Actions">
+  <p class="menu-label">Run</p>
+  <button class="menu-item" role="menuitem"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-edit"/></svg> Rename <span class="menu-shortcut">⌘E</span></button>
+  <button class="menu-item" role="menuitem"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-copy"/></svg> Duplicate <span class="menu-shortcut">⌘D</span></button>
+  <button class="menu-item" role="menuitemcheckbox" aria-checked="true"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-bell"/></svg> Notify on finish</button>
+  <hr class="menu-separator">
+  <button class="menu-item menu-item-danger" role="menuitem"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-trash"/></svg> Delete <span class="menu-shortcut">⌘⌫</span></button>
+</div>
+```
+
+Accessibility:
+- Arrow keys / Home / End move focus, type-ahead jumps, Escape closes and returns focus, Tab leaves.
+- Context menus: data-forma="context-menu" data-menu="id" opens the menu at the pointer.
+
+JS: auto `[role=menu][popover]` · API `Forma.menu(el)`
+
+From v5: `menu > menu-content.is-open + Forma.toggleMenu()` → `[popover].menu + popovertarget`; `menu-item.is-danger` → `menu-item menu-item-danger`; `context-menu` → `menu menu-static`
+
+---
+
+## Command Palette  ·  Overlays
+⌘K / Ctrl+K launcher with fuzzy filtering, groups and keyboard navigation.
+
+- base: `.command`
+- parts: `.command-input` `.command-list` `.command-group` `.command-item` `.command-item-icon` `.command-item-desc` `.command-footer` `.command-empty`
+
+```html
+<button class="btn" data-forma-open="cmdk"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-search"/></svg> Search… <kbd class="kbd">⌘K</kbd></button>
+<dialog class="dialog command" id="cmdk" data-forma="command" data-hotkey="mod+k" aria-label="Command palette">
+  <div class="dialog-body">
+    <div class="command-input"><svg class="fi fi-lg" aria-hidden="true"><use href="forma-icons.svg#fi-search"/></svg><input placeholder="Type a command or search…" aria-label="Search commands"></div>
+    <div class="command-list" role="listbox" aria-label="Commands">
+      <p class="command-group">Quick actions</p>
+      <div class="command-item" role="option"><span class="command-item-icon"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-plus"/></svg></span><span>Create new model <span class="command-item-desc">Forge, Fehm or Cortex</span></span></div>
+      <div class="command-item" role="option"><span class="command-item-icon"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-upload"/></svg></span><span>Upload dataset <span class="command-item-desc">CSV, JSONL, Parquet</span></span></div>
+      <div class="command-item" role="option"><span class="command-item-icon"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-play"/></svg></span><span>Start training</span></div>
+      <p class="command-group">Navigate</p>
+      <div class="command-item" role="option"><span class="command-item-icon"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-chart-bar"/></svg></span><span>Analytics</span></div>
+      <div class="command-item" role="option"><span class="command-item-icon"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-settings"/></svg></span><span>Settings</span></div>
+      <p class="command-empty" hidden>No results.</p>
+    </div>
+    <div class="command-footer"><span><kbd class="kbd">↑</kbd><kbd class="kbd">↓</kbd> navigate</span><span><kbd class="kbd">↵</kbd> select</span><span><kbd class="kbd">esc</kbd> close</span></div>
+  </div>
+</dialog>
+```
+
+Accessibility:
+- Input owns the list via aria-activedescendant; results count is announced.
+
+JS: auto `data-forma="command"` · events `forma:command`
+
+---
+
+## Toast  ·  Overlays
+Transient notifications in a polite live region. Pause on hover/focus, actions, auto-dismiss.
+
+- base: `.toast`
+- variants: `.toast-success` `.toast-error` `.toast-warning` `.toast-info`
+- parts: `.toast-region` `.toast-body` `.toast-title` `.toast-text` `.toast-action` `.toast-close` `.toast-timer`
+- modifiers: `.toast-static`
+
+```html
+<div class="cluster">
+  <button class="btn" onclick="Forma.toast.success('Changes saved', 'Your settings were updated.')">Success</button>
+  <button class="btn" onclick="Forma.toast.error('Upload failed', 'File exceeds the 10 MB limit.')">Error</button>
+  <button class="btn" onclick="Forma.toast({ title: 'Checkpoint deleted', action: { label: 'Undo', onClick: () => Forma.toast.info('Restored') } })">With action</button>
+</div>
+<div class="toast toast-static toast-success" role="status" style="margin-block-start:var(--space-4);max-inline-size:380px"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-check-circle"/></svg><div class="toast-body"><p class="toast-title">Training completed</p><p class="toast-text">forge-sft-v1 is ready for DPO.</p></div><button class="toast-close" aria-label="Dismiss"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-x"/></svg></button></div>
+```
+
+Accessibility:
+- All text is inserted with textContent — no HTML injection.
+- Errors use an assertive region, everything else polite.
+- Timers pause while hovered or focused (WCAG 2.2.1).
+
+JS: API `Forma.toast({ type, title, text, duration, action, position }) · .success() .error() .warning() .info()`
+
+From v5: `FormaToast.show({ message })` → `Forma.toast({ text })`
+
+---
+
+## Link  ·  Navigation
+Inline text links with a quiet underline that strengthens on hover.
+
+- base: `.link`
+- modifiers: `.link-quiet`
+
+```html
+<p class="t-body">Read the <a class="link" href="#">token reference</a> or browse <a class="link link-quiet" href="#">all themes</a>.</p>
+```
+
+---
+
+## Navbar  ·  Navigation
+Top application bar: brand, primary links, actions. Sticky translucent variant.
+
+- base: `.navbar`
+- modifiers: `.navbar-sticky`
+- parts: `.navbar-brand` `.navbar-nav` `.navbar-link` `.navbar-end` `.navbar-toggle` `.navbar-collapse`
+
+```html
+<nav class="navbar" aria-label="Main">
+  <a class="navbar-brand" href="#">Forma</a>
+  <ul class="navbar-nav navbar-collapse">
+    <li><a class="navbar-link" href="#" aria-current="page">Dashboard</a></li>
+    <li><a class="navbar-link" href="#">Models</a></li>
+    <li><a class="navbar-link" href="#">Datasets</a></li>
+    <li><a class="navbar-link" href="#">Evals</a></li>
+  </ul>
+  <div class="navbar-end">
+    <button class="btn btn-sm btn-ghost" data-forma-open="cmdk"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-search"/></svg><kbd class="kbd">⌘K</kbd></button>
+    <button class="btn btn-icon btn-ghost btn-sm" aria-label="Notifications"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-bell"/></svg></button>
+    <button class="btn btn-icon btn-ghost btn-sm navbar-toggle" aria-label="Menu"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-menu"/></svg></button>
+    <span class="avatar avatar-sm avatar-accent">ÖA</span>
+  </div>
+</nav>
+```
+
+Accessibility:
+- <nav aria-label> landmark; the current page uses aria-current="page".
+- Below 880px .navbar-collapse hides and .navbar-toggle opens a drawer.
+
+---
+
+## Sidebar  ·  Navigation
+App navigation rail with sections, counts and a collapsed icon-only mode. Pairs with .app-shell.
+
+- base: `.sidebar`
+- parts: `.sidebar-header` `.sidebar-section` `.sidebar-item` `.sidebar-label` `.sidebar-count` `.sidebar-footer` `.app-shell` `.app-main`
+- states: `data-collapsed`
+
+```html
+<nav class="sidebar" aria-label="Workspace" id="sb-demo" style="block-size:380px">
+  <div class="sidebar-header"><span class="avatar avatar-sm avatar-square avatar-accent">N</span><span class="sidebar-label t-body-sm">Nage Workspace</span></div>
+  <a class="sidebar-item" href="#" aria-current="page"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-home"/></svg><span class="sidebar-label">Overview</span></a>
+  <p class="sidebar-section">Models</p>
+  <a class="sidebar-item" href="#"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-box"/></svg><span class="sidebar-label">Forge</span><span class="sidebar-count">3</span></a>
+  <a class="sidebar-item" href="#"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-box"/></svg><span class="sidebar-label">Fehm</span><span class="sidebar-count">1</span></a>
+  <p class="sidebar-section">Data</p>
+  <a class="sidebar-item" href="#"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-database"/></svg><span class="sidebar-label">Datasets</span><span class="sidebar-count">12</span></a>
+  <div class="sidebar-footer"><button class="sidebar-item" data-forma="sidebar-toggle" data-target="sb-demo" aria-expanded="true"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-sidebar"/></svg><span class="sidebar-label">Collapse</span></button></div>
+</nav>
+```
+
+Accessibility:
+- Collapsed items keep their accessible names (labels are hidden visually only by display:none → use title/tooltip: Forma.js adds data-tooltip from the label).
+
+JS: auto `data-forma="sidebar-toggle"`
+
+From v5: `sidebar-collapsible.is-collapsed` → `sidebar[data-collapsed]`; `nav-tabs-v` → `tabs tabs-vertical`
+
+---
+
+## Breadcrumb  ·  Navigation
+Hierarchy trail as an ordered list.
+
+- base: `.breadcrumb`
+- modifiers: `.breadcrumb-chevron`
+
+```html
+<nav class="breadcrumb" aria-label="Breadcrumb"><ol>
+  <li><a href="#">Home</a></li><li><a href="#">Models</a></li><li><a href="#">Forge</a></li><li><span aria-current="page">forge-14b-sft-v1</span></li>
+</ol></nav>
+```
+
+From v5: `breadcrumb-item / breadcrumb-sep` → `<ol> items, separators are generated`
+
+---
+
+## Pagination  ·  Navigation
+Page links with current, disabled and ellipsis states.
+
+- base: `.pagination`
+- parts: `.page-link` `.page-ellipsis` `.pagination-info`
+
+```html
+<nav aria-label="Pagination" class="split"><span class="pagination-info">Showing 21–40 of 412</span><ul class="pagination">
+  <li><a class="page-link" href="#" aria-label="Previous page"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-chevron-left"/></svg></a></li>
+  <li><a class="page-link" href="#">1</a></li><li><a class="page-link" href="#" aria-current="page">2</a></li><li><a class="page-link" href="#">3</a></li>
+  <li><span class="page-ellipsis">…</span></li><li><a class="page-link" href="#">21</a></li>
+  <li><a class="page-link" href="#" aria-label="Next page"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-chevron-right"/></svg></a></li>
+</ul></nav>
+```
+
+From v5: `page-btn.is-active` → `page-link[aria-current="page"]`
+
+---
+
+## Tabs  ·  Navigation
+WAI-ARIA tabs in four looks: line, underline, pill, vertical. Arrow keys, Home/End, automatic activation.
+
+- base: `.tabs`
+- variants: `.tabs-underline` `.tabs-pill` `.tabs-vertical`
+- parts: `.tab-list` `.tab` `.tab-panel`
+
+```html
+<div class="stack gap-6">
+  <div class="tabs" data-forma="tabs">
+    <div class="tab-list" role="tablist" aria-label="Run details">
+      <button class="tab" role="tab" aria-selected="true">Overview</button>
+      <button class="tab" role="tab">Data</button>
+      <button class="tab" role="tab">Analysis <span class="badge">3</span></button>
+      <button class="tab" role="tab">Settings</button>
+    </div>
+    <div class="tab-panel" role="tabpanel">Key metrics, recent activity and system status.</div>
+    <div class="tab-panel" role="tabpanel" hidden>Tables and filters.</div>
+    <div class="tab-panel" role="tabpanel" hidden>Charts and insights.</div>
+    <div class="tab-panel" role="tabpanel" hidden>Configuration.</div>
+  </div>
+  <div class="tabs tabs-pill" data-forma="tabs">
+    <div class="tab-list" role="tablist" aria-label="Filter"><button class="tab" role="tab" aria-selected="true">All</button><button class="tab" role="tab">Active</button><button class="tab" role="tab">Archived</button></div>
+    <div class="tab-panel" role="tabpanel">All runs.</div><div class="tab-panel" role="tabpanel" hidden>Active runs.</div><div class="tab-panel" role="tabpanel" hidden>Archived runs.</div>
+  </div>
+</div>
+```
+
+Accessibility:
+- Forma.js wires ids, aria-controls, aria-labelledby and tabindex; only the selected tab is in the Tab order.
+- Panels toggle with the hidden attribute, never inline styles.
+
+JS: auto `data-forma="tabs"` · API `Forma.tabs(el).select(index)` · events `forma:tab`
+
+From v5: `tab-item.is-active + switchTab(group, i, el)` → `tab[aria-selected] (automatic)`; `tab-list-pill / tab-item-pill` → `tabs tabs-pill`; `tab-list-underline` → `tabs tabs-underline`
+
+---
+
+## Steps  ·  Navigation
+Progress through a multi-step flow, horizontal or vertical.
+
+- base: `.steps`
+- modifiers: `.steps-vertical`
+- parts: `.step` `.step-title` `.step-desc`
+- states: `data-state="done"` `aria-current="step"`
+
+```html
+<div class="stack gap-6">
+  <ol class="steps" aria-label="Setup progress">
+    <li class="step" data-state="done"><span class="step-title">Account</span></li>
+    <li class="step" data-state="done"><span class="step-title">Dataset</span></li>
+    <li class="step" aria-current="step"><span class="step-title">Pipeline</span><span class="step-desc">Choose a base model</span></li>
+    <li class="step"><span class="step-title">Evaluate</span></li>
+    <li class="step"><span class="step-title">Deploy</span></li>
+  </ol>
+  <ol class="steps steps-vertical" aria-label="Onboarding">
+    <li class="step" data-state="done"><div><p class="step-title">Account created</p><p class="step-desc">E-mail verified</p></div></li>
+    <li class="step" aria-current="step"><div><p class="step-title">Configure pipeline</p><p class="step-desc">Pick a base model and start training</p></div></li>
+    <li class="step"><div><p class="step-title">Deploy</p></div></li>
+  </ol>
+</div>
+```
+
+From v5: `step-nav / step-nav-dot.done` → `steps / step[data-state=done]`; `onb / onb-step` → `steps steps-vertical`
+
+---
+
+## Wizard  ·  Navigation
+Multi-step form: steps + panels + navigation. Validates each panel before advancing.
+
+- base: `.wizard`
+- parts: `.wizard-panel` `.wizard-nav` `.wizard-count`
+- attributes: `data-wizard-next` `data-wizard-prev`
+
+```html
+<form class="wizard card" data-forma="wizard" novalidate>
+  <ol class="steps"><li class="step"><span class="step-title">Account</span></li><li class="step"><span class="step-title">Profile</span></li><li class="step"><span class="step-title">Review</span></li></ol>
+  <section class="wizard-panel stack"><div class="field"><label class="field-label" for="wz-mail">E-mail</label><input class="input" id="wz-mail" type="email" required></div></section>
+  <section class="wizard-panel stack" hidden><div class="field"><label class="field-label" for="wz-name">Display name</label><input class="input" id="wz-name" required></div></section>
+  <section class="wizard-panel" hidden><p class="t-body-sm t-secondary">All set. Submit to create your workspace.</p></section>
+  <div class="wizard-nav"><button type="button" class="btn btn-ghost" data-wizard-prev>Back</button><span class="wizard-count" aria-live="polite"></span><button type="button" class="btn btn-primary" data-wizard-next>Continue</button></div>
+</form>
+```
+
+Accessibility:
+- Focus moves to the first field of each new panel; the step counter is announced.
+
+JS: auto `data-forma="wizard"` · API `Forma.wizard(el) → { next, prev, go(i), index }` · events `forma:step`
+
+From v5: `FormaWizard(el)` → `Forma.wizard(el)`
+
+---
+
+## Mega Menu  ·  Navigation
+Wide, multi-column navigation panel on the Popover API.
+
+- base: `.mega`
+- modifiers: `.mega-static`
+- parts: `.mega-col-title` `.mega-link` `.mega-link-title` `.mega-link-desc` `.mega-feature`
+
+```html
+<div class="mega mega-static">
+  <div><p class="mega-col-title">Product</p>
+    <a class="mega-link" href="#"><svg class="fi fi-lg fi-accent" aria-hidden="true"><use href="forma-icons.svg#fi-layers"/></svg><span><span class="mega-link-title">Components</span><span class="mega-link-desc">72 accessible building blocks</span></span></a>
+    <a class="mega-link" href="#"><svg class="fi fi-lg fi-accent" aria-hidden="true"><use href="forma-icons.svg#fi-palette"/></svg><span><span class="mega-link-title">Themes</span><span class="mega-link-desc">55 contrast-proven looks</span></span></a></div>
+  <div><p class="mega-col-title">Developers</p>
+    <a class="mega-link" href="#"><svg class="fi fi-lg fi-accent" aria-hidden="true"><use href="forma-icons.svg#fi-bot"/></svg><span><span class="mega-link-title">MCP server</span><span class="mega-link-desc">Let agents build with FORMA</span></span></a>
+    <a class="mega-link" href="#"><svg class="fi fi-lg fi-accent" aria-hidden="true"><use href="forma-icons.svg#fi-file-code"/></svg><span><span class="mega-link-title">llms.txt</span><span class="mega-link-desc">Machine-readable reference</span></span></a></div>
+  <div class="mega-feature"><p class="card-eyebrow">New in 6.0</p><p class="mega-link-title">Contrast-proven themes</p><p class="mega-link-desc">Every token is checked against WCAG at build time.</p></div>
+</div>
+```
+
+---
+
+## Bottom Navigation  ·  Navigation
+Mobile tab bar with safe-area padding and 44px targets.
+
+- base: `.bottom-nav`
+- parts: `.bottom-nav-item`
+
+```html
+<nav class="bottom-nav" aria-label="Primary" style="position:static">
+  <a class="bottom-nav-item" href="#" aria-current="page"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-home"/></svg>Home</a><a class="bottom-nav-item" href="#"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-box"/></svg>Models</a>
+  <a class="bottom-nav-item" href="#"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-plus-circle"/></svg>New</a><a class="bottom-nav-item" href="#"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-chart-bar"/></svg>Evals</a><a class="bottom-nav-item" href="#"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-user"/></svg>Profile</a>
+</nav>
+```
+
+---
+
+## Footer  ·  Navigation
+Site footer with link columns and a legal row.
+
+- base: `.footer`
+- parts: `.footer-grid` `.footer-title` `.footer-links` `.footer-bottom`
+
+```html
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="stack gap-3"><span class="navbar-brand">Forma</span><p class="t-body-sm t-secondary">A museum-grade design system.</p></div>
+    <div><p class="footer-title">Product</p><ul class="footer-links"><li><a href="#">Components</a></li><li><a href="#">Themes</a></li><li><a href="#">Changelog</a></li></ul></div>
+    <div><p class="footer-title">Developers</p><ul class="footer-links"><li><a href="#">Docs</a></li><li><a href="#">llms.txt</a></li><li><a href="#">MCP</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2026 Ömer Asım · MIT</span><span>Istanbul</span></div>
+</div></footer>
+```
+
+---
+
+## Data Table  ·  Data
+Semantic tables with toolbar, sortable headers (aria-sort), row selection, sticky header, striped/compact, and stack-on-narrow.
+
+- base: `.table`
+- parts: `.table-wrap` `.table-toolbar` `.table-title` `.table-footer` `.sort-btn` `.num` `.muted` `.cell-strong`
+- modifiers: `.table-hover` `.table-striped` `.table-compact` `.table-sticky` `.table-stack`
+
+```html
+<div class="table-wrap cq">
+  <div class="table-toolbar"><h3 class="table-title">Training runs</h3><div class="search"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-search"/></svg><input class="input input-sm" type="search" placeholder="Filter" aria-label="Filter runs" data-table-filter></div><button class="btn btn-sm btn-primary"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-plus"/></svg> New run</button></div>
+  <table class="table table-hover table-stack" data-forma="table">
+    <thead><tr>
+      <th scope="col"><input type="checkbox" class="checkbox" aria-label="Select all" data-select-all></th>
+      <th scope="col" aria-sort="none"><button class="sort-btn">Model</button></th>
+      <th scope="col">Stage</th>
+      <th scope="col" class="num" aria-sort="none"><button class="sort-btn">Loss</button></th>
+      <th scope="col" class="num">Duration</th>
+      <th scope="col">Status</th>
+    </tr></thead>
+    <tbody>
+      <tr><td><input type="checkbox" class="checkbox" aria-label="Select Forge-14B"></td><td data-label="Model" class="cell-strong">Forge-14B</td><td data-label="Stage" class="muted">DPO</td><td data-label="Loss" class="num">0.41</td><td data-label="Duration" class="num">4h 22m</td><td data-label="Status"><span class="status"><span class="status-dot status-dot-warning status-dot-pulse"></span>Running</span></td></tr>
+      <tr><td><input type="checkbox" class="checkbox" aria-label="Select Cortex-14B"></td><td data-label="Model" class="cell-strong">Cortex-14B</td><td data-label="Stage" class="muted">SFT</td><td data-label="Loss" class="num">0.68</td><td data-label="Duration" class="num">—</td><td data-label="Status"><span class="status"><span class="status-dot"></span>Queued</span></td></tr>
+      <tr><td><input type="checkbox" class="checkbox" aria-label="Select Fehm-8B"></td><td data-label="Model" class="cell-strong">Fehm-8B</td><td data-label="Stage" class="muted">SFT + DPO</td><td data-label="Loss" class="num">0.34</td><td data-label="Duration" class="num">5h 14m</td><td data-label="Status"><span class="status"><span class="status-dot status-dot-success"></span>Done</span></td></tr>
+      <tr><td><input type="checkbox" class="checkbox" aria-label="Select Conflux-v1"></td><td data-label="Model" class="cell-strong">Conflux-v1</td><td data-label="Stage" class="muted">GRPO</td><td data-label="Loss" class="num">1.82</td><td data-label="Duration" class="num">1h 03m</td><td data-label="Status"><span class="status"><span class="status-dot status-dot-error"></span>Failed</span></td></tr>
+    </tbody>
+  </table>
+  <div class="table-footer"><span data-table-status>4 runs</span><span>Page 1 of 1</span></div>
+</div>
+```
+
+Accessibility:
+- Sorting updates aria-sort on the <th>; the sort control is a real button.
+- Row selection mirrors aria-selected on the <tr>.
+- .table-stack turns rows into labelled cards inside narrow containers (uses data-label).
+
+JS: auto `data-forma="table"` · events `forma:sort` `forma:select`
+
+From v5: `data-table-wrap / data-table` → `table-wrap / table`; `dt-sort-btn.is-sorted` → `th[aria-sort] > .sort-btn`; `compare-table` → `table`
+
+---
+
+## Description List  ·  Data
+Key–value pairs: inline, divided, or as a metadata grid.
+
+- base: `.dl`
+- modifiers: `.dl-divided` `.dl-grid`
+
+```html
+<div class="grid-2">
+  <dl class="dl dl-divided"><dt>Base model</dt><dd>Qwen3-14B</dd><dt>Licence</dt><dd>Apache 2.0</dd><dt>Stages</dt><dd>SFT → DPO</dd></dl>
+  <dl class="dl dl-grid"><div><dt>engine</dt><dd>Unsloth + TRL</dd></div><div><dt>data</dt><dd>100K conv.</dd></div><div><dt>teacher</dt><dd>Qwen3-235B</dd></div><div><dt>context</dt><dd>128K</dd></div></dl>
+</div>
+```
+
+From v5: `specimen-grid / model-meta` → `dl / dl dl-grid`
+
+---
+
+## KPI  ·  Data
+Headline numbers with trend and optional sparkline, in a responsive grid.
+
+- base: `.kpi`
+- parts: `.kpi-grid` `.kpi-label` `.kpi-value` `.kpi-foot`
+
+```html
+<div class="kpi-grid">
+  <div class="kpi"><span class="kpi-label">Monthly revenue</span><span class="kpi-value">$48,210</span><span class="kpi-foot"><span class="metric-delta" data-trend="up">12.4%</span> vs last month</span><svg class="sparkline" data-forma="sparkline" data-values="12,14,13,17,16,19,22,21,25" role="img" aria-label="Revenue trend, rising"></svg></div>
+  <div class="kpi"><span class="kpi-label">Active users</span><span class="kpi-value">3,847</span><span class="kpi-foot"><span class="metric-delta" data-trend="up">8.1%</span> this week</span></div>
+  <div class="kpi"><span class="kpi-label">Churn</span><span class="kpi-value">2.3%</span><span class="kpi-foot"><span class="metric-delta" data-trend="up">−0.5 pt</span> improvement</span></div>
+  <div class="kpi"><span class="kpi-label">NPS</span><span class="kpi-value">72</span><span class="kpi-foot"><span class="metric-delta">0.0</span> no change</span></div>
+</div>
+```
+
+From v5: `kpi-card / kpi-trend kpi-up / kpi-delta kpi-delta-up` → `kpi / metric-delta[data-trend=up]`
+
+---
+
+## Stats Row  ·  Data
+A ruled strip of totals.
+
+- base: `.stats`
+- parts: `.stat` `.stat-value` `.stat-label`
+
+```html
+<div class="stats"><div class="stat"><span class="stat-value">≈ $400</span><span class="stat-label">Total cost</span></div><div class="stat"><span class="stat-value">6 wk</span><span class="stat-label">Duration</span></div><div class="stat"><span class="stat-value">100K</span><span class="stat-label">Conversations</span></div><div class="stat"><span class="stat-value">3</span><span class="stat-label">Models</span></div></div>
+```
+
+From v5: `stats-row / stat-block / stat-num` → `stats / stat / stat-value`
+
+---
+
+## Timeline  ·  Data
+Events over time, vertical or horizontal, with tone markers.
+
+- base: `.timeline`
+- modifiers: `.timeline-horizontal`
+- parts: `.timeline-item` `.timeline-title` `.timeline-text` `.timeline-time`
+- attributes: `data-tone`
+
+```html
+<ol class="timeline">
+  <li class="timeline-item" data-tone="success"><p class="timeline-title">Deployed to production</p><time class="timeline-time" datetime="2026-10-08T14:32">Today, 14:32</time></li>
+  <li class="timeline-item" data-tone="accent"><p class="timeline-title">PR #142 merged</p><p class="timeline-text">feat: contrast-proven token engine</p><time class="timeline-time">Today, 12:05</time></li>
+  <li class="timeline-item" data-tone="error"><p class="timeline-title">Staging build failed</p><p class="timeline-text">2 failing tests</p><time class="timeline-time">Yesterday, 18:44</time></li>
+  <li class="timeline-item"><p class="timeline-title">Sprint 24 started</p><time class="timeline-time">Mon, 09:00</time></li>
+</ol>
+```
+
+---
+
+## Activity Feed  ·  Data
+Who did what, when — with unread markers and quoted context.
+
+- base: `.feed`
+- parts: `.feed-item` `.feed-body` `.feed-quote` `.feed-time`
+- attributes: `data-unread`
+
+```html
+<ul class="feed">
+  <li class="feed-item" data-unread><span class="avatar avatar-sm avatar-accent">EV</span><div class="feed-body"><strong>Elena V.</strong> commented on <strong>Invoice #0047</strong><p class="feed-quote">Payment confirmed — closing this.</p></div><time class="feed-time">2m</time></li>
+  <li class="feed-item"><span class="avatar avatar-sm avatar-info">CK</span><div class="feed-body"><strong>Chris K.</strong> assigned <strong>BUG-88</strong> to you</div><time class="feed-time">18m</time></li>
+  <li class="feed-item"><span class="avatar avatar-sm avatar-success">SY</span><div class="feed-body"><strong>Selin Y.</strong> closed milestone <strong>v6.0</strong></div><time class="feed-time">1h</time></li>
+</ul>
+```
+
+From v5: `activity-feed / activity-item` → `feed / feed-item`
+
+---
+
+## Kanban  ·  Data
+Columns of cards with drag-and-drop and a keyboard alternative (Space to lift, arrows to move).
+
+- base: `.kanban`
+- parts: `.kanban-col` `.kanban-head` `.kanban-count` `.kanban-card` `.kanban-card-title` `.kanban-card-meta` `.kanban-add`
+
+```html
+<div class="kanban" data-forma="kanban">
+  <section class="kanban-col" aria-label="Backlog"><h3 class="kanban-head">Backlog <span class="kanban-count">2</span></h3>
+    <article class="kanban-card" tabindex="0"><p class="kanban-card-title">Redesign onboarding</p><p class="kanban-card-meta"><span class="badge badge-info">Design</span>NGA-145</p></article>
+    <article class="kanban-card" tabindex="0"><p class="kanban-card-title">Migrate legacy API</p><p class="kanban-card-meta"><span class="badge">Backend</span>NGA-142</p></article>
+    <button class="kanban-add"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-plus"/></svg> Add card</button></section>
+  <section class="kanban-col" aria-label="In progress"><h3 class="kanban-head">In progress <span class="kanban-count">1</span></h3>
+    <article class="kanban-card" tabindex="0"><p class="kanban-card-title">Token engine dark-mode refresh</p><p class="kanban-card-meta"><span class="badge badge-accent">CSS</span>NGA-138</p></article></section>
+  <section class="kanban-col" aria-label="Done"><h3 class="kanban-head">Done <span class="kanban-count">1</span></h3>
+    <article class="kanban-card" tabindex="0"><p class="kanban-card-title">Wizard component</p><p class="kanban-card-meta"><span class="badge badge-success">Done</span>NGA-130</p></article></section>
+</div>
+```
+
+Accessibility:
+- Keyboard: focus a card, Space to lift, ←/→ to change column, Space to drop, Escape to cancel; moves are announced.
+
+JS: auto `data-forma="kanban"` · events `forma:move`
+
+From v5: `kanban-board / kanban-column` → `kanban / kanban-col`
+
+---
+
+## Calendar  ·  Data
+Month view with events and today marker.
+
+- base: `.calendar`
+- parts: `.calendar-head` `.calendar-title` `.calendar-grid` `.calendar-weekday` `.calendar-cell` `.calendar-date` `.calendar-event`
+- attributes: `data-outside` `aria-current="date"` `data-tone`
+
+```html
+<div class="calendar" data-forma="calendar" data-month="2026-10" data-events='[{"date":"2026-10-08","title":"DPO run","tone":"accent"},{"date":"2026-10-12","title":"Release 6.0","tone":"success"},{"date":"2026-10-21","title":"Board review","tone":"warning"}]'></div>
+```
+
+JS: auto `data-forma="calendar"` · API `Forma.calendar(el, { month, events, locale, weekStart })`
+
+---
+
+## List  ·  Data
+Plain and interactive lists of rows.
+
+- base: `.list`
+- modifiers: `.list-interactive`
+- parts: `.list-item` `.list-item-body` `.list-item-sub`
+
+```html
+<ul class="list list-interactive">
+  <li><a class="list-item" href="#"><svg class="fi fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-file-text"/></svg><span class="list-item-body">Q3 report.pdf<span class="list-item-sub">2.4 MB · yesterday</span></span><svg class="fi fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-chevron-right"/></svg></a></li>
+  <li><a class="list-item" href="#"><svg class="fi fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-file-code"/></svg><span class="list-item-body">pipeline.yaml<span class="list-item-sub">3 KB · 2 days ago</span></span><svg class="fi fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-chevron-right"/></svg></a></li>
+</ul>
+```
+
+---
+
+## Tree View  ·  Data
+Hierarchies — files, schemas, taxonomies — with the WAI-ARIA tree pattern.
+
+- base: `.tree`
+- parts: `.tree-item` `.tree-meta`
+
+```html
+<ul class="tree" role="tree" aria-label="Schema" data-forma="tree">
+  <li role="treeitem" aria-expanded="true"><span class="tree-item"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-database"/></svg> nage_prod</span>
+    <ul role="group">
+      <li role="treeitem" aria-expanded="true"><span class="tree-item"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-table"/></svg> runs <span class="tree-meta">4.2K</span></span>
+        <ul role="group"><li role="treeitem"><span class="tree-item">id <span class="tree-meta">uuid</span></span></li><li role="treeitem" aria-selected="true"><span class="tree-item">loss <span class="tree-meta">float8</span></span></li></ul></li>
+      <li role="treeitem" aria-expanded="false"><span class="tree-item"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-table"/></svg> datasets <span class="tree-meta">312</span></span><ul role="group"><li role="treeitem"><span class="tree-item">name</span></li></ul></li>
+    </ul></li>
+</ul>
+```
+
+Accessibility:
+- Arrow keys move/expand/collapse; Home/End; Enter selects. Forma.js manages roving tabindex.
+
+JS: auto `data-forma="tree"` · events `forma:select`
+
+---
+
+## Chart Container  ·  Charts
+The frame every chart sits in: title, headline value, canvas, legend, table toggle, tooltip. Series colors --data-1…8 are CVD-validated and stay the same across themes.
+
+- base: `.chart`
+- parts: `.chart-head` `.chart-title` `.chart-subtitle` `.chart-value` `.chart-canvas` `.chart-legend` `.chart-swatch` `.chart-swatch-line` `.chart-tooltip` `.s-1` `.s-2` `.s-3` `.s-4` `.s-5` `.s-6` `.s-7` `.s-8` `.s-accent` `.s-muted`
+
+```html
+<figure class="chart" data-forma="chart" data-type="line" data-labels="Mon,Tue,Wed,Thu,Fri,Sat,Sun"
+  data-series='[{"name":"Forge","values":[1.84,1.52,1.21,0.98,0.76,0.54,0.34]},{"name":"Fehm","values":[1.6,1.41,1.2,1.08,0.9,0.81,0.7]}]' data-format="0.00">
+  <figcaption class="chart-head"><div><p class="chart-title">Training loss</p><p class="chart-subtitle">Last 7 epochs</p></div><p class="chart-value">0.34</p></figcaption>
+  <div class="chart-canvas"></div>
+</figure>
+```
+
+Accessibility:
+- Each SVG gets role="img" and an aria-label summary; Forma.chart also renders a visually hidden data table, and a "Show data" toggle on request.
+- Two or more series always get a legend; up to four are also direct-labelled.
+- Hover and keyboard focus (arrow keys) drive the tooltip and crosshair.
+- Never two y-axes.
+
+JS: auto `data-forma="chart" data-type="line|area|bar|donut|gauge"` · API `Forma.chart(el, { type, labels, series, format })`
+
+---
+
+## Bar Chart  ·  Charts
+CSS-only vertical bars for small series (no JS), or Forma.chart type="bar" for grouped bars with axes.
+
+- base: `.bars`
+- parts: `.bars-item` `.bars-fill` `.bars-label`
+- attributes: `--value` `data-muted`
+
+```html
+<figure class="chart"><figcaption class="chart-head"><p class="chart-title">Runs per day</p><p class="chart-value">96</p></figcaption>
+  <div class="bars" role="img" aria-label="Runs per day: Mon 8, Tue 12, Wed 18, Thu 14, Fri 22, Sat 6, Sun 16">
+    <div class="bars-item"><div class="bars-fill" style="--value:36%"></div><span class="bars-label">Mon</span></div>
+    <div class="bars-item"><div class="bars-fill" style="--value:55%"></div><span class="bars-label">Tue</span></div>
+    <div class="bars-item"><div class="bars-fill" style="--value:82%"></div><span class="bars-label">Wed</span></div>
+    <div class="bars-item"><div class="bars-fill" style="--value:64%"></div><span class="bars-label">Thu</span></div>
+    <div class="bars-item"><div class="bars-fill" style="--value:100%"></div><span class="bars-label">Fri</span></div>
+    <div class="bars-item" data-muted><div class="bars-fill" style="--value:27%"></div><span class="bars-label">Sat</span></div>
+    <div class="bars-item" data-muted><div class="bars-fill" style="--value:73%"></div><span class="bars-label">Sun</span></div>
+  </div></figure>
+```
+
+From v5: `bar-chart / bar-col / bar-fill` → `bars / bars-item / bars-fill`
+
+---
+
+## Horizontal Bars  ·  Charts
+Ranked comparisons with labels and values — readable at any width.
+
+- base: `.hbars`
+- parts: `.hbar` `.hbar-label` `.hbar-track` `.hbar-fill` `.hbar-value`
+
+```html
+<ul class="hbars" aria-label="Domain score">
+  <li class="hbar"><span class="hbar-label">Data generation</span><span class="hbar-track"><span class="hbar-fill" style="--value:91%"></span></span><span class="hbar-value">91%</span></li>
+  <li class="hbar"><span class="hbar-label">Dataset analysis</span><span class="hbar-track"><span class="hbar-fill" style="--value:87%"></span></span><span class="hbar-value">87%</span></li>
+  <li class="hbar"><span class="hbar-label">Fine-tune config</span><span class="hbar-track"><span class="hbar-fill" style="--value:82%"></span></span><span class="hbar-value">82%</span></li>
+  <li class="hbar"><span class="hbar-label">Code generation</span><span class="hbar-track"><span class="hbar-fill" style="--value:74%"></span></span><span class="hbar-value">74%</span></li>
+</ul>
+```
+
+From v5: `h-bar-list / h-bar-item` → `hbars / hbar`
+
+---
+
+## Donut  ·  Charts
+Part-to-whole for up to five parts, with center total and legend.
+
+- base: `.donut`
+- parts: `.donut-seg` `.donut-track` `.donut-center` `.donut-center-label`
+
+```html
+<figure class="chart" data-forma="chart" data-type="donut" data-labels="Turkish,English,Mixed,Other" data-series='[{"values":[45,35,15,5]}]' data-center="200K" data-center-label="samples" data-format="0'%'">
+  <figcaption class="chart-head"><p class="chart-title">Dataset language mix</p></figcaption><div class="chart-canvas"></div></figure>
+```
+
+Accessibility:
+- Segments are separated by a 2px gap; the legend lists values, never color alone.
+
+---
+
+## Gauge  ·  Charts
+A single value against a range (0–100 by default), with threshold coloring.
+
+- base: `.gauge`
+- parts: `.gauge-track` `.gauge-fill` `.gauge-value` `.gauge-label`
+
+```html
+<div class="cluster gap-6">
+  <div class="gauge" data-forma="chart" data-type="gauge" data-value="84" data-label="Eval score"></div>
+  <div class="gauge" data-forma="chart" data-type="gauge" data-value="94" data-label="VRAM" data-warn="80" data-danger="90"></div>
+</div>
+```
+
+---
+
+## Sparkline  ·  Charts
+Word-sized trend line for KPIs and tables.
+
+- base: `.sparkline`
+
+```html
+<div class="card metric" style="max-inline-size:260px"><span class="metric-label">Tokens / day</span><span class="metric-value">2.4M</span><svg class="sparkline" data-forma="sparkline" data-values="8,9,7,11,12,10,14,16,15,19,21,24" role="img" aria-label="Tokens per day, rising from 0.8M to 2.4M"></svg></div>
+```
+
+---
+
+## Heatmap  ·  Charts
+Intensity over a grid (activity by day/week) with a single-hue sequential scale, levels 0–5.
+
+- base: `.heatmap`
+- parts: `.heatmap-cell` `.heatmap-legend`
+- attributes: `data-level="0..5"`
+
+```html
+<div class="stack gap-3"><div class="heatmap" style="--cols:7" role="img" aria-label="Training activity over 3 weeks">
+  <span>W1</span><i class="heatmap-cell" data-level="0"></i><i class="heatmap-cell" data-level="2"></i><i class="heatmap-cell" data-level="3"></i><i class="heatmap-cell" data-level="1"></i><i class="heatmap-cell" data-level="4"></i><i class="heatmap-cell" data-level="0"></i><i class="heatmap-cell" data-level="1"></i>
+  <span>W2</span><i class="heatmap-cell" data-level="2"></i><i class="heatmap-cell" data-level="5"></i><i class="heatmap-cell" data-level="4"></i><i class="heatmap-cell" data-level="3"></i><i class="heatmap-cell" data-level="2"></i><i class="heatmap-cell" data-level="1"></i><i class="heatmap-cell" data-level="0"></i>
+  <span>W3</span><i class="heatmap-cell" data-level="3"></i><i class="heatmap-cell" data-level="4"></i><i class="heatmap-cell" data-level="5"></i><i class="heatmap-cell" data-level="5"></i><i class="heatmap-cell" data-level="3"></i><i class="heatmap-cell" data-level="2"></i><i class="heatmap-cell" data-level="1"></i>
+</div><div class="heatmap-legend">Less <i class="heatmap-cell" data-level="0"></i><i class="heatmap-cell" data-level="1"></i><i class="heatmap-cell" data-level="2"></i><i class="heatmap-cell" data-level="3"></i><i class="heatmap-cell" data-level="4"></i><i class="heatmap-cell" data-level="5"></i> More</div></div>
+```
+
+From v5: `heat-cell[data-v] / heatmap-cell[data-level]` → `heatmap-cell[data-level]`
+
+---
+
+## Treemap  ·  Charts
+Proportional areas via flex weights (--w).
+
+- base: `.treemap`
+- parts: `.treemap-cell` `.treemap-label` `.treemap-value`
+
+```html
+<div class="treemap" role="img" aria-label="Token distribution: Turkish SFT 45%, English 28%, Mixed 15%, Code 8%, Other 4%">
+  <div class="treemap-cell s-1" style="--w:45"><span class="treemap-label">Turkish SFT</span><span class="treemap-value">45%</span></div>
+  <div class="treemap-cell s-2" style="--w:28"><span class="treemap-label">English</span><span class="treemap-value">28%</span></div>
+  <div class="treemap-cell s-3" style="--w:15"><span class="treemap-label">Mixed</span><span class="treemap-value">15%</span></div>
+  <div class="treemap-cell s-4" style="--w:8"><span class="treemap-label">Code</span><span class="treemap-value">8%</span></div>
+  <div class="treemap-cell s-5" style="--w:4"><span class="treemap-label">Other</span><span class="treemap-value">4%</span></div>
+</div>
+```
+
+---
+
+## Product Card  ·  Commerce
+Product tile: media, flag, favourite, name (whole card clickable), price, swatches, add-to-cart.
+
+- base: `.product`
+- parts: `.product-grid` `.product-media` `.product-flag` `.product-fav` `.product-body` `.product-name` `.product-desc` `.product-foot` `.swatches` `.swatch` `.price` `.price-current` `.price-old` `.price-period`
+
+```html
+<div class="product-grid">
+  <article class="product"><div class="product-media"><svg class="fi fi-2xl fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-briefcase"/></svg><span class="badge badge-accent product-flag">New</span><button class="btn btn-icon btn-sm btn-ghost product-fav" aria-label="Save Leather bag" aria-pressed="false"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-heart"/></svg></button></div>
+    <div class="product-body"><a class="product-name" href="#">Minimal leather bag</a><p class="product-desc">Hand-stitched natural leather, fits 15″.</p><div class="rating"><span class="rating-stars" style="--rating:4.5" role="img" aria-label="4.5 out of 5"></span>(48)</div>
+      <div class="swatches" role="group" aria-label="Colour"><button class="swatch" style="--_c:#2b2118" aria-label="Espresso" aria-pressed="true"></button><button class="swatch" style="--_c:#a8784f" aria-label="Tan" aria-pressed="false"></button></div>
+      <div class="product-foot"><span class="price"><span class="price-current">$129</span></span><button class="btn btn-sm btn-primary">Add to cart</button></div></div></article>
+  <article class="product"><div class="product-media"><svg class="fi fi-2xl fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-headphones"/></svg><span class="badge badge-error product-flag">−30%</span></div>
+    <div class="product-body"><a class="product-name" href="#">Wireless headphones Pro</a><p class="product-desc">ANC, 40-hour battery.</p><div class="rating"><span class="rating-stars" style="--rating:4" role="img" aria-label="4 out of 5"></span>(124)</div>
+      <div class="product-foot"><span class="price"><span class="price-current">$245</span><span class="price-old">$350</span></span><button class="btn btn-sm btn-primary">Add to cart</button></div></div></article>
+</div>
+```
+
+Accessibility:
+- The name link stretches over the card; inner buttons stay independently clickable.
+- Swatches are toggle buttons named by colour.
+
+From v5: `product-card / product-image / product-price-current` → `product / product-media / price-current`
+
+---
+
+## Rating  ·  Commerce
+Fractional star display, an accessible radio-based input, and a review summary.
+
+- base: `.rating`
+- parts: `.rating-stars` `.rating-input` `.rating-summary` `.rating-score` `.rating-bars` `.rating-bar`
+- attributes: `--rating`
+
+```html
+<div class="grid-2">
+  <div class="rating-summary"><div><p class="rating-score">4.3</p><span class="rating-stars" style="--rating:4.3" role="img" aria-label="4.3 out of 5"></span><p class="t-caption t-tertiary">191 reviews</p></div>
+    <div class="rating-bars"><div class="rating-bar"><span>5</span><span style="--value:55%"></span><span>105</span></div><div class="rating-bar"><span>4</span><span style="--value:25%"></span><span>48</span></div><div class="rating-bar"><span>3</span><span style="--value:12%"></span><span>23</span></div><div class="rating-bar"><span>2</span><span style="--value:5%"></span><span>10</span></div><div class="rating-bar"><span>1</span><span style="--value:3%"></span><span>5</span></div></div></div>
+  <fieldset class="field"><legend class="field-label">Your rating</legend><div class="rating-input">
+    <input type="radio" id="rt5" name="rt" value="5"><label for="rt5" title="5 stars">★<span class="sr-only">5 stars</span></label>
+    <input type="radio" id="rt4" name="rt" value="4" checked><label for="rt4" title="4 stars">★<span class="sr-only">4 stars</span></label>
+    <input type="radio" id="rt3" name="rt" value="3"><label for="rt3">★<span class="sr-only">3 stars</span></label>
+    <input type="radio" id="rt2" name="rt" value="2"><label for="rt2">★<span class="sr-only">2 stars</span></label>
+    <input type="radio" id="rt1" name="rt" value="1"><label for="rt1">★<span class="sr-only">1 star</span></label>
+  </div></fieldset>
+</div>
+```
+
+---
+
+## Cart & Summary  ·  Commerce
+Cart lines with steppers, and an order summary block.
+
+- base: `.cart`
+- parts: `.cart-line` `.cart-thumb` `.cart-name` `.cart-meta` `.cart-line-end` `.cart-line-price` `.summary` `.summary-row` `.summary-total`
+
+```html
+<div class="grid-2">
+  <div class="cart">
+    <div class="cart-line"><span class="cart-thumb"><svg class="fi fi-lg fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-briefcase"/></svg></span><div><p class="cart-name">Minimal leather bag</p><p class="cart-meta">Espresso · Standard</p></div><div class="cart-line-end"><span class="cart-line-price">$129.00</span><div class="stepper stepper-sm" data-forma="stepper"><button type="button" aria-label="Decrease" data-step="-1">−</button><input type="number" value="1" min="0" aria-label="Quantity"><button type="button" aria-label="Increase" data-step="1">+</button></div></div></div>
+    <div class="cart-line"><span class="cart-thumb"><svg class="fi fi-lg fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-coffee"/></svg></span><div><p class="cart-name">Ceramic cup set</p><p class="cart-meta">Set of 6</p></div><div class="cart-line-end"><span class="cart-line-price">$136.00</span><div class="stepper stepper-sm" data-forma="stepper"><button type="button" aria-label="Decrease" data-step="-1">−</button><input type="number" value="2" min="0" aria-label="Quantity"><button type="button" aria-label="Increase" data-step="1">+</button></div></div></div>
+  </div>
+  <div class="card card-subtle summary"><div class="summary-row"><span>Subtotal</span><span>$265.00</span></div><div class="summary-row"><span>Shipping</span><span>Free</span></div><div class="summary-row"><span>Tax</span><span>$53.00</span></div><div class="summary-row summary-total"><span>Total</span><span>$318.00</span></div><button class="btn btn-primary btn-block btn-lg">Checkout</button></div>
+</div>
+```
+
+From v5: `cart-flyout / cart-item / cart-qty` → `dialog.drawer + cart / cart-line / stepper`
+
+---
+
+## Checkout  ·  Commerce
+Two-column checkout: numbered sections and a sticky order summary.
+
+- base: `.checkout`
+- parts: `.checkout-aside` `.checkout-section` `.checkout-section-title`
+
+```html
+<div class="checkout">
+  <form><section class="checkout-section"><h3 class="checkout-section-title" data-step="1">Contact</h3><div class="field"><label class="field-label" for="co-mail">E-mail</label><input class="input" id="co-mail" type="email" autocomplete="email"></div></section>
+    <section class="checkout-section"><h3 class="checkout-section-title" data-step="2">Shipping</h3><div class="form-grid"><div class="field"><label class="field-label" for="co-city">City</label><input class="input" id="co-city" autocomplete="address-level2"></div><div class="field"><label class="field-label" for="co-zip">Postal code</label><input class="input" id="co-zip" autocomplete="postal-code"></div></div></section></form>
+  <aside class="checkout-aside card summary"><p class="card-title">Order</p><div class="summary-row"><span>2 items</span><span>$265.00</span></div><div class="summary-row summary-total"><span>Total</span><span>$318.00</span></div><button class="btn btn-accent btn-block">Pay $318.00</button></aside>
+</div>
+```
+
+---
+
+## Invoice  ·  Commerce
+Printable invoice: header, meta, line items, totals, note. Print styles included.
+
+- base: `.invoice`
+- parts: `.invoice-head` `.invoice-brand` `.invoice-from` `.invoice-title` `.invoice-meta` `.invoice-totals` `.invoice-note`
+
+```html
+<article class="invoice">
+  <header class="invoice-head"><div><p class="invoice-brand">Forma Studio</p><p class="invoice-from">Üsküdar, Istanbul<br>hello@forma.studio</p></div><div><p class="invoice-title">Invoice</p><p class="t-mono t-tertiary">#INV-2026-0042</p></div></header>
+  <dl class="invoice-meta"><div><dt>Issued</dt><dd>8 Oct 2026</dd></div><div><dt>Due</dt><dd>7 Nov 2026</dd></div><div><dt>Client</dt><dd>Acme Ltd.</dd></div><div><dt>Status</dt><dd><span class="badge badge-warning">Unpaid</span></dd></div></dl>
+  <table class="table"><thead><tr><th scope="col">Description</th><th scope="col" class="num">Qty</th><th scope="col" class="num">Rate</th><th scope="col" class="num">Amount</th></tr></thead>
+    <tbody><tr><td>Design system workshop<br><span class="muted t-caption">2 days, on-site</span></td><td class="num">2</td><td class="num">$1,200</td><td class="num">$2,400</td></tr><tr><td>Custom dashboard widgets</td><td class="num">40</td><td class="num">$90</td><td class="num">$3,600</td></tr></tbody></table>
+  <div class="invoice-totals summary"><div class="summary-row"><span>Subtotal</span><span>$6,000</span></div><div class="summary-row"><span>VAT 20%</span><span>$1,200</span></div><div class="summary-row summary-total"><span>Total</span><span>$7,200</span></div></div>
+  <p class="invoice-note">Thank you. Payment by bank transfer within 30 days.</p>
+</article>
+```
+
+---
+
+## Pricing  ·  Commerce
+Plan cards with a featured plan, billing toggle and feature lists.
+
+- base: `.pricing`
+- parts: `.plan` `.plan-featured` `.plan-name` `.plan-tagline` `.plan-price` `.plan-amount` `.plan-period` `.plan-note` `.plan-features` `.plan-features-head`
+- attributes: `data-off`
+
+```html
+<div class="stack gap-5"><div class="segmented" role="radiogroup" aria-label="Billing" style="align-self:center"><label><input type="radio" name="pp" checked> Monthly</label><label><input type="radio" name="pp"> Annual <span class="segmented-badge">−20%</span></label></div>
+<div class="pricing">
+  <section class="plan"><div><h3 class="plan-name">Free</h3><p class="plan-tagline">For trying things out.</p></div><div><p class="plan-price"><span class="plan-amount">$0</span></p><p class="plan-note">Always free</p></div><ul class="plan-features"><li>Core components</li><li>Museum theme</li><li data-off>All 55 themes</li><li data-off>Priority support</li></ul><button class="btn btn-block">Start</button></section>
+  <section class="plan plan-featured"><div><h3 class="plan-name">Pro</h3><p class="plan-tagline">For professionals.</p></div><div><p class="plan-price"><span class="plan-amount">$20</span><span class="plan-period">/ month</span></p><p class="plan-note">Billed monthly</p></div><ul class="plan-features"><li class="plan-features-head">Everything in Free, plus</li><li>All 55 themes</li><li>Figma variables</li><li>Priority support</li></ul><button class="btn btn-accent btn-block">Upgrade to Pro</button></section>
+  <section class="plan"><div><h3 class="plan-name">Team</h3><p class="plan-tagline">For organisations.</p></div><div><p class="plan-price"><span class="plan-amount">$49</span><span class="plan-period">/ seat</span></p><p class="plan-note">Min. 5 seats</p></div><ul class="plan-features"><li class="plan-features-head">Everything in Pro, plus</li><li>Custom theme build</li><li>SSO</li><li>SLA</li></ul><button class="btn btn-block">Contact sales</button></section>
+</div></div>
+```
+
+From v5: `pricing-wrap / pc / pc-featured / pc-amount` → `pricing / plan / plan-featured / plan-amount`; `pc-feat-off` → `li[data-off]`
+
+---
+
+## Feature Comparison  ·  Commerce
+A comparison table by plan, with a featured column and section rows.
+
+- base: `.compare`
+- parts: `.compare-section` `.compare-yes` `.compare-no` `.is-featured`
+
+```html
+<div class="table-wrap"><table class="table compare">
+  <thead><tr><td></td><th scope="col">Free</th><th scope="col" class="is-featured">Pro</th><th scope="col">Team</th></tr></thead>
+  <tbody>
+    <tr class="compare-section"><th colspan="4" scope="colgroup">Usage</th></tr>
+    <tr><th scope="row">Themes</th><td>1</td><td class="is-featured">55</td><td>55 + custom</td></tr>
+    <tr><th scope="row">Seats</th><td>1</td><td class="is-featured">1</td><td>5+</td></tr>
+    <tr class="compare-section"><th colspan="4" scope="colgroup">Support</th></tr>
+    <tr><th scope="row">Priority support</th><td><span class="compare-no" aria-label="Not included">—</span></td><td class="is-featured"><span class="compare-yes" aria-label="Included">✓</span></td><td><span class="compare-yes" aria-label="Included">✓</span></td></tr>
+    <tr><th scope="row">SLA</th><td><span class="compare-no" aria-label="Not included">—</span></td><td class="is-featured"><span class="compare-no" aria-label="Not included">—</span></td><td><span class="badge badge-warning">Soon</span></td></tr>
+  </tbody></table></div>
+```
+
+From v5: `fct / fct-col-accent / fct-check` → `table compare / is-featured / compare-yes`
+
+---
+
+## Filter Facets  ·  Commerce
+Collapsible filter groups with counts and active-filter chips.
+
+- base: `.facets`
+- parts: `.facet-count` `.active-filters`
+
+```html
+<div class="stack gap-4" style="max-inline-size:280px">
+  <div class="active-filters"><span class="chip">Under $200 <button class="chip-remove" aria-label="Remove Under $200">×</button></span><button class="btn btn-link btn-sm">Clear all</button></div>
+  <div class="facets">
+    <details class="disclosure" open><summary>Category</summary><div class="disclosure-body"><label class="check"><input type="checkbox" class="checkbox" checked> Bags <span class="facet-count">24</span></label><label class="check"><input type="checkbox" class="checkbox"> Audio <span class="facet-count">12</span></label><label class="check"><input type="checkbox" class="checkbox"> Home <span class="facet-count">31</span></label></div></details>
+    <details class="disclosure"><summary>Price</summary><div class="disclosure-body"><div class="range-dual" data-forma="range-dual"><input type="range" class="range" min="0" max="500" value="0" aria-label="Minimum price"><input type="range" class="range" min="0" max="500" value="200" aria-label="Maximum price"></div></div></details>
+  </div>
+</div>
+```
+
+From v5: `filter-sidebar / filter-group / filter-pill` → `facets / disclosure / chip`
+
+---
+
+## Prose  ·  Content
+Long-form typography for articles and docs: display headings, measured line length, lead paragraph, drop cap.
+
+- base: `.prose`
+- parts: `.lead` `.dropcap`
+
+```html
+<div class="prose">
+  <p class="lead">Typography is the craft of making written language legible, readable and appealing.</p>
+  <p class="dropcap">It is not only a choice of typeface. It is hierarchy, rhythm, and the management of space — the interval between letters, lines and ideas. <a href="#">Read more about rhythm</a>.</p>
+  <h2>A system, not a style</h2>
+  <p>Cormorant carries the display voice; Syne handles the interface; JetBrains Mono marks metadata. <strong>Each has one job.</strong></p>
+  <ul><li>Measure stays near 68 characters.</li><li>Headings balance their lines.</li><li>Paragraphs avoid orphans.</li></ul>
+</div>
+```
+
+From v5: `article-body` → `prose`
+
+---
+
+## Article Header  ·  Content
+Kicker, headline, dek and byline for editorial pages.
+
+- base: `.article-header`
+- parts: `.article-kicker` `.article-title` `.article-dek` `.byline` `.byline-name` `.byline-sep`
+
+```html
+<header class="article-header"><p class="article-kicker">Essay · Cognition</p><h1 class="article-title">The Architecture of Silence</h1><p class="article-dek">On the space between signals, and why good interfaces leave room for thought.</p>
+  <div class="byline"><span class="avatar avatar-sm avatar-accent">ÖA</span><span class="byline-name">Ömer Asım</span><span class="byline-sep">·</span><time datetime="2026-10-08">8 October 2026</time><span class="byline-sep">·</span><span>8 min read</span></div></header>
+```
+
+From v5: `article-hero / article-meta / article-author` → `article-header / byline`
+
+---
+
+## Blog Card  ·  Content
+Post tiles and a featured post, whole-card clickable.
+
+- base: `.post`
+- modifiers: `.post-featured`
+- parts: `.post-grid` `.post-media` `.post-category` `.post-title` `.post-excerpt` `.post-meta`
+
+```html
+<div class="post-grid">
+  <article class="post"><div class="post-media"><svg class="fi fi-2xl fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-image"/></svg></div><p class="post-category">Design</p><h3 class="post-title"><a href="#">Why design systems matter</a></h3><p class="post-excerpt">Consistency at scale is not a style — it is an agreement.</p><p class="post-meta"><span>Elena V.</span>·<time>18 Mar 2026</time></p></article>
+  <article class="post"><div class="post-media"><svg class="fi fi-2xl fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-image"/></svg></div><p class="post-category">Engineering</p><h3 class="post-title"><a href="#">Proving contrast at build time</a></h3><p class="post-excerpt">How FORMA computes and checks every token in 55 themes.</p><p class="post-meta"><span>Chris K.</span>·<time>12 Mar 2026</time></p></article>
+</div>
+```
+
+From v5: `blog-grid / blog-card / blog-featured` → `post-grid / post / post-featured`
+
+---
+
+## Hero  ·  Content
+Opening sections: eyebrow, display headline, text, actions, meta numbers. Left, centered or split.
+
+- base: `.hero`
+- modifiers: `.hero-center` `.hero-split`
+- parts: `.hero-eyebrow` `.hero-title` `.hero-text` `.hero-actions` `.hero-meta` `.hero-meta-value` `.hero-meta-label` `.hero-visual`
+
+```html
+<section class="hero">
+  <p class="hero-eyebrow">Design system · v6</p>
+  <h1 class="hero-title">Every measurement follows a <em>rule</em>.</h1>
+  <p class="hero-text">One stylesheet. 55 themes, each proven against WCAG. Components that speak HTML, ARIA and AI.</p>
+  <div class="hero-actions"><a class="btn btn-lg btn-primary" href="#">Get started</a><a class="btn btn-lg btn-ghost" href="#">Browse themes <svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-arrow-right"/></svg></a></div>
+  <div class="hero-meta"><div><span class="hero-meta-value">90+</span><span class="hero-meta-label">components</span></div><div><span class="hero-meta-value">55</span><span class="hero-meta-label">themes</span></div><div><span class="hero-meta-value">0</span><span class="hero-meta-label">runtime deps</span></div></div>
+</section>
+```
+
+From v5: `hero-headline / hero-sub` → `hero-title / hero-text`; `hero-centered` → `hero-center`
+
+---
+
+## Proposition Strip  ·  Content
+The FORMA signature: four words with definitions, ruled like a gallery wall.
+
+- base: `.props`
+- parts: `.prop` `.prop-word` `.prop-def`
+
+```html
+<div class="props">
+  <div class="prop"><p class="prop-word"><em>Rhythm</em></p><p class="prop-def">A 4px grid governs every interval.</p></div>
+  <div class="prop"><p class="prop-word">Restraint</p><p class="prop-def">Hierarchy through tone, never decoration.</p></div>
+  <div class="prop"><p class="prop-word">Proof</p><p class="prop-def">Every color token is contrast-checked.</p></div>
+  <div class="prop"><p class="prop-word">Intent</p><p class="prop-def">Each typeface has one job.</p></div>
+</div>
+```
+
+From v5: `prop-strip / prop-item / prop-item-word` → `props / prop / prop-word`
+
+---
+
+## Section Heading  ·  Content
+Numbered section opener with accent rule.
+
+- base: `.section-head`
+- parts: `.section-number` `.section-title` `.section-desc`
+
+```html
+<header class="section-head"><p class="section-number">03 · Spacing</p><h2 class="section-title">A four-pixel rhythm</h2><p class="section-desc">Ten steps, from 4 to 128 pixels, used for every gap, pad and margin.</p></header>
+```
+
+---
+
+## Table of Contents  ·  Content
+Sticky in-page navigation with scroll-spy and reading progress.
+
+- base: `.toc`
+- parts: `.toc-title` `.toc-progress`
+
+```html
+<nav class="toc" aria-labelledby="toc-t" data-forma="toc" style="position:static;max-inline-size:240px"><p class="toc-title" id="toc-t">On this page</p>
+  <ol><li><a href="#" aria-current="true">Introduction</a></li><li><a href="#">Tokens</a><ol><li><a href="#">Color</a></li><li><a href="#">Spacing</a></li></ol></li><li><a href="#">Components</a></li></ol>
+  <div class="toc-progress"><span style="--progress:35%"></span></div></nav>
+```
+
+JS: auto `data-forma="toc"` · API `Forma.toc(nav, { headings: "h2, h3" })`
+
+---
+
+## Quotes  ·  Content
+Blockquote, pull quote and testimonial.
+
+- base: `.blockquote`
+- parts: `.pullquote` `.quote-cite` `.testimonial` `.testimonial-text`
+
+```html
+<div class="stack gap-6">
+  <blockquote class="blockquote"><p>Design is not just what it looks like and feels like. Design is how it works.</p><footer>— Steve Jobs, 2003</footer></blockquote>
+  <figure class="pullquote"><p>Hierarchy through tone, never through decoration.</p><figcaption class="quote-cite">FORMA principle no. 2</figcaption></figure>
+</div>
+```
+
+---
+
+## Gallery  ·  Content
+Image grid with captions and a dialog lightbox with arrow-key navigation.
+
+- base: `.gallery`
+- parts: `.gallery-item` `.gallery-caption` `.gallery-wide` `.lightbox` `.lightbox-caption` `.lightbox-nav` `.lightbox-prev` `.lightbox-next`
+
+```html
+<ul class="gallery" data-forma="gallery">
+  <li><a class="gallery-item gallery-wide" href="#" aria-label="Hall A, view 1"><span class="gallery-caption">Hall A — north light</span></a></li>
+  <li><a class="gallery-item" href="#" aria-label="Object 47"><span class="gallery-caption">Object no. 47</span></a></li>
+  <li><a class="gallery-item" href="#" aria-label="Study in grey"><span class="gallery-caption">Study in grey</span></a></li>
+  <li><a class="gallery-item" href="#" aria-label="Archive"><span class="gallery-caption">The archive</span></a></li>
+</ul>
+```
+
+JS: auto `data-forma="gallery"`
+
+---
+
+## Comments  ·  Content
+Threaded comments with actions and a reply form.
+
+- base: `.comments`
+- parts: `.comment` `.comment-head` `.comment-author` `.comment-time` `.comment-text` `.comment-actions` `.comment-form`
+
+```html
+<ul class="comments">
+  <li class="comment"><span class="avatar avatar-sm avatar-accent">EV</span><div><div class="comment-head"><span class="comment-author">Elena V.</span><span class="badge badge-accent">Author</span><time class="comment-time">2h</time></div><p class="comment-text">The chart component needs a table fallback — screen readers can't read the SVG.</p>
+    <div class="comment-actions"><button class="btn btn-ghost btn-sm"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-thumbs-up"/></svg> 4</button><button class="btn btn-ghost btn-sm">Reply</button></div>
+    <ul class="comments"><li class="comment"><span class="avatar avatar-sm avatar-info">CK</span><div><div class="comment-head"><span class="comment-author">Chris K.</span><time class="comment-time">1h</time></div><p class="comment-text">Added in 6.0: every chart renders a hidden data table.</p></div></li></ul></div></li>
+</ul>
+```
+
+---
+
+## Dashboard Grid  ·  Dashboard
+12-column widget grid (span-3…12) with a page heading. Collapses gracefully.
+
+- base: `.dash`
+- parts: `.span-3` `.span-4` `.span-6` `.span-8` `.span-12` `.widget` `.widget-head` `.widget-title` `.widget-body` `.widget-foot` `.page-head` `.page-title` `.page-desc`
+
+```html
+<div class="page-head"><div><h1 class="page-title">Overview</h1><p class="page-desc">Week 41 · all workspaces</p></div><div class="cluster"><button class="btn btn-sm"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-download"/></svg> Export</button><button class="btn btn-sm btn-primary"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-plus"/></svg> New run</button></div></div>
+<div class="dash">
+  <section class="widget span-4"><header class="widget-head"><h2 class="widget-title">Traffic</h2><span class="badge badge-success">+18%</span></header><div class="widget-body metric"><span class="metric-value">12.4K</span><span class="metric-label">Daily page views</span></div></section>
+  <section class="widget span-4"><header class="widget-head"><h2 class="widget-title">System</h2></header><div class="widget-body stack gap-2"><span class="status"><span class="status-dot status-dot-success"></span>API — operational</span><span class="status"><span class="status-dot status-dot-success"></span>Database — operational</span><span class="status"><span class="status-dot status-dot-warning"></span>CDN — high load</span></div></section>
+  <section class="widget span-4"><header class="widget-head"><h2 class="widget-title">Quick actions</h2></header><div class="widget-body stack gap-2"><button class="btn btn-sm btn-block"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-plus"/></svg> Add product</button><button class="btn btn-sm btn-block"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-download"/></svg> Download report</button></div><footer class="widget-foot">Updated 5 min ago</footer></section>
+</div>
+```
+
+From v5: `dash-grid / dash-widget / dash-widget-2x` → `dash / widget / span-8`
+
+---
+
+## Notification Center  ·  Dashboard
+Inbox panel with tabs, unread state and mark-all-read.
+
+- base: `.notifications`
+- parts: `.notifications-head` `.notifications-title` `.notification-list` `.notification` `.notification-body` `.notification-time`
+- attributes: `data-unread`
+
+```html
+<section class="notifications" aria-labelledby="nc-t"><header class="notifications-head"><h2 class="notifications-title" id="nc-t">Notifications</h2><button class="btn btn-link btn-sm">Mark all read</button></header>
+  <div class="tabs tabs-underline" data-forma="tabs"><div class="tab-list" role="tablist" aria-label="Notification type"><button class="tab" role="tab" aria-selected="true">All</button><button class="tab" role="tab">Mentions</button><button class="tab" role="tab">System</button></div>
+  <div class="tab-panel" role="tabpanel" style="padding:0"><ul class="notification-list">
+    <li class="notification" data-unread><span class="avatar avatar-sm avatar-accent">SL</span><p class="notification-body"><strong>Sara L.</strong> mentioned you in <strong>Q4 report</strong><time class="notification-time">2 min ago</time></p></li>
+    <li class="notification"><span class="icon-tile" style="inline-size:28px;block-size:28px"><svg class="fi fi-sm" aria-hidden="true"><use href="forma-icons.svg#fi-rocket"/></svg></span><p class="notification-body">Deployment <strong>prod-6.0.1</strong> completed<time class="notification-time">14 min ago</time></p></li>
+    <li class="notification"><span class="icon-tile" style="inline-size:28px;block-size:28px"><svg class="fi fi-sm fi-warning" aria-hidden="true"><use href="forma-icons.svg#fi-hard-drive"/></svg></span><p class="notification-body">Storage at 80% — consider upgrading<time class="notification-time">3 h ago</time></p></li>
+  </ul></div><div class="tab-panel" role="tabpanel" hidden></div><div class="tab-panel" role="tabpanel" hidden></div></div>
+</section>
+```
+
+From v5: `notif-center / notif-item.is-unread` → `notifications / notification[data-unread]`; `notif-stack / notif` → `toast-region / toast`
+
+---
+
+## Settings Page  ·  Dashboard
+Settings layout: side nav, two-column sections, secret field, danger zone.
+
+- base: `.settings`
+- parts: `.settings-nav` `.settings-section` `.settings-section-title` `.settings-section-desc` `.danger-zone` `.secret` `.secret-value`
+
+```html
+<div class="settings">
+  <nav class="settings-nav" aria-label="Settings"><a class="sidebar-item" href="#" aria-current="page">General</a><a class="sidebar-item" href="#">API keys</a><a class="sidebar-item" href="#">Billing</a></nav>
+  <div>
+    <section class="settings-section"><div><h2 class="settings-section-title">API key</h2><p class="settings-section-desc">Used to authenticate requests. Keep it secret.</p></div>
+      <div class="stack gap-2"><div class="secret"><span class="secret-value" data-secret="nage_sk_live_3fX9K2">nage_sk_••••••••••••FX9K</span><button class="btn btn-sm btn-ghost" data-forma="reveal" aria-pressed="false">Show</button><button class="btn btn-sm btn-ghost" data-forma="copy" data-copy-text="nage_sk_live_3fX9K2">Copy</button></div><p class="field-hint">Last used 2 hours ago · 840K / 1M tokens</p></div></section>
+    <section class="settings-section"><div><h2 class="settings-section-title">Delete workspace</h2><p class="settings-section-desc">Permanently removes all models and datasets.</p></div>
+      <div class="card danger-zone"><p class="card-title">Danger zone</p><p class="card-desc">This action cannot be undone.</p><div class="mt-4"><button class="btn btn-destructive btn-sm">Delete workspace</button></div></div></section>
+  </div>
+</div>
+```
+
+From v5: `settings-page / settings-row` → `settings / settings-section or setting-row`
+
+---
+
+## Team Members  ·  Dashboard
+Member list with roles and an invite field.
+
+- base: `.members`
+- parts: `.member` `.member-name` `.member-email` `.invite`
+
+```html
+<div class="stack gap-4">
+  <form class="invite"><label class="sr-only" for="inv">E-mail address</label><input class="input" id="inv" type="email" placeholder="colleague@studio.com"><button class="btn btn-primary">Invite</button></form>
+  <ul class="members">
+    <li class="member"><span class="avatar avatar-sm avatar-accent">AK</span><div><p class="member-name">Aiko Kobayashi</p><p class="member-email">aiko@forma.design</p></div><span class="badge badge-accent">Owner</span><button class="btn btn-icon btn-ghost btn-sm" aria-label="More for Aiko"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-more-horizontal"/></svg></button></li>
+    <li class="member"><span class="avatar avatar-sm avatar-info">SL</span><div><p class="member-name">Sara Lee</p><p class="member-email">sara@forma.design</p></div><select class="select" aria-label="Role for Sara"><option>Admin</option><option>Member</option><option>Viewer</option></select><button class="btn btn-icon btn-ghost btn-sm" aria-label="More for Sara"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-more-horizontal"/></svg></button></li>
+  </ul>
+</div>
+```
+
+From v5: `team-list / team-member / team-role-owner` → `members / member / badge`
+
+---
+
+## Audit Log  ·  Dashboard
+Chronological record of who changed what.
+
+- base: `.audit`
+- parts: `.audit-row` `.audit-time` `.audit-action` `.audit-text`
+- attributes: `data-type="create|update|delete"`
+
+```html
+<ol class="audit">
+  <li class="audit-row"><time class="audit-time">14:32:08</time><span class="audit-action" data-type="create">create</span><span class="audit-text"><strong>Aiko K.</strong> created API key <strong>ci-runner</strong></span></li>
+  <li class="audit-row"><time class="audit-time">13:05:41</time><span class="audit-action" data-type="update">update</span><span class="audit-text"><strong>Sara L.</strong> changed role of <strong>Tom P.</strong> to Admin</span></li>
+  <li class="audit-row"><time class="audit-time">09:12:00</time><span class="audit-action" data-type="delete">delete</span><span class="audit-text"><strong>System</strong> removed 3 old checkpoints</span></li>
+</ol>
+```
+
+---
+
+## Usage Meter  ·  Dashboard
+Quota consumption with warning and critical levels, plus an upsell banner.
+
+- base: `.usage`
+- parts: `.usage-head` `.usage-label` `.usage-value` `.usage-foot` `.upsell` `.upsell-body` `.upsell-title` `.upsell-text`
+- attributes: `data-level="warn|critical"`
+
+```html
+<div class="stack gap-5">
+  <div class="usage"><div class="usage-head"><span class="usage-label">API tokens</span><span class="usage-value">840K / 1M</span></div><div class="progress-track" role="progressbar" aria-label="API tokens" aria-valuenow="84"><div class="progress-fill progress-fill-accent" style="--value:84%"></div></div><div class="usage-foot"><span>7 days left</span><span>1M</span></div></div>
+  <div class="usage" data-level="critical"><div class="usage-head"><span class="usage-label">Storage</span><span class="usage-value">47 / 50 GB</span></div><div class="progress-track" role="progressbar" aria-label="Storage" aria-valuenow="94"><div class="progress-fill" style="--value:94%"></div></div><div class="usage-foot"><span>Critical — 3 GB left</span><span>50 GB</span></div></div>
+  <div class="upsell"><span class="icon-tile icon-tile-accent"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-zap"/></svg></span><div class="upsell-body"><p class="upsell-title">Upgrade to Pro — remove limits</p><p class="upsell-text">Unlimited API, 128K context, priority support.</p></div><button class="btn btn-accent btn-sm">Upgrade</button></div>
+</div>
+```
+
+From v5: `usage-fill-crit` → `usage[data-level=critical]`; `upgrade-banner` → `upsell`
+
+---
+
+## Profile  ·  Dashboard
+Identity rows (avatar + name + sub) and a profile card.
+
+- base: `.profile`
+- modifiers: `.profile-lg`
+- parts: `.profile-name` `.profile-sub` `.profile-card` `.profile-stats`
+
+```html
+<div class="grid-2">
+  <div class="stack gap-3"><div class="profile"><span class="avatar avatar-sm avatar-accent">ÖA</span><div><p class="profile-name">Ömer Asım</p><p class="profile-sub">Systems architect</p></div></div>
+    <div class="profile profile-lg"><span class="avatar avatar-lg avatar-square avatar-info">EV</span><div><p class="profile-name">Elena Vasquez</p><p class="profile-sub">elena@studio.com</p></div></div></div>
+  <div class="card profile-card"><span class="avatar avatar-xl avatar-accent avatar-status">ÖA</span><div><p class="profile-name">Ömer Asım</p><p class="profile-sub">Istanbul · Pro plan</p></div>
+    <dl class="profile-stats"><div><dt>Models</dt><dd>3</dd></div><div><dt>Runs</dt><dd>142</dd></div><div><dt>Joined</dt><dd>2026</dd></div></dl><button class="btn btn-sm btn-block">Edit profile</button></div>
+</div>
+```
+
+From v5: `prof-card prof-md / prof-name / prof-email` → `profile / profile-name / profile-sub`
+
+---
+
+## Auth  ·  Dashboard
+Sign-in and sign-up cards, OAuth buttons, centred or split layout.
+
+- base: `.auth-card`
+- parts: `.auth` `.auth-title` `.auth-subtitle` `.auth-oauth` `.auth-foot` `.auth-split` `.auth-aside`
+
+```html
+<form class="auth-card" style="margin-inline:auto">
+  <div><h1 class="auth-title">Sign in</h1><p class="auth-subtitle">Welcome back to the studio.</p></div>
+  <div class="auth-oauth"><button type="button" class="btn btn-block"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-github"/></svg> Continue with GitHub</button></div>
+  <div class="divider-label">or with e-mail</div>
+  <div class="field"><label class="field-label" for="au-mail">E-mail</label><input class="input" id="au-mail" type="email" autocomplete="email"></div>
+  <div class="field"><div class="field-label-row"><label class="field-label" for="au-pw">Password</label><a class="link t-caption" href="#">Forgot?</a></div><input class="input" id="au-pw" type="password" autocomplete="current-password"></div>
+  <button class="btn btn-primary btn-block btn-lg">Sign in</button>
+  <p class="auth-foot">No account? <a class="link" href="#">Create one</a></p>
+</form>
+```
+
+Accessibility:
+- Correct autocomplete tokens so password managers work.
+
+---
+
+## Chat  ·  AI
+A complete assistant surface: log, empty state with suggestions, messages, composer. Auto-scroll, Enter to send, Shift+Enter newline.
+
+- base: `.chat`
+- parts: `.chat-log` `.chat-empty` `.chat-empty-title` `.suggestions` `.suggestion`
+
+```html
+<section class="chat" data-forma="chat" style="block-size:520px" aria-label="Assistant">
+  <div class="chat-log" role="log" aria-live="polite">
+    <div class="message message-user"><div class="message-body"><p>Show me how to use the KPI component.</p></div></div>
+    <div class="message"><span class="message-avatar" aria-hidden="true">AI</span><div class="message-body">
+      <p>Wrap cards in <code>.kpi-grid</code> — it auto-fits columns:</p>
+      <pre class="code-block"><code>&lt;div class="kpi"&gt;
+  &lt;span class="kpi-label"&gt;MRR&lt;/span&gt;
+  &lt;span class="kpi-value"&gt;$48,210&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      <div class="citations"><a class="citation" href="#"><span class="citation-index">1</span><span>FORMA docs · KPI</span></a></div>
+      <div class="message-actions"><button class="btn btn-icon btn-ghost btn-sm" aria-label="Copy" data-forma="copy"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-copy"/></svg></button><button class="btn btn-icon btn-ghost btn-sm" aria-label="Retry"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-refresh-cw"/></svg></button><button class="btn btn-icon btn-ghost btn-sm" aria-label="Good response"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-thumbs-up"/></svg></button></div>
+    </div></div>
+    <div class="message"><span class="message-avatar" aria-hidden="true">AI</span><div class="message-body"><span class="thinking"><span class="thinking-dots" aria-hidden="true"><span></span><span></span><span></span></span><span class="thinking-shimmer">Thinking…</span></span></div></div>
+  </div>
+  <form class="composer"><label class="sr-only" for="cmp">Message</label><textarea class="composer-input" id="cmp" rows="1" placeholder="Ask anything…"></textarea>
+    <div class="composer-bar"><button type="button" class="btn btn-icon btn-ghost btn-sm" aria-label="Attach file"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-paperclip"/></svg></button><select class="select" aria-label="Model"><option>forge-14b</option><option>fehm-8b</option></select><button class="btn btn-icon btn-accent btn-sm composer-send" aria-label="Send"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-arrow-up"/></svg></button></div></form>
+</section>
+```
+
+Accessibility:
+- The log is role="log" aria-live="polite": new assistant messages are announced once complete, not per token.
+- Forma.chat.add() inserts text with textContent; pass { html } only for trusted, sanitised markup.
+
+JS: auto `data-forma="chat"` · API `Forma.chat(el) → { add({ role, text, html }), thinking(), stream(text|AsyncIterable), clear() }` · events `forma:submit`
+
+From v5: `chat-container / chat-messages` → `chat / chat-log`; `chat-bubble-user / chat-bubble-ai` → `message message-user / message`
+
+---
+
+## Message  ·  AI
+User and assistant turns with avatar, actions, timestamps, error state, streaming caret and collapsible reasoning.
+
+- base: `.message`
+- modifiers: `.message-user`
+- parts: `.message-avatar` `.message-body` `.message-name` `.message-actions` `.message-time` `.thinking` `.thinking-dots` `.thinking-shimmer` `.streaming` `.reasoning` `.reasoning-body`
+- attributes: `data-status="error"`
+
+```html
+<div class="stack gap-5">
+  <div class="message"><span class="message-avatar" aria-hidden="true">AI</span><div class="message-body">
+    <details class="reasoning"><summary>Thought for 4 seconds</summary><p class="reasoning-body">The user wants a dark theme toggle; data-mode on the root covers it without JS.</p></details>
+    <p class="streaming">Set <code>data-mode="dark"</code> on any element and its subtree switches</p></div></div>
+  <div class="message" data-status="error"><span class="message-avatar" aria-hidden="true">AI</span><div class="message-body"><p><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-warning"/></svg> The model timed out. <button class="btn btn-link btn-sm">Retry</button></p></div></div>
+</div>
+```
+
+---
+
+## Tool Call  ·  AI
+Agent steps: tool name, arguments, running/done/error state.
+
+- base: `.tool-call`
+- parts: `.tool-call-head` `.tool-call-name`
+- attributes: `data-state="running|done|error"`
+
+```html
+<div class="stack gap-2" style="max-inline-size:520px">
+  <div class="tool-call" data-state="done"><div class="tool-call-head"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-search"/></svg><span class="tool-call-name">web_search</span><span>“FORMA llms.txt”</span></div></div>
+  <div class="tool-call" data-state="running"><div class="tool-call-head"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-terminal"/></svg><span class="tool-call-name">run_build</span></div><pre>npm run build → 55 themes · 660 contrast checks</pre></div>
+</div>
+```
+
+---
+
+## Citations  ·  AI
+Source chips and inline citation markers.
+
+- base: `.citations`
+- parts: `.citation` `.citation-index` `.cite`
+
+```html
+<p class="t-body-sm">Contrast is checked against WCAG 2.2<sup class="cite">1</sup> and APCA is tracked<sup class="cite">2</sup>.</p>
+<div class="citations mt-4"><a class="citation" href="#"><span class="citation-index">1</span><span>w3.org · Understanding SC 1.4.3</span></a><a class="citation" href="#"><span class="citation-index">2</span><span>git.apcacontrast.com</span></a></div>
+```
+
+---
+
+## Composer  ·  AI
+Prompt input that grows with content, with attachments, model picker and send.
+
+- base: `.composer`
+- parts: `.composer-input` `.composer-bar` `.composer-send` `.composer-attachments` `.composer-hint`
+
+```html
+<form class="composer" style="margin:0">
+  <div class="composer-attachments"><span class="chip"><svg class="fi fi-xs" aria-hidden="true"><use href="forma-icons.svg#fi-file-text"/></svg> brief.pdf <button class="chip-remove" type="button" aria-label="Remove brief.pdf">×</button></span></div>
+  <label class="sr-only" for="cmp2">Message</label><textarea class="composer-input" id="cmp2" rows="1" placeholder="Describe the layout you want…"></textarea>
+  <div class="composer-bar"><button type="button" class="btn btn-icon btn-ghost btn-sm" aria-label="Attach"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-paperclip"/></svg></button><button type="button" class="btn btn-ghost btn-sm"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-globe"/></svg> Web</button><button class="btn btn-icon btn-accent btn-sm composer-send" aria-label="Send"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-arrow-up"/></svg></button></div>
+</form><p class="composer-hint">Enter to send · Shift+Enter for a new line</p>
+```
+
+From v5: `chat-input-bar / chat-input / chat-send-btn` → `composer / composer-input / composer-send`
+
+---
+
+## Model Card  ·  AI
+A model, tool or system at a glance: name, id, status, description, metadata grid.
+
+- base: `.model-card`
+- parts: `.model-card-head` `.model-card-name` `.model-card-id`
+
+```html
+<div class="grid" style="--min:260px">
+  <article class="card model-card"><header class="model-card-head"><div><h3 class="model-card-name">Forge</h3><p class="model-card-id">14B · QWEN3-14B · APACHE 2.0</p></div><span class="badge badge-warning badge-dot">Training</span></header>
+    <p class="t-body-sm t-secondary">AI engineering assistant: data generation, dataset analysis, fine-tune configuration.</p>
+    <dl class="dl dl-grid"><div><dt>engine</dt><dd>Unsloth + TRL</dd></div><div><dt>stages</dt><dd>SFT → DPO</dd></div><div><dt>data</dt><dd>100K conv.</dd></div></dl></article>
+  <article class="card model-card"><header class="model-card-head"><div><h3 class="model-card-name">Fehm</h3><p class="model-card-id">8B · QWEN3-8B · APACHE 2.0</p></div><span class="badge badge-success badge-dot">Active</span></header>
+    <p class="t-body-sm t-secondary">Chat assistant and generative UI layer. Multilingual.</p>
+    <dl class="dl dl-grid"><div><dt>engine</dt><dd>Unsloth + TRL</dd></div><div><dt>stages</dt><dd>SFT → DPO</dd></div><div><dt>data</dt><dd>200K conv.</dd></div></dl></article>
+</div>
+```
+
+From v5: `model-card / model-title / model-meta` → `card model-card / model-card-name / dl dl-grid`
+
+---
+
+## Pipeline Phases  ·  AI
+Roadmaps and training pipelines: numbered phases with step cards and meta badges.
+
+- base: `.phases`
+- parts: `.phase-head` `.phase-num` `.phase-title` `.phase-time` `.phase-steps` `.phase-step` `.phase-step-title` `.phase-step-text` `.phase-step-meta`
+
+```html
+<div class="phases">
+  <section><header class="phase-head"><span class="phase-num">1</span><h3 class="phase-title">Data generation</h3><span class="phase-time">3 weeks</span></header>
+    <div class="phase-steps"><article class="phase-step"><p class="phase-step-title">Synthetic conversations</p><p class="phase-step-text">80K conversations across five domains from a teacher model.</p><div class="phase-step-meta"><span class="badge badge-info badge-mono">5–7 days</span><span class="badge badge-success badge-mono">≈ $120</span><span class="badge badge-accent badge-mono">critical</span></div></article></div></section>
+  <section><header class="phase-head"><span class="phase-num">2</span><h3 class="phase-title">Training</h3><span class="phase-time">1 week</span></header>
+    <div class="phase-steps"><article class="phase-step"><p class="phase-step-title">SFT</p><p class="phase-step-text">QLoRA on 100K conversations, single A100.</p><div class="phase-step-meta"><span class="badge badge-info badge-mono">1 day</span><span class="badge badge-success badge-mono">≈ $50</span></div></article></div></section>
+</div>
+```
+
+From v5: `phase-section / steps-grid / step-card / meta-badge` → `phases section / phase-steps / phase-step / badge badge-mono`
+
+---
+
+## Patient Card  ·  Sector · Health
+Patient identity with record id, tags and blood type.
+
+- base: `.patient`
+- parts: `.patient-name` `.patient-id` `.patient-meta` `.blood-type`
+
+Requires `sectors/forma-health.css`.
+
+```html
+<article class="patient"><span class="avatar avatar-lg avatar-info">AY</span><div><p class="patient-name">Ayşe Yılmaz</p><p class="patient-id">#PAT-2026-0847 · 42 · F</p><div class="patient-meta"><span class="badge">Cardiology</span><span class="badge badge-warning">Allergy: penicillin</span></div></div><span class="blood-type" aria-label="Blood type A positive">A+</span></article>
+```
+
+---
+
+## Vitals  ·  Sector · Health
+Vital signs with normal / watch / alert status — color plus text.
+
+- base: `.vitals`
+- parts: `.vital` `.vital-label` `.vital-value` `.vital-unit` `.vital-status`
+- attributes: `data-status="watch|alert"`
+
+Requires `sectors/forma-health.css`.
+
+```html
+<div class="vitals">
+  <div class="vital"><span class="vital-label"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-heart-pulse"/></svg> Heart rate</span><span><span class="vital-value">72</span><span class="vital-unit">bpm</span></span><span class="vital-status">Normal</span></div>
+  <div class="vital"><span class="vital-label"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-activity"/></svg> Blood pressure</span><span><span class="vital-value">120/80</span><span class="vital-unit">mmHg</span></span><span class="vital-status">Normal</span></div>
+  <div class="vital" data-status="watch"><span class="vital-label"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-thermometer"/></svg> Temperature</span><span><span class="vital-value">37.9</span><span class="vital-unit">°C</span></span><span class="vital-status">Watch</span></div>
+  <div class="vital" data-status="alert"><span class="vital-label"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-wind"/></svg> SpO₂</span><span><span class="vital-value">91</span><span class="vital-unit">%</span></span><span class="vital-status">Alert</span></div>
+</div>
+```
+
+---
+
+## Appointment Slots  ·  Sector · Health
+Bookable time slots as toggle buttons.
+
+- base: `.slots`
+- parts: `.slot` `.slot-time` `.slot-who`
+
+Requires `sectors/forma-health.css`.
+
+```html
+<div class="slots" role="group" aria-label="Available times, Thursday"><button class="slot" aria-pressed="false"><span class="slot-time">09:00</span><span class="slot-who">Dr. Öz · Cardiology</span></button><button class="slot" aria-pressed="true"><span class="slot-time">10:30</span><span class="slot-who">Dr. Çelik · Neurology</span></button><button class="slot" disabled><span class="slot-time">11:00</span><span class="slot-who">Booked</span></button></div>
+```
+
+---
+
+## Prescription  ·  Sector · Health
+Medication line with dose and refills.
+
+- base: `.rx`
+- parts: `.rx-name` `.rx-dose` `.rx-refills`
+
+Requires `sectors/forma-health.css`.
+
+```html
+<div class="stack gap-2"><div class="rx"><svg class="fi fi-lg fi-accent" aria-hidden="true"><use href="forma-icons.svg#fi-pill"/></svg><div><p class="rx-name">Atorvastatin 20 mg</p><p class="rx-dose">1 tablet, evening · 90 days</p></div><span class="rx-refills">2 refills</span></div></div>
+```
+
+---
+
+## Balance  ·  Sector · Finance
+Account balance with actions.
+
+- base: `.balance`
+- parts: `.balance-label` `.balance-amount` `.balance-actions`
+
+Requires `sectors/forma-finance.css`.
+
+```html
+<section class="balance" style="max-inline-size:360px"><p class="balance-label">Main account</p><p class="balance-amount">₺47.832<small>,50</small></p><p class="t-caption t-tertiary">Updated 24 Mar 2026, 14:30</p><div class="balance-actions"><button class="btn btn-primary btn-sm"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-arrow-up-right"/></svg> Send</button><button class="btn btn-sm"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-arrow-down-left"/></svg> Request</button></div></section>
+```
+
+---
+
+## Transactions  ·  Sector · Finance
+Signed amounts (sign + color), categories, dates.
+
+- base: `.txns`
+- parts: `.txn` `.txn-icon` `.txn-title` `.txn-meta` `.txn-amount`
+- attributes: `data-direction="in|out"`
+
+Requires `sectors/forma-finance.css`.
+
+```html
+<ul class="txns"><li class="txn"><span class="txn-icon"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-tv"/></svg></span><div><p class="txn-title">Netflix</p><p class="txn-meta">Entertainment · 24 Mar</p></div><span class="txn-amount" data-direction="out">₺99,99</span></li><li class="txn"><span class="txn-icon"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-briefcase"/></svg></span><div><p class="txn-title">Salary — Forma Studio</p><p class="txn-meta">Income · 23 Mar</p></div><span class="txn-amount" data-direction="in">₺18.500,00</span></li><li class="txn"><span class="txn-icon"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-shopping-cart"/></svg></span><div><p class="txn-title">Groceries</p><p class="txn-meta">Market · 22 Mar</p></div><span class="txn-amount" data-direction="out">₺342,80</span></li></ul>
+```
+
+---
+
+## Market Ticker  ·  Sector · Finance
+Scrolling quote strip.
+
+- base: `.ticker`
+- parts: `.ticker-item` `.ticker-symbol` `.ticker-price` `.ticker-change`
+
+Requires `sectors/forma-finance.css`.
+
+```html
+<div class="ticker" role="marquee" aria-label="Market prices"><span class="ticker-item"><span class="ticker-symbol">AAPL</span><span class="ticker-price">178.42</span><span class="ticker-change" data-trend="up">1.33%</span></span><span class="ticker-item"><span class="ticker-symbol">THYAO</span><span class="ticker-price">312.50</span><span class="ticker-change" data-trend="down">0.84%</span></span><span class="ticker-item"><span class="ticker-symbol">EUR/TRY</span><span class="ticker-price">38.21</span><span class="ticker-change" data-trend="up">0.12%</span></span></div>
+```
+
+---
+
+## Portfolio Holding  ·  Sector · Finance
+Position value and allocation bar.
+
+- base: `.holding`
+- parts: `.holding-name` `.holding-symbol` `.holding-value` `.holding-alloc`
+
+Requires `sectors/forma-finance.css`.
+
+```html
+<article class="holding" style="max-inline-size:320px"><div><p class="holding-name">Apple Inc.</p><p class="holding-symbol">AAPL · 35% of portfolio</p></div><p class="holding-value">$17,842</p><span class="holding-alloc" style="--value:35%" role="img" aria-label="35% allocation"></span></article>
+```
+
+---
+
+## Course Card  ·  Sector · Education
+Course with level, duration and progress.
+
+- base: `.course`
+- parts: `.course-media` `.course-body` `.course-title` `.course-meta`
+
+Requires `sectors/forma-education.css`.
+
+```html
+<article class="course" style="max-inline-size:320px"><div class="course-media"><svg class="fi fi-2xl fi-tertiary" aria-hidden="true"><use href="forma-icons.svg#fi-graduation-cap"/></svg></div><div class="course-body"><span class="badge badge-info" style="align-self:flex-start">Intermediate</span><h3 class="course-title">Design systems from first principles</h3><p class="course-meta"><span>12 lessons</span><span>6 h</span><span>Chris K.</span></p><div class="progress progress-accent"><div class="progress-head"><span>Progress</span><span class="progress-value">60%</span></div><div class="progress-track"><div class="progress-fill" style="--value:60%"></div></div></div></div></article>
+```
+
+---
+
+## Lesson Navigation  ·  Sector · Education
+Ordered lessons: done, current, locked.
+
+- base: `.lessons`
+- parts: `.lesson` `.lesson-time`
+- attributes: `data-state="done|locked"` `aria-current="step"`
+
+Requires `sectors/forma-education.css`.
+
+```html
+<ol class="lessons" style="max-inline-size:360px"><li><a class="lesson" href="#" data-state="done">Tokens<span class="lesson-time">12:04</span></a></li><li><a class="lesson" href="#" data-state="done">Color engines<span class="lesson-time">18:30</span></a></li><li><a class="lesson" href="#" aria-current="step">Contrast proofs<span class="lesson-time">21:12</span></a></li><li><a class="lesson" href="#" data-state="locked" aria-disabled="true">Theming at scale<span class="lesson-time">16:45</span></a></li></ol>
+```
+
+---
+
+## Quiz  ·  Sector · Education
+Radio-backed answers with correct/incorrect feedback in words.
+
+- base: `.quiz`
+- parts: `.quiz-question` `.quiz-option`
+- attributes: `data-result="correct|wrong"`
+
+Requires `sectors/forma-education.css`.
+
+```html
+<fieldset class="quiz"><legend class="quiz-question">Which CSS function lets one token hold both light and dark values?</legend><label class="quiz-option"><input type="radio" class="radio" name="q1"> color-mix()</label><label class="quiz-option" data-result="correct"><input type="radio" class="radio" name="q1" checked> light-dark()</label><label class="quiz-option"><input type="radio" class="radio" name="q1"> prefers-color-scheme</label></fieldset>
+```
+
+---
+
+## Grade  ·  Sector · Education
+Letter grades with bands.
+
+- base: `.grade`
+- attributes: `data-band="a|b|c|f"`
+
+Requires `sectors/forma-education.css`.
+
+```html
+<div class="cluster"><span class="grade" data-band="a">A</span><span class="grade" data-band="b">B+</span><span class="grade" data-band="c">C</span><span class="grade" data-band="f">F</span></div>
+```
+
+---
+
+## Certificate  ·  Sector · Education
+Printable completion certificate.
+
+- base: `.certificate`
+- parts: `.certificate-kicker` `.certificate-name` `.certificate-course` `.certificate-sign`
+
+Requires `sectors/forma-education.css`.
+
+```html
+<article class="certificate"><p class="certificate-kicker">Certificate of completion</p><p class="certificate-name">Selin Yılmaz</p><p class="certificate-course">has completed <strong>Design Systems from First Principles</strong> · 8 October 2026</p><div class="certificate-sign"><span>Instructor</span><span>Director</span></div></article>
+```
+
+---
+
+## Contact Card  ·  Sector · CRM
+Person, company, channels, tags.
+
+- base: `.contact`
+- parts: `.contact-name` `.contact-role` `.contact-lines`
+
+Requires `sectors/forma-crm.css`.
+
+```html
+<article class="contact" style="max-inline-size:320px"><div class="profile"><span class="avatar avatar-md avatar-accent">BT</span><div><p class="contact-name">Burak Tekin</p><p class="contact-role">CTO · Acme Technology</p></div></div><div class="contact-lines"><a href="#"><svg class="fi fi-sm" aria-hidden="true"><use href="forma-icons.svg#fi-mail"/></svg> burak@acme.co</a><a href="#"><svg class="fi fi-sm" aria-hidden="true"><use href="forma-icons.svg#fi-phone"/></svg> +90 532 000 00 00</a></div><div class="cluster gap-2"><span class="badge badge-accent">Decision maker</span><span class="badge">Enterprise</span></div></article>
+```
+
+---
+
+## Deal Pipeline  ·  Sector · CRM
+Stages with totals and deal cards.
+
+- base: `.pipeline`
+- parts: `.stage` `.stage-head` `.stage-total` `.deal` `.deal-company` `.deal-value` `.deal-foot`
+
+Requires `sectors/forma-crm.css`.
+
+```html
+<div class="pipeline"><section class="stage s-1" aria-label="Discovery"><h3 class="stage-head">Discovery <span class="stage-total">₺45K</span></h3><article class="deal"><p class="deal-company">Vertex Software</p><p class="deal-value">₺25.000</p><p class="deal-foot"><span class="avatar avatar-xs">SY</span>3 days ago</p></article></section><section class="stage s-2" aria-label="Proposal"><h3 class="stage-head">Proposal <span class="stage-total">₺85K</span></h3><article class="deal"><p class="deal-company">Nova Energy</p><p class="deal-value">₺55.000</p><p class="deal-foot"><span class="avatar avatar-xs">AD</span>2 days ago</p></article></section><section class="stage s-3" aria-label="Closing"><h3 class="stage-head">Closing <span class="stage-total">₺120K</span></h3><article class="deal"><p class="deal-company">Acme Technology</p><p class="deal-value">₺120.000</p><p class="deal-foot"><span class="avatar avatar-xs">BT</span>Today</p></article></section></div>
+```
+
+---
+
+## Lead Score  ·  Sector · CRM
+Score ring with band label.
+
+- base: `.lead-score`
+- parts: `.lead-score-ring` `.lead-score-label` `.lead-score-desc`
+- attributes: `--score` `data-band="high|medium|low"`
+
+Requires `sectors/forma-crm.css`.
+
+```html
+<div class="cluster gap-6"><div class="lead-score" data-band="high"><span class="lead-score-ring" style="--score:92">92</span><span><span class="lead-score-label">High</span><br><span class="lead-score-desc">Sales-ready</span></span></div><div class="lead-score" data-band="medium"><span class="lead-score-ring" style="--score:54">54</span><span><span class="lead-score-label">Medium</span><br><span class="lead-score-desc">Interested</span></span></div><div class="lead-score" data-band="low"><span class="lead-score-ring" style="--score:18">18</span><span><span class="lead-score-label">Low</span><br><span class="lead-score-desc">Cold</span></span></div></div>
+```
+
+---
+
+## Interaction Log  ·  Sector · CRM
+Calls, e-mails and meetings with a contact.
+
+- base: `.interactions`
+- parts: `.interaction` `.interaction-icon` `.interaction-text` `.interaction-time`
+
+Requires `sectors/forma-crm.css`.
+
+```html
+<ul class="interactions"><li class="interaction"><span class="interaction-icon"><svg class="fi fi-sm" aria-hidden="true"><use href="forma-icons.svg#fi-phone"/></svg></span><p class="interaction-text"><strong>Call</strong> — discussed Q4 rollout, 24 min</p><time class="interaction-time">Today</time></li><li class="interaction"><span class="interaction-icon"><svg class="fi fi-sm" aria-hidden="true"><use href="forma-icons.svg#fi-mail"/></svg></span><p class="interaction-text"><strong>E-mail</strong> — sent revised proposal</p><time class="interaction-time">Mon</time></li></ul>
+```
+
+---
+
+## Manuscript  ·  Sector · Publishing
+Book-page layout with chapter label and indented paragraphs.
+
+- base: `.manuscript`
+- parts: `.manuscript-chapter` `.manuscript-title`
+
+Requires `sectors/forma-publishing.css`.
+
+```html
+<article class="manuscript"><p class="manuscript-chapter">Chapter III</p><h2 class="manuscript-title">Nun and Vav</h2><p>The ink had dried long before the letter reached him.<a class="fn-ref" href="#fn1" id="r1">1</a> He read it twice, the second time aloud.</p><p>Outside, the Bosphorus carried the evening in slow, deliberate strokes.</p><aside class="footnotes"><ol><li id="fn1">The letter is dated 1923. <a href="#r1" aria-label="Back to text">↩</a></li></ol></aside></article>
+```
+
+---
+
+## Editor Toolbar  ·  Sector · Publishing
+Formatting toolbar with pressed states (role="toolbar", arrow-key navigation).
+
+- base: `.toolbar`
+- parts: `.toolbar-btn` `.toolbar-sep`
+
+Requires `sectors/forma-publishing.css`.
+
+```html
+<div class="toolbar" role="toolbar" aria-label="Formatting" data-forma="toolbar"><button class="toolbar-btn" aria-pressed="true" aria-label="Bold"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-bold"/></svg></button><button class="toolbar-btn" aria-pressed="false" aria-label="Italic"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-italic"/></svg></button><button class="toolbar-btn" aria-pressed="false" aria-label="Underline"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-underline"/></svg></button><span class="toolbar-sep" role="separator"></span><button class="toolbar-btn" aria-label="Heading">H2</button><button class="toolbar-btn" aria-label="Quote"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-quote"/></svg></button><button class="toolbar-btn" aria-label="Link"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-link"/></svg></button></div>
+```
+
+---
+
+## Revision Marks  ·  Sector · Publishing
+Insertions, deletions and comments — semantic <ins>/<del>.
+
+- base: `.rev`
+- parts: `.rev-add` `.rev-del` `.rev-comment`
+
+Requires `sectors/forma-publishing.css`.
+
+```html
+<p class="t-body">The system <del class="rev">uses</del> <ins class="rev">proves</ins> contrast for <span class="rev-comment" title="Elena: say how many">every theme</span> at build time.</p>
+```
+
+---
+
+## Footnotes  ·  Sector · Publishing
+Linked footnote references and a back-linked list.
+
+- base: `.footnotes`
+- parts: `.fn-ref`
+
+Requires `sectors/forma-publishing.css`.
+
+```html
+<p class="t-body">Every token is checked.<a class="fn-ref" href="#fn-a" id="fr-a">1</a></p><aside class="footnotes"><ol><li id="fn-a">Against WCAG 2.2 AA. <a href="#fr-a" aria-label="Back to text">↩</a></li></ol></aside>
+```
+
+---
+
+## Query Editor  ·  Sector · Data
+SQL editor shell with gutter, run bar and status.
+
+- base: `.query`
+- parts: `.query-bar` `.query-editor` `.query-gutter` `.query-code` `.query-status`
+
+Requires `sectors/forma-data.css`.
+
+```html
+<section class="query"><div class="query-bar"><button class="btn btn-sm btn-accent"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-play"/></svg> Run</button><span class="kbd">⌘↵</span><span class="ms-auto t-meta t-tertiary">nage_prod</span></div><div class="query-editor"><span class="query-gutter" aria-hidden="true">1
+2
+3</span><pre class="query-code" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" aria-label="SQL"><span class="tok-k">SELECT</span> model, <span class="tok-k">avg</span>(loss)
+<span class="tok-k">FROM</span> runs <span class="tok-k">WHERE</span> stage = <span class="tok-s">'DPO'</span>
+<span class="tok-k">GROUP BY</span> model;</pre></div><div class="query-status"><span data-ok>✓ 3 rows</span><span>42 ms</span></div></section>
+```
+
+---
+
+## Result Grid  ·  Sector · Data
+Monospace result table with types and NULLs.
+
+- base: `.result-grid`
+- parts: `.null` `.cell-type`
+
+Requires `sectors/forma-data.css`.
+
+```html
+<div class="table-wrap"><table class="table result-grid"><thead><tr><th scope="col">model<span class="cell-type">text</span></th><th scope="col" class="num">avg<span class="cell-type">float8</span></th></tr></thead><tbody><tr><td>forge-14b</td><td class="num">0.412</td></tr><tr><td>fehm-8b</td><td class="num">0.338</td></tr><tr><td>cortex-14b</td><td class="null">NULL</td></tr></tbody></table></div>
+```
+
+---
+
+## Notebook Cell  ·  Sector · Data
+Input/output cell with execution count.
+
+- base: `.notebook-cell`
+- parts: `.notebook-count` `.notebook-input` `.notebook-output`
+
+Requires `sectors/forma-data.css`.
+
+```html
+<div class="notebook-cell"><span class="notebook-count">[3]</span><pre class="notebook-input" tabindex="0"><span class="tok-k">import</span> forma
+forma.contrast(<span class="tok-s">"#4BD7C9"</span>, <span class="tok-s">"#090806"</span>)</pre><div class="notebook-output"><code>11.42</code></div></div>
+```
+
+---
+
+## Schema Tree  ·  Sector · Data
+Database schema browser — the core Tree View with types.
+
+- base: `.tree`
+- parts: `.tree-item` `.tree-meta`
+
+Requires `sectors/forma-data.css`.
+
+```html
+<ul class="tree" role="tree" aria-label="Schema" data-forma="tree"><li role="treeitem" aria-expanded="true"><span class="tree-item"><svg class="fi" aria-hidden="true"><use href="forma-icons.svg#fi-table"/></svg> runs</span><ul role="group"><li role="treeitem"><span class="tree-item">id <span class="tree-meta">uuid</span></span></li><li role="treeitem"><span class="tree-item">loss <span class="tree-meta">float8</span></span></li></ul></li></ul>
+```
+
+---
+
+## Themes
+| id | name | category | display / ui fonts |
+|---|---|---|---|
+| museum | Museum | style | Cormorant / Syne |
+| african | African | cultural | Playfair Display / Nunito |
+| anatolia | Anatolia | cultural | Cinzel / Manrope |
+| arabian | Arabian | cultural | Amiri / Cairo |
+| chinese | Chinese | cultural | Noto Serif SC / Noto Sans SC |
+| indian | Indian | cultural | Tiro Devanagari Hindi / Poppins |
+| japanese | Japanese | cultural | Noto Serif JP / Noto Sans JP |
+| latin | Latin | cultural | Abril Fatface / Nunito Sans |
+| mediterranean | Mediterranean | cultural | Lora / Manrope |
+| scandinavian | Scandinavian | cultural | Lora / Manrope |
+| desert | Desert | cultural | Libre Baskerville / Karla |
+| wabisabi | Wabi-Sabi | cultural | Cormorant / Karla |
+| artdeco | Art Deco | style | Cinzel / Raleway |
+| artnouveau | Art Nouveau | style | Cormorant Garamond / Lato |
+| bauhaus | Bauhaus | style | Montserrat / Roboto |
+| brutalist | Brutalist | style | Oswald / Space Mono |
+| cottagecore | Cottagecore | style | Lora / Nunito |
+| dopamine | Dopamine | style | Fredoka / Quicksand |
+| glass | Glass | style | Nunito / DM Sans |
+| gothic | Gothic | style | IM Fell English / Crimson Pro |
+| memphis | Memphis | style | Rubik / Space Grotesk |
+| neomorphism | Neomorphism | style | Inter / Inter |
+| noir | Noir | style | Playfair Display / DM Sans |
+| psychedelic | Psychedelic | style | Bungee / Quicksand |
+| quietluxury | Quiet Luxury | style | Cormorant / Inter |
+| swiss | Swiss | style | Inter / Inter |
+| minimal | Minimal | style | system-ui / system-ui |
+| aisystem | AI System | industry | Inter / IBM Plex Sans |
+| civic | Civic | industry | Merriweather / Source Sans 3 |
+| ecommerce | E-commerce | industry | Inter / DM Sans |
+| editorial | Editorial | industry | Playfair Display / Source Serif 4 |
+| education | Education | industry | Nunito / Open Sans |
+| finance | Finance | industry | IBM Plex Serif / IBM Plex Sans |
+| gaming | Gaming | industry | Exo 2 / Roboto |
+| luxurybrand | Luxury Brand | industry | Bodoni Moda / Jost |
+| medical | Medical | industry | Inter / Source Sans 3 |
+| music | Music | industry | Poppins / DM Sans |
+| sport | Sport | industry | Oswald / Roboto |
+| startup | Startup | industry | Inter / DM Sans |
+| legal | Legal | industry | Libre Baskerville / Source Sans 3 |
+| biopunk | Biopunk | retro | Rajdhani / Space Mono |
+| cyberpunk | Cyberpunk | retro | Orbitron / Rajdhani |
+| industrial | Industrial | retro | Oswald / Roboto |
+| lofi | Lo-Fi | retro | Karla / Inter |
+| nightsky | Night Sky | retro | Space Grotesk / Inter |
+| quantum | Quantum | retro | Space Grotesk / Inter |
+| retro | Retro | retro | Righteous / Outfit |
+| solarpunk | Solarpunk | retro | Outfit / DM Sans |
+| soviet | Constructivist | retro | Oswald / Roboto |
+| space | Space | retro | Exo 2 / Inter |
+| steampunk | Steampunk | retro | Spectral / Fira Sans |
+| synthwave | Synthwave | retro | Audiowide / Rajdhani |
+| terminal | Terminal | retro | VT323 / Share Tech Mono |
+| vaporwave | Vaporwave | retro | Monoton / DM Sans |
+| y2k | Y2K | retro | Audiowide / Inter |
+| ocean | Ocean | retro | Lora / Manrope |
+| nage | Nage | brand | DM Serif Display / DM Sans |
+| autorite | Autorité | brand | DM Serif Display / Inter |
+| tuti | tuti lab | brand | Space Grotesk / Inter |

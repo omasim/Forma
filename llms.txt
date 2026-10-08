@@ -1,0 +1,42 @@
+# FORMA
+
+> A museum-grade, token-driven CSS design system. 126 accessible components, 59 themes whose every color is computed and proven against WCAG AA in light and dark, an optional dependency-free JS layer, and machine-readable docs. MIT. v6.0.0.
+
+FORMA is plain HTML + classes. Link `forma.min.css` (and optionally `forma.min.js`). Mode: `data-mode="light|dark"`. Theme: `data-theme="<id>"` + `themes/<id>.css`. Colors, spacing, type come from CSS custom properties — never hard-code them.
+
+## Docs
+- [Complete reference](https://forma-design-five.vercel.app/llms-full.txt): every component with classes, example HTML, accessibility rules and JS API
+- [Machine-readable spec](https://forma-design-five.vercel.app/forma-spec.json): components, themes (computed colors), tokens, all valid classes, v5→v6 map
+- [Rules for agents](https://forma-design-five.vercel.app/AGENTS.md): ten rules for generating valid FORMA markup
+- [Getting started](https://forma-design-five.vercel.app/docs/): install, tokens, layers, browser support, migration
+
+## Files
+- [forma.min.css](https://forma-design-five.vercel.app/dist/forma.min.css): core, 146.5 KB
+- [forma.min.js](https://forma-design-five.vercel.app/dist/forma.min.js): optional behaviour, 52.8 KB
+- [forma-icons.svg](https://forma-design-five.vercel.app/dist/forma-icons.svg): 277 icons, use as `#fi-<name>`
+- [forma.manifest.json](https://forma-design-five.vercel.app/dist/forma.manifest.json): version, counts, sizes, contrast results
+
+## Components
+- Core: Button (.btn), Badge (.badge), Tag & Chip (.tag), Avatar (.avatar), Divider (.divider), Icon (.fi), Spinner (.spinner), Skeleton (.skeleton), Progress (.progress), Status Dot (.status), Kbd (.kbd), Tooltip (.tooltip), Code & Log (.code-block)
+- Forms: Field (.field), Input (.input), Checkbox & Radio (.checkbox), Switch (.switch), Range (.range), Segmented Control (.segmented), Number Stepper (.stepper), OTP Input (.otp), Combobox (.combobox), File Upload (.dropzone), Date Picker (.datepicker), Validation (.form-summary)
+- Surfaces: Card (.card), Feature Card (.feature), Metric Card (.metric), Row Card (.row-card), Accordion (.accordion), Alert (.alert), Callout (.callout), Empty & Error States (.empty-state)
+- Overlays: Dialog (.dialog), Drawer & Sheet (.drawer), Popover (.popover), Menu (.menu), Command Palette (.command), Toast (.toast)
+- Navigation: Link (.link), Navbar (.navbar), Sidebar (.sidebar), Breadcrumb (.breadcrumb), Pagination (.pagination), Tabs (.tabs), Steps (.steps), Wizard (.wizard), Mega Menu (.mega), Bottom Navigation (.bottom-nav), Footer (.footer)
+- Data: Data Table (.table), Description List (.dl), KPI (.kpi), Stats Row (.stats), Timeline (.timeline), Activity Feed (.feed), Kanban (.kanban), Calendar (.calendar), List (.list), Tree View (.tree)
+- Charts: Chart Container (.chart), Bar Chart (.bars), Horizontal Bars (.hbars), Donut (.donut), Gauge (.gauge), Sparkline (.sparkline), Heatmap (.heatmap), Treemap (.treemap)
+- Commerce: Product Card (.product), Rating (.rating), Cart & Summary (.cart), Checkout (.checkout), Invoice (.invoice), Pricing (.pricing), Feature Comparison (.compare), Filter Facets (.facets)
+- Content: Prose (.prose), Article Header (.article-header), Blog Card (.post), Hero (.hero), Proposition Strip (.props), Section Heading (.section-head), Table of Contents (.toc), Quotes (.blockquote), Gallery (.gallery), Comments (.comments)
+- Dashboard: Dashboard Grid (.dash), Notification Center (.notifications), Settings Page (.settings), Team Members (.members), Audit Log (.audit), Usage Meter (.usage), Profile (.profile), Auth (.auth-card)
+- AI: Chat (.chat), Message (.message), Tool Call (.tool-call), Citations (.citations), Composer (.composer), Model Card (.model-card), Pipeline Phases (.phases)
+- Sector · Health: Patient Card (.patient), Vitals (.vitals), Appointment Slots (.slots), Prescription (.rx)
+- Sector · Finance: Balance (.balance), Transactions (.txns), Market Ticker (.ticker), Portfolio Holding (.holding)
+- Sector · Education: Course Card (.course), Lesson Navigation (.lessons), Quiz (.quiz), Grade (.grade), Certificate (.certificate)
+- Sector · CRM: Contact Card (.contact), Deal Pipeline (.pipeline), Lead Score (.lead-score), Interaction Log (.interactions)
+- Sector · Publishing: Manuscript (.manuscript), Editor Toolbar (.toolbar), Revision Marks (.rev), Footnotes (.footnotes)
+- Sector · Data: Query Editor (.query), Result Grid (.result-grid), Notebook Cell (.notebook-cell), Schema Tree (.tree)
+
+## Themes
+museum, african, anatolia, arabian, chinese, indian, japanese, latin, mediterranean, scandinavian, desert, wabisabi, artdeco, artnouveau, bauhaus, brutalist, cottagecore, dopamine, glass, gothic, memphis, neomorphism, noir, psychedelic, quietluxury, swiss, minimal, aisystem, civic, ecommerce, editorial, education, finance, gaming, luxurybrand, medical, music, sport, startup, legal, biopunk, cyberpunk, industrial, lofi, nightsky, quantum, retro, solarpunk, soviet, space, steampunk, synthwave, terminal, vaporwave, y2k, ocean, nage, autorite, tuti
+
+## Optional
+- [MCP server](https://forma-design-five.vercel.app/ai.html): `npx -y @nage/forma mcp` — get_component, get_theme, validate_html, …

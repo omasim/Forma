@@ -1,0 +1,42 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Art Nouveau — Organic curves, sage and copper. */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Lato:wght@400;700&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="artnouveau"] {
+  --bg-base: light-dark(#F5F6EC, #0B0C06);
+  --bg-surface: light-dark(#FDFEFA, #11110A);
+  --bg-elevated: light-dark(#FDFEFA, #171810);
+  --bg-subtle: light-dark(#EAEAE0, #1E1F17);
+  --bg-hover: light-dark(#E0E1D6, #25261E);
+  --text-primary: light-dark(#121208, #E8E9DA);
+  --text-secondary: light-dark(#565649, #9FA091);
+  --text-tertiary: light-dark(#696A5C, #868779);
+  --text-disabled: light-dark(#8F9086, #55564D);
+  --border-control: light-dark(#94948B, #64655C);
+  --accent: light-dark(#A45C31, #E3966A);
+  --accent-contrast: light-dark(#FFFFFF, #0B0C06);
+  --accent-hover: light-dark(#944E21, #F0A276);
+  --accent-text: light-dark(#8F4A1C, #E3966A);
+  --error: light-dark(#A62B2C, #F97770);
+  --success: light-dark(#1E6935, #6FB880);
+  --warning: light-dark(#7D5302, #D49838);
+  --info: light-dark(#175E9B, #67AAED);
+  --on-error: light-dark(#FFFFFF, #0B0C06);
+  --on-success: light-dark(#FFFFFF, #0B0C06);
+  --on-warning: light-dark(#FFFFFF, #0B0C06);
+  --on-info: light-dark(#FFFFFF, #0B0C06);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Lato', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 2.5;
+  --weight-display: 400;
+}
+}

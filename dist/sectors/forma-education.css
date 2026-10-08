@@ -1,0 +1,40 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.sectors {
+/* FORMA Sector · Education — courses, lessons, quizzes, grades, certificates. */
+.course { display: flex; flex-direction: column; background: var(--bg-surface); border: var(--border-width-default) solid var(--border-default); border-radius: var(--radius-lg); overflow: hidden; }
+.course-media { aspect-ratio: 16 / 9; background: var(--bg-subtle); display: grid; place-items: center; }
+.course-body { display: flex; flex-direction: column; gap: var(--space-2); padding: var(--space-4); }
+.course-title { font-family: var(--font-display); font-size: var(--text-xl); line-height: var(--leading-snug); color: var(--text-primary); }
+.course-meta { display: flex; flex-wrap: wrap; gap: var(--space-3); font-size: var(--text-xs); color: var(--text-tertiary); }
+.lessons { list-style: none; padding: 0; margin: 0; counter-reset: lesson; }
+.lesson { counter-increment: lesson; display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); font-size: var(--text-sm); color: var(--text-secondary); text-decoration: none; }
+.lesson::before { content: counter(lesson); display: grid; place-items: center; inline-size: 24px; block-size: 24px; flex-shrink: 0; border-radius: 50%; font-size: var(--text-2xs); border: var(--border-width-default) solid var(--border-control); }
+.lesson:hover { background: var(--bg-subtle); color: var(--text-primary); }
+.lesson[data-state="done"]::before { content: "✓"; background: var(--success); border-color: var(--success); color: var(--on-success); }
+.lesson[aria-current="step"] { background: var(--accent-muted); color: var(--text-primary); font-weight: var(--weight-medium); }
+.lesson[aria-current="step"] .lesson-time { color: var(--text-secondary); }
+.lesson[aria-current="step"]::before { border-color: var(--accent); color: var(--accent-text); }
+.lesson[data-state="locked"] { opacity: 0.5; pointer-events: none; }
+.lesson-time { margin-inline-start: auto; font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-tertiary); }
+.quiz { display: flex; flex-direction: column; gap: var(--space-3); }
+.quiz-question { font-family: var(--font-display); font-size: var(--text-xl); color: var(--text-primary); line-height: var(--leading-snug); }
+.quiz-option { display: flex; gap: var(--space-3); align-items: center; padding: var(--space-3) var(--space-4); border-radius: var(--radius-lg); border: var(--border-width-default) solid var(--border-default); background: var(--bg-surface); cursor: pointer; font-size: var(--text-sm); }
+.quiz-option:hover { border-color: var(--border-strong); }
+.quiz-option:has(:checked) { border-color: var(--accent); background: var(--accent-subtle); }
+.quiz-option[data-result="correct"] { border-color: var(--success); background: var(--success-muted); }
+.quiz-option[data-result="wrong"] { border-color: var(--error); background: var(--error-muted); }
+.quiz-option[data-result]::after { margin-inline-start: auto; font-size: var(--text-xs); font-weight: var(--weight-medium); }
+.quiz-option[data-result="correct"]::after { content: "Correct"; color: var(--success); }
+.quiz-option[data-result="wrong"]::after { content: "Incorrect"; color: var(--error); }
+.grade { display: inline-grid; place-items: center; min-inline-size: 32px; block-size: 28px; padding-inline: var(--space-2); border-radius: var(--radius-md); font-family: var(--font-mono); font-weight: var(--weight-semibold); font-size: var(--text-sm); background: var(--bg-subtle); color: var(--text-primary); }
+.grade[data-band="a"] { background: var(--success-muted); color: var(--success); } .grade[data-band="b"] { background: var(--info-muted); color: var(--info); }
+.grade[data-band="c"] { background: var(--warning-muted); color: var(--warning); } .grade[data-band="f"] { background: var(--error-muted); color: var(--error); }
+.certificate { position: relative; padding: var(--space-8) var(--space-7); text-align: center; background: var(--bg-surface); border: var(--border-width-default) solid var(--border-muted); outline: var(--border-width-default) solid var(--border-default); outline-offset: -12px; border-radius: var(--radius-md); }
+.certificate-kicker { font-family: var(--font-mono); font-size: var(--text-2xs); letter-spacing: var(--tracking-widest); text-transform: uppercase; color: var(--accent-text); }
+.certificate-name { font-family: var(--font-display); font-size: var(--text-4xl); font-style: italic; font-weight: var(--weight-display); color: var(--text-primary); margin-block: var(--space-4); }
+.certificate-course { font-size: var(--text-sm); color: var(--text-secondary); }
+.certificate-sign { display: flex; justify-content: space-around; margin-block-start: var(--space-7); font-size: var(--text-xs); color: var(--text-tertiary); }
+.certificate-sign span { padding-block-start: var(--space-2); border-block-start: var(--border-width-default) solid var(--border-strong); min-inline-size: 140px; }
+
+}

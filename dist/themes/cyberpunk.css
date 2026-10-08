@@ -1,0 +1,48 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Cyberpunk — Neon on asphalt: hot pink, cyan glow. */
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono:wght@400&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="cyberpunk"] {
+  --bg-base: light-dark(#F3F4FF, #040411);
+  --bg-surface: light-dark(#FDFDFF, #080816);
+  --bg-elevated: light-dark(#FDFDFF, #0E0F1D);
+  --bg-subtle: light-dark(#E5E8FE, #141625);
+  --bg-hover: light-dark(#DBDEF4, #1B1D2C);
+  --text-primary: light-dark(#0E0F25, #E3E6FE);
+  --text-secondary: light-dark(#50536E, #989CBB);
+  --text-tertiary: light-dark(#646784, #7A7E9B);
+  --text-disabled: light-dark(#8B8EA2, #4A4C5E);
+  --border-control: light-dark(#9092A7, #5D5F72);
+  --accent: light-dark(#C2029C, #FF57D2);
+  --accent-contrast: light-dark(#FFFFFF, #040411);
+  --accent-hover: light-dark(#AA0389, #FE79D7);
+  --accent-text: light-dark(#A40283, #FF57D2);
+  --error: light-dark(#A62B2C, #F97770);
+  --success: light-dark(#1D6835, #6FB880);
+  --warning: light-dark(#7C5200, #D49838);
+  --info: light-dark(#175D9B, #67AAED);
+  --on-error: light-dark(#FFFFFF, #040411);
+  --on-success: light-dark(#FFFFFF, #040411);
+  --on-warning: light-dark(#FFFFFF, #040411);
+  --on-info: light-dark(#FFFFFF, #040411);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Orbitron', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-ui: 'Rajdhani', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Share Tech Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --radius-scale: 0;
+  --weight-display: 700;
+  --tracking-display: 0.04em;
+}
+[data-theme="cyberpunk"]:not([data-mode]) { color-scheme: dark; }
+
+[data-theme="cyberpunk"] .hero-title, [data-theme="cyberpunk"] .page-title { text-shadow: 0 0 18px color-mix(in oklab, var(--accent) 55%, transparent); }
+[data-theme="cyberpunk"] .btn-accent, [data-theme="cyberpunk"] .btn-primary { box-shadow: 0 0 16px color-mix(in oklab, var(--accent) 45%, transparent); }
+}

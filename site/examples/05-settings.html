@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" data-theme="swiss">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Settings — FORMA example</title><meta name="description" content="Settings page with tabs, switches, validation, API key and danger zone.">
+<link rel="stylesheet" href="../dist/forma.all.min.css">
+<link rel="stylesheet" href="../dist/forma-themes.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="text/plain" href="../llms.txt" title="llms.txt">
+
+</head>
+<body>
+
+
+<nav class="navbar" aria-label="Main"><a class="navbar-brand" href="#">Studio</a><div class="navbar-end"><button class="btn btn-icon btn-sm btn-ghost" data-forma="mode-toggle" aria-label="Dark mode"><svg class="fi" aria-hidden="true"><use href="../dist/forma-icons.svg#fi-sun-moon"/></svg></button><span class="avatar avatar-sm avatar-accent">ÖA</span></div></nav>
+<main class="container container-lg" id="main" style="padding-block:var(--space-6) var(--space-9)">
+  <div class="page-head"><div><h1 class="page-title">Settings</h1><p class="page-desc">Manage your workspace and account.</p></div></div>
+  <div class="tabs tabs-underline" data-forma="tabs">
+    <div class="tab-list" role="tablist" aria-label="Settings sections"><button class="tab" role="tab" aria-selected="true">General</button><button class="tab" role="tab">Notifications</button><button class="tab" role="tab">API</button></div>
+    <div class="tab-panel" role="tabpanel">
+      <form data-forma="validate" data-summary novalidate onsubmit="event.preventDefault();Forma.toast.success('Saved','Workspace updated')">
+        <section class="settings-section"><div><h2 class="settings-section-title">Workspace</h2><p class="settings-section-desc">Shown to members and in invoices.</p></div>
+          <div class="stack"><div class="field"><label class="field-label" for="ws-name">Name</label><input class="input" id="ws-name" required minlength="2" value="Nage Studio"></div>
+            <div class="field"><label class="field-label" for="ws-mail">Billing e-mail</label><input class="input" id="ws-mail" type="email" required></div>
+            <div class="field"><label class="field-label" for="ws-url">Website</label><div class="input-group"><span class="input-addon">https://</span><input class="input" id="ws-url" placeholder="studio.com"></div></div></div></section>
+        <section class="settings-section"><div><h2 class="settings-section-title">Region</h2><p class="settings-section-desc">Where your data is stored.</p></div>
+          <div class="segmented" role="radiogroup" aria-label="Region"><label><input type="radio" name="reg" checked> EU</label><label><input type="radio" name="reg"> US</label><label><input type="radio" name="reg"> TR</label></div></section>
+        <div class="form-actions"><button type="reset" class="btn btn-ghost">Reset</button><button class="btn btn-primary">Save changes</button></div>
+      </form>
+    </div>
+    <div class="tab-panel" role="tabpanel" hidden><div class="card">
+      <label class="setting-row"><span><span class="setting-row-label">Run finished</span><span class="setting-row-desc">E-mail when training completes.</span></span><input type="checkbox" class="switch" role="switch" checked></label>
+      <label class="setting-row"><span><span class="setting-row-label">Weekly digest</span><span class="setting-row-desc">Every Monday at 09:00.</span></span><input type="checkbox" class="switch" role="switch"></label>
+      <label class="setting-row"><span><span class="setting-row-label">Budget alerts</span><span class="setting-row-desc">At 80% and 100% of monthly spend.</span></span><input type="checkbox" class="switch" role="switch" checked></label></div></div>
+    <div class="tab-panel" role="tabpanel" hidden>
+      <section class="settings-section"><div><h2 class="settings-section-title">API key</h2><p class="settings-section-desc">Keep it secret.</p></div><div class="stack gap-2"><div class="secret"><span class="secret-value" data-secret="sk_live_demo_3fX9K2">sk_••••••••••••FX9K</span><button class="btn btn-sm btn-ghost" data-forma="reveal" aria-pressed="false">Show</button><button class="btn btn-sm btn-ghost" data-forma="copy" data-copy-text="sk_live_demo_3fX9K2">Copy</button></div>
+        <div class="usage"><div class="usage-head"><span class="usage-label">Tokens this month</span><span class="usage-value">840K / 1M</span></div><div class="progress-track" role="progressbar" aria-label="Tokens this month" aria-valuenow="84"><div class="progress-fill progress-fill-accent" style="--value:84%"></div></div></div></div></section>
+      <section class="settings-section"><div><h2 class="settings-section-title">Delete workspace</h2><p class="settings-section-desc">Removes everything, permanently.</p></div><div class="card danger-zone"><p class="card-title">Danger zone</p><p class="card-desc">This cannot be undone.</p><div class="mt-4"><button class="btn btn-destructive btn-sm" onclick="Forma.confirm({title:'Delete Nage Studio?',text:'All 12 datasets and 3 models are removed permanently.',confirmLabel:'Delete workspace',danger:true}).then(function(ok){ok&&Forma.toast.error('Workspace deleted','(demo — nothing happened)')})">Delete workspace</button></div></div></section>
+    </div>
+  </div>
+</main>
+
+
+<script src="../dist/forma.min.js"></script>
+<script>
+addEventListener('load',function(){document.querySelectorAll('.preview').forEach(function(el){if(el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+1){el.tabIndex=0;el.setAttribute('role','region');el.setAttribute('aria-label','Example')}})});
+(function(){var p=document.querySelector('[data-theme-picker]');if(!p)return;p.value=Forma.theme.current;p.addEventListener('change',function(){Forma.theme.set(p.value)});})();
+</script>
+</body></html>

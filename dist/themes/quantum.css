@@ -1,0 +1,44 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Quantum — Lab-grade cyan on cold graphite. */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="quantum"] {
+  --bg-base: light-dark(#F1FAFF, #03080C);
+  --bg-surface: light-dark(#FFFFFF, #060D11);
+  --bg-elevated: light-dark(#FFFFFF, #0C1418);
+  --bg-subtle: light-dark(#E3EFF5, #121B1F);
+  --bg-hover: light-dark(#D9E5EB, #192226);
+  --text-primary: light-dark(#07131A, #D9EBF4);
+  --text-secondary: light-dark(#495860, #91A1AA);
+  --text-tertiary: light-dark(#5E6E76, #74848C);
+  --text-disabled: light-dark(#89949A, #485257);
+  --border-control: light-dark(#8B969C, #596368);
+  --accent: light-dark(#02787D, #00D7E0);
+  --accent-contrast: light-dark(#FFFFFF, #03080C);
+  --accent-hover: light-dark(#08686C, #0AE6EF);
+  --accent-text: light-dark(#08686C, #00D7E0);
+  --error: light-dark(#A82D2E, #F97770);
+  --success: light-dark(#206B38, #6FB880);
+  --warning: light-dark(#7F5404, #D49838);
+  --info: light-dark(#1A609D, #67AAED);
+  --on-error: light-dark(#FFFFFF, #03080C);
+  --on-success: light-dark(#FFFFFF, #03080C);
+  --on-warning: light-dark(#FFFFFF, #03080C);
+  --on-info: light-dark(#FFFFFF, #03080C);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --radius-scale: 1;
+  --weight-display: 500;
+  --tracking-display: -0.03em;
+}
+}

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" data-theme="medical">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinic — FORMA example</title><meta name="description" content="Health sector: patient card, vitals, appointment slots, prescriptions and a date picker.">
+<link rel="stylesheet" href="../dist/forma.all.min.css">
+<link rel="stylesheet" href="../dist/forma-themes.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="alternate" type="text/plain" href="../llms.txt" title="llms.txt">
+
+</head>
+<body>
+
+
+<nav class="navbar" aria-label="Main"><a class="navbar-brand" href="#"><svg class="fi fi-lg fi-accent" aria-hidden="true"><use href="../dist/forma-icons.svg#fi-heart-pulse"/></svg> Şifa Clinic</a><ul class="navbar-nav navbar-collapse"><li><a class="navbar-link" href="#" aria-current="page">Patients</a></li><li><a class="navbar-link" href="#">Schedule</a></li></ul><div class="navbar-end"><button class="btn btn-icon btn-sm btn-ghost" data-forma="mode-toggle" aria-label="Dark mode"><svg class="fi" aria-hidden="true"><use href="../dist/forma-icons.svg#fi-sun-moon"/></svg></button></div></nav>
+<main class="container" id="main" style="padding-block:var(--space-6) var(--space-9)">
+  <div class="stack gap-5">
+    <article class="patient"><span class="avatar avatar-lg avatar-info">AY</span><div><p class="patient-name">Ayşe Yılmaz</p><p class="patient-id">#PAT-2026-0847 · 42 · F</p><div class="patient-meta"><span class="badge">Cardiology</span><span class="badge badge-warning">Allergy: penicillin</span></div></div><span class="blood-type" aria-label="Blood type A positive">A+</span></article>
+    <div class="vitals">
+      <div class="vital"><span class="vital-label"><svg class="fi" aria-hidden="true"><use href="../dist/forma-icons.svg#fi-heart-pulse"/></svg> Heart rate</span><span><span class="vital-value">72</span><span class="vital-unit">bpm</span></span><span class="vital-status">Normal</span></div>
+      <div class="vital"><span class="vital-label"><svg class="fi" aria-hidden="true"><use href="../dist/forma-icons.svg#fi-activity"/></svg> Blood pressure</span><span><span class="vital-value">128/84</span><span class="vital-unit">mmHg</span></span><span class="vital-status">Normal</span></div>
+      <div class="vital" data-status="watch"><span class="vital-label"><svg class="fi" aria-hidden="true"><use href="../dist/forma-icons.svg#fi-thermometer"/></svg> Temperature</span><span><span class="vital-value">37.9</span><span class="vital-unit">°C</span></span><span class="vital-status">Watch</span></div>
+      <div class="vital"><span class="vital-label"><svg class="fi" aria-hidden="true"><use href="../dist/forma-icons.svg#fi-wind"/></svg> SpO₂</span><span><span class="vital-value">97</span><span class="vital-unit">%</span></span><span class="vital-status">Normal</span></div>
+    </div>
+    <div class="grid-2">
+      <section class="card stack"><h2 class="card-title">Book follow-up</h2><div class="datepicker" data-forma="datepicker" data-value="2026-10-15" data-min="2026-10-08" style="box-shadow:none"></div>
+        <div class="slots" role="group" aria-label="Available times"><button class="slot" aria-pressed="false"><span class="slot-time">09:00</span><span class="slot-who">Dr. Öz</span></button><button class="slot" aria-pressed="true"><span class="slot-time">10:30</span><span class="slot-who">Dr. Çelik</span></button><button class="slot" disabled><span class="slot-time">11:00</span><span class="slot-who">Booked</span></button></div>
+        <button class="btn btn-accent" onclick="Forma.toast.success('Appointment booked','Thursday 15 October, 10:30')">Confirm booking</button></section>
+      <section class="card stack"><h2 class="card-title">Prescriptions</h2>
+        <div class="rx"><svg class="fi fi-lg fi-accent" aria-hidden="true"><use href="../dist/forma-icons.svg#fi-pill"/></svg><div><p class="rx-name">Atorvastatin 20 mg</p><p class="rx-dose">1 tablet, evening · 90 days</p></div><span class="rx-refills">2 refills</span></div>
+        <div class="rx"><svg class="fi fi-lg fi-accent" aria-hidden="true"><use href="../dist/forma-icons.svg#fi-pill"/></svg><div><p class="rx-name">Ramipril 5 mg</p><p class="rx-dose">1 tablet, morning · 30 days</p></div><span class="rx-refills">0 refills</span></div>
+        <figure class="chart" data-forma="chart" data-type="line" data-labels="Jun,Jul,Aug,Sep,Oct" data-series='[{"name":"Systolic","values":[142,138,133,130,128]},{"name":"Diastolic","values":[92,90,88,86,84]}]' data-height="180"><figcaption class="chart-head"><p class="chart-title">Blood pressure</p></figcaption><div class="chart-canvas"></div></figure></section>
+    </div>
+  </div>
+</main>
+
+
+<script src="../dist/forma.min.js"></script>
+<script>
+addEventListener('load',function(){document.querySelectorAll('.preview').forEach(function(el){if(el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+1){el.tabIndex=0;el.setAttribute('role','region');el.setAttribute('aria-label','Example')}})});
+(function(){var p=document.querySelector('[data-theme-picker]');if(!p)return;p.value=Forma.theme.current;p.addEventListener('change',function(){Forma.theme.set(p.value)});})();
+</script>
+</body></html>

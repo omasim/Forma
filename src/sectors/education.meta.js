@@ -1,0 +1,18 @@
+import { ic } from './_helpers.js';
+export default [
+  { id: 'course', name: 'Course Card', category: 'Sector · Education', sector: 'education', description: 'Course with level, duration and progress.',
+    classes: { base: 'course', parts: ['course-media', 'course-body', 'course-title', 'course-meta'] },
+    examples: [{ title: 'Course', html: `<article class="course" style="max-inline-size:320px"><div class="course-media">${ic('graduation-cap', 'fi-2xl fi-tertiary')}</div><div class="course-body"><span class="badge badge-info" style="align-self:flex-start">Intermediate</span><h3 class="course-title">Design systems from first principles</h3><p class="course-meta"><span>12 lessons</span><span>6 h</span><span>Chris K.</span></p><div class="progress progress-accent"><div class="progress-head"><span>Progress</span><span class="progress-value">60%</span></div><div class="progress-track"><div class="progress-fill" style="--value:60%"></div></div></div></div></article>` }] },
+  { id: 'lessons', name: 'Lesson Navigation', category: 'Sector · Education', sector: 'education', description: 'Ordered lessons: done, current, locked.',
+    classes: { base: 'lessons', parts: ['lesson', 'lesson-time'], attributes: ['data-state="done|locked"', 'aria-current="step"'] },
+    examples: [{ title: 'Lessons', html: `<ol class="lessons" style="max-inline-size:360px"><li><a class="lesson" href="#" data-state="done">Tokens<span class="lesson-time">12:04</span></a></li><li><a class="lesson" href="#" data-state="done">Color engines<span class="lesson-time">18:30</span></a></li><li><a class="lesson" href="#" aria-current="step">Contrast proofs<span class="lesson-time">21:12</span></a></li><li><a class="lesson" href="#" data-state="locked" aria-disabled="true">Theming at scale<span class="lesson-time">16:45</span></a></li></ol>` }] },
+  { id: 'quiz', name: 'Quiz', category: 'Sector · Education', sector: 'education', description: 'Radio-backed answers with correct/incorrect feedback in words.',
+    classes: { base: 'quiz', parts: ['quiz-question', 'quiz-option'], attributes: ['data-result="correct|wrong"'] },
+    examples: [{ title: 'Question', html: `<fieldset class="quiz"><legend class="quiz-question">Which CSS function lets one token hold both light and dark values?</legend><label class="quiz-option"><input type="radio" class="radio" name="q1"> color-mix()</label><label class="quiz-option" data-result="correct"><input type="radio" class="radio" name="q1" checked> light-dark()</label><label class="quiz-option"><input type="radio" class="radio" name="q1"> prefers-color-scheme</label></fieldset>` }] },
+  { id: 'grade', name: 'Grade', category: 'Sector · Education', sector: 'education', description: 'Letter grades with bands.',
+    classes: { base: 'grade', attributes: ['data-band="a|b|c|f"'] },
+    examples: [{ title: 'Grades', html: `<div class="cluster"><span class="grade" data-band="a">A</span><span class="grade" data-band="b">B+</span><span class="grade" data-band="c">C</span><span class="grade" data-band="f">F</span></div>` }] },
+  { id: 'certificate', name: 'Certificate', category: 'Sector · Education', sector: 'education', description: 'Printable completion certificate.',
+    classes: { base: 'certificate', parts: ['certificate-kicker', 'certificate-name', 'certificate-course', 'certificate-sign'] },
+    examples: [{ title: 'Certificate', html: `<article class="certificate"><p class="certificate-kicker">Certificate of completion</p><p class="certificate-name">Selin Yılmaz</p><p class="certificate-course">has completed <strong>Design Systems from First Principles</strong> · 8 October 2026</p><div class="certificate-sign"><span>Instructor</span><span>Director</span></div></article>` }] },
+];

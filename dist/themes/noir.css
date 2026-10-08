@@ -1,0 +1,42 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Noir — Black, white and one red — film-noir contrast. */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@400;500;600&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="noir"] {
+  --bg-base: light-dark(#F8F8F8, #030303);
+  --bg-surface: light-dark(#FFFFFF, #060606);
+  --bg-elevated: light-dark(#FFFFFF, #0C0C0C);
+  --bg-subtle: light-dark(#EDEDED, #131313);
+  --bg-hover: light-dark(#E3E3E3, #191919);
+  --text-primary: light-dark(#121212, #E8E8E8);
+  --text-secondary: light-dark(#555555, #9E9E9E);
+  --text-tertiary: light-dark(#6B6B6B, #808080);
+  --text-disabled: light-dark(#929292, #484848);
+  --border-control: light-dark(#949494, #5E5E5E);
+  --accent: light-dark(#C21725, #F4514F);
+  --accent-contrast: light-dark(#FFFFFF, #030303);
+  --accent-hover: light-dark(#AC011A, #FF645F);
+  --accent-text: light-dark(#B8011C, #F4514F);
+  --error: light-dark(#A92E2E, #F97770);
+  --success: light-dark(#206B38, #6FB880);
+  --warning: light-dark(#7F5404, #D49838);
+  --info: light-dark(#195F9D, #67AAED);
+  --on-error: light-dark(#FFFFFF, #030303);
+  --on-success: light-dark(#FFFFFF, #030303);
+  --on-warning: light-dark(#FFFFFF, #030303);
+  --on-info: light-dark(#FFFFFF, #030303);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-ui: 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 0.5;
+  --weight-display: 500;
+}
+}

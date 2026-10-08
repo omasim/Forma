@@ -1,0 +1,42 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Japanese — Ma — generous space, sumi ink and a quiet shu red. */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Noto+Sans+JP:wght@400;500;600&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="japanese"] {
+  --bg-base: light-dark(#F9F6F2, #0A0907);
+  --bg-surface: light-dark(#FFFFFF, #0F0E0B);
+  --bg-elevated: light-dark(#FFFFFF, #161512);
+  --bg-subtle: light-dark(#EDEBE7, #1D1C19);
+  --bg-hover: light-dark(#E3E1DD, #242320);
+  --text-primary: light-dark(#13110D, #EBE7E1);
+  --text-secondary: light-dark(#575550, #A19E98);
+  --text-tertiary: light-dark(#6D6A65, #86837D);
+  --text-disabled: light-dark(#92908D, #54524F);
+  --border-control: light-dark(#969490, #64625E);
+  --accent: light-dark(#AF3E30, #E6705F);
+  --accent-contrast: light-dark(#FFFFFF, #0A0907);
+  --accent-hover: light-dark(#9E2E21, #F47C6B);
+  --accent-text: light-dark(#A43427, #E87260);
+  --error: light-dark(#A82C2D, #F97770);
+  --success: light-dark(#1F6A37, #6FB880);
+  --warning: light-dark(#7E5403, #D49838);
+  --info: light-dark(#195F9D, #67AAED);
+  --on-error: light-dark(#FFFFFF, #0A0907);
+  --on-success: light-dark(#FFFFFF, #0A0907);
+  --on-warning: light-dark(#FFFFFF, #0A0907);
+  --on-info: light-dark(#FFFFFF, #0A0907);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Noto Serif JP', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Noto Sans JP', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 0.5;
+  --weight-display: 300;
+}
+}

@@ -1,0 +1,44 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Nage — Nage AI: navy, teal and amber. */
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="nage"] {
+  --bg-base: light-dark(#F2F9FF, #020A13);
+  --bg-surface: light-dark(#FFFFFF, #050F18);
+  --bg-elevated: light-dark(#FFFFFF, #0B161F);
+  --bg-subtle: light-dark(#DFEEFC, #121D27);
+  --bg-hover: light-dark(#D5E5F2, #19242E);
+  --text-primary: light-dark(#031321, #D5EBFF);
+  --text-secondary: light-dark(#445869, #8CA1B5);
+  --text-tertiary: light-dark(#596D7F, #718699);
+  --text-disabled: light-dark(#8594A0, #475460);
+  --border-control: light-dark(#8896A3, #576470);
+  --accent: light-dark(#02837A, #4BD7C9);
+  --accent-contrast: light-dark(#FFFFFF, #020A13);
+  --accent-hover: light-dark(#07736B, #5BE4D6);
+  --accent-text: light-dark(#036A62, #4BD7C9);
+  --error: light-dark(#A82D2E, #F97770);
+  --success: light-dark(#1F6A37, #6FB880);
+  --warning: light-dark(#7F5404, #D49838);
+  --info: light-dark(#195F9D, #67AAED);
+  --on-error: light-dark(#FFFFFF, #020A13);
+  --on-success: light-dark(#FFFFFF, #020A13);
+  --on-warning: light-dark(#FFFFFF, #020A13);
+  --on-info: light-dark(#FFFFFF, #020A13);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+  --font-ui: 'DM Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --radius-scale: 1.5;
+  --weight-display: 400;
+  --tracking-display: -0.01em;
+}
+}

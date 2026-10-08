@@ -1,0 +1,44 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: tuti lab — tuti lab: research paper white, lab orange. */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="tuti"] {
+  --bg-base: light-dark(#FDF9F6, #090705);
+  --bg-surface: light-dark(#FFFFFF, #0E0C09);
+  --bg-elevated: light-dark(#FFFFFF, #141210);
+  --bg-subtle: light-dark(#F1EEEA, #1B1916);
+  --bg-hover: light-dark(#E7E4E0, #22201D);
+  --text-primary: light-dark(#14110D, #ECE7E2);
+  --text-secondary: light-dark(#595450, #A29D98);
+  --text-tertiary: light-dark(#706C67, #85817C);
+  --text-disabled: light-dark(#969390, #524F4C);
+  --border-control: light-dark(#979491, #64615E);
+  --accent: light-dark(#C55205, #FF8F5A);
+  --accent-contrast: light-dark(#FFFFFF, #090705);
+  --accent-hover: light-dark(#AF4803, #FFA47A);
+  --accent-text: light-dark(#A24102, #FF8F5A);
+  --error: light-dark(#AA2F2F, #F97770);
+  --success: light-dark(#206B38, #6FB880);
+  --warning: light-dark(#805501, #D49838);
+  --info: light-dark(#1A609E, #67AAED);
+  --on-error: light-dark(#FFFFFF, #090705);
+  --on-success: light-dark(#FFFFFF, #090705);
+  --on-warning: light-dark(#FFFFFF, #090705);
+  --on-info: light-dark(#FFFFFF, #090705);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --radius-scale: 1;
+  --weight-display: 600;
+  --tracking-display: -0.035em;
+}
+}

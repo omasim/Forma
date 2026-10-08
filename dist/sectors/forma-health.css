@@ -1,0 +1,29 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.sectors {
+/* FORMA Sector · Health — patient, vitals, appointments, prescriptions. Load with sectors/forma-health.css */
+.patient { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-4); align-items: center; padding: var(--space-4) var(--space-5); background: var(--bg-surface); border: var(--border-width-default) solid var(--border-default); border-radius: var(--radius-lg); }
+.patient-name { font-family: var(--font-display); font-size: var(--text-xl); color: var(--text-primary); line-height: 1.1; }
+.patient-id { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-tertiary); letter-spacing: var(--tracking-wide); }
+.patient-meta { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-block-start: var(--space-2); }
+.blood-type { display: grid; place-items: center; inline-size: 44px; block-size: 44px; border-radius: var(--radius-md); font-family: var(--font-mono); font-weight: var(--weight-semibold); color: var(--error); background: var(--error-muted); }
+.vitals { display: grid; gap: var(--space-3); grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.vital { --_c: var(--success); display: flex; flex-direction: column; gap: var(--space-1); padding: var(--space-4); background: var(--bg-surface); border: var(--border-width-default) solid var(--border-default); border-block-start: 3px solid var(--_c); border-radius: var(--radius-lg); }
+.vital[data-status="watch"] { --_c: var(--warning); } .vital[data-status="alert"] { --_c: var(--error); }
+.vital-label { font-size: var(--text-xs); color: var(--text-secondary); display: flex; align-items: center; gap: var(--space-2); }
+.vital-value { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: var(--weight-display); line-height: 1; color: var(--text-primary); font-variant-numeric: tabular-nums lining-nums; }
+.vital-unit { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-tertiary); margin-inline-start: var(--space-1); }
+.vital-status { font-size: var(--text-xs); color: var(--_c); font-weight: var(--weight-medium); }
+.slots { display: grid; gap: var(--space-2); grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+.slot { display: flex; flex-direction: column; gap: 2px; padding: var(--space-3); border-radius: var(--radius-md); border: var(--border-width-default) solid var(--border-default); background: var(--bg-surface); text-align: start; }
+.slot:hover:not(:disabled) { border-color: var(--accent); }
+.slot[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-muted); }
+.slot:disabled { opacity: 0.45; text-decoration: line-through; cursor: not-allowed; }
+.slot-time { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-primary); }
+.slot-who { font-size: var(--text-xs); color: var(--text-secondary); }
+.rx { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: center; padding: var(--space-3) var(--space-4); border-radius: var(--radius-lg); border: var(--border-width-default) solid var(--border-default); background: var(--bg-surface); }
+.rx-name { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--text-primary); }
+.rx-dose { font-size: var(--text-xs); color: var(--text-secondary); }
+.rx-refills { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-tertiary); }
+
+}

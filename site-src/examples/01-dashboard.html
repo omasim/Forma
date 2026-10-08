@@ -1,0 +1,84 @@
+<!--meta {"title":"Training Dashboard","desc":"App shell with sidebar, KPIs, charts, a sortable table and a command palette.","theme":"","uses":["app-shell","kpi","chart","table","command"]}-->
+<div class="app-shell">
+  <nav class="sidebar" aria-label="Workspace" id="ex-sb">
+    <div class="sidebar-header"><span class="avatar avatar-sm avatar-square avatar-accent">N</span><span class="sidebar-label sidebar-brand-text t-body-sm">Nage Studio</span></div>
+    <a class="sidebar-item" href="#" aria-current="page"><svg class="fi" aria-hidden="true"><use href="#fi-home"/></svg><span class="sidebar-label">Overview</span></a>
+    <a class="sidebar-item" href="#"><svg class="fi" aria-hidden="true"><use href="#fi-activity"/></svg><span class="sidebar-label">Runs</span><span class="sidebar-count">12</span></a>
+    <a class="sidebar-item" href="#"><svg class="fi" aria-hidden="true"><use href="#fi-database"/></svg><span class="sidebar-label">Datasets</span></a>
+    <a class="sidebar-item" href="#"><svg class="fi" aria-hidden="true"><use href="#fi-chart-bar"/></svg><span class="sidebar-label">Evals</span></a>
+    <p class="sidebar-section">Team</p>
+    <a class="sidebar-item" href="#"><svg class="fi" aria-hidden="true"><use href="#fi-users"/></svg><span class="sidebar-label">Members</span></a>
+    <a class="sidebar-item" href="#"><svg class="fi" aria-hidden="true"><use href="#fi-settings"/></svg><span class="sidebar-label">Settings</span></a>
+    <div class="sidebar-footer"><button class="sidebar-item" data-forma="sidebar-toggle" data-target="ex-sb" aria-expanded="true"><svg class="fi" aria-hidden="true"><use href="#fi-sidebar"/></svg><span class="sidebar-label">Collapse</span></button></div>
+  </nav>
+  <div class="app-main">
+    <header class="navbar navbar-sticky">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><ol><li><a href="#">Studio</a></li><li><span aria-current="page">Overview</span></li></ol></nav>
+      <div class="navbar-end">
+        <button class="btn btn-sm btn-ghost" data-forma-open="ex-cmd"><svg class="fi" aria-hidden="true"><use href="#fi-search"/></svg> Search <kbd class="kbd">⌘K</kbd></button>
+        <button class="btn btn-icon btn-sm btn-ghost" data-forma="mode-toggle" aria-label="Dark mode"><svg class="fi" aria-hidden="true"><use href="#fi-sun-moon"/></svg></button>
+        <span class="avatar avatar-sm avatar-accent">ÖA</span>
+      </div>
+    </header>
+    <main class="container" id="main" style="padding-block:var(--space-2) var(--space-8)">
+      <div class="page-head"><div><h1 class="page-title">Overview</h1><p class="page-desc">Week 41 · 3 models in training</p></div>
+        <div class="cluster"><button class="btn btn-sm"><svg class="fi" aria-hidden="true"><use href="#fi-download"/></svg> Export</button><button class="btn btn-sm btn-primary" data-forma-open="ex-new"><svg class="fi" aria-hidden="true"><use href="#fi-plus"/></svg> New run</button></div></div>
+      <div class="stack gap-5">
+        <div class="kpi-grid">
+          <div class="kpi"><span class="kpi-label">Best eval</span><span class="kpi-value">84.2</span><span class="kpi-foot"><span class="metric-delta" data-trend="up">+6.1</span> vs last checkpoint</span></div>
+          <div class="kpi"><span class="kpi-label">GPU hours</span><span class="kpi-value">142</span><span class="kpi-foot">of 200 this month</span><svg class="sparkline" data-forma="sparkline" data-values="4,6,5,9,12,10,14,18,16,21" role="img" aria-label="GPU hours trend, rising"></svg></div>
+          <div class="kpi"><span class="kpi-label">Spend</span><span class="kpi-value">$401</span><span class="kpi-foot"><span class="metric-delta" data-trend="down">+12%</span> over plan</span></div>
+          <div class="kpi"><span class="kpi-label">Datasets</span><span class="kpi-value">12</span><span class="kpi-foot">380K conversations</span></div>
+        </div>
+        <div class="dash">
+          <figure class="chart span-8" data-forma="chart" data-type="area" data-labels="E1,E2,E3,E4,E5,E6,E7,E8" data-series='[{"name":"Forge","values":[1.84,1.52,1.21,0.98,0.76,0.6,0.46,0.34]},{"name":"Fehm","values":[1.6,1.41,1.2,1.08,0.9,0.81,0.74,0.7]}]' data-format="0.00">
+            <figcaption class="chart-head"><div><p class="chart-title">Training loss</p><p class="chart-subtitle">Per epoch</p></div><p class="chart-value">0.34</p></figcaption><div class="chart-canvas"></div></figure>
+          <section class="widget span-4"><header class="widget-head"><h2 class="widget-title">Activity</h2><button class="btn btn-link btn-sm">All</button></header><div class="widget-body">
+            <ol class="timeline">
+              <li class="timeline-item" data-tone="success"><p class="timeline-title">forge-sft-v1 saved</p><time class="timeline-time">09:22</time></li>
+              <li class="timeline-item" data-tone="warning"><p class="timeline-title">VRAM at 94%</p><p class="timeline-text">Batch size reduced 4 → 2</p><time class="timeline-time">09:23</time></li>
+              <li class="timeline-item" data-tone="error"><p class="timeline-title">Disk full — retried</p><time class="timeline-time">09:41</time></li>
+            </ol></div></section>
+        </div>
+        <div class="table-wrap cq">
+          <div class="table-toolbar"><h2 class="table-title">Runs</h2><div class="search"><svg class="fi" aria-hidden="true"><use href="#fi-search"/></svg><input class="input input-sm" type="search" placeholder="Filter runs" aria-label="Filter runs" data-table-filter></div></div>
+          <table class="table table-hover table-stack" data-forma="table">
+            <thead><tr><th scope="col"><input type="checkbox" class="checkbox" aria-label="Select all" data-select-all></th><th scope="col" aria-sort="none"><button class="sort-btn">Model</button></th><th scope="col">Stage</th><th scope="col" class="num" aria-sort="none"><button class="sort-btn">Loss</button></th><th scope="col" class="num" aria-sort="none"><button class="sort-btn">Cost</button></th><th scope="col">Status</th><th scope="col"><span class="sr-only">Actions</span></th></tr></thead>
+            <tbody>
+              <tr><td><input type="checkbox" class="checkbox" aria-label="Select Forge-14B"></td><td data-label="Model" class="cell-strong">Forge-14B</td><td data-label="Stage" class="muted">DPO</td><td data-label="Loss" class="num">0.41</td><td data-label="Cost" class="num">$62</td><td data-label="Status"><span class="status"><span class="status-dot status-dot-warning status-dot-pulse"></span>Running</span></td><td><button class="btn btn-icon btn-ghost btn-sm" popovertarget="ex-row-menu" aria-label="Actions for Forge-14B"><svg class="fi" aria-hidden="true"><use href="#fi-more-horizontal"/></svg></button></td></tr>
+              <tr><td><input type="checkbox" class="checkbox" aria-label="Select Fehm-8B"></td><td data-label="Model" class="cell-strong">Fehm-8B</td><td data-label="Stage" class="muted">SFT + DPO</td><td data-label="Loss" class="num">0.34</td><td data-label="Cost" class="num">$248</td><td data-label="Status"><span class="status"><span class="status-dot status-dot-success"></span>Done</span></td><td><button class="btn btn-icon btn-ghost btn-sm" popovertarget="ex-row-menu" aria-label="Actions for Fehm-8B"><svg class="fi" aria-hidden="true"><use href="#fi-more-horizontal"/></svg></button></td></tr>
+              <tr><td><input type="checkbox" class="checkbox" aria-label="Select Cortex-14B"></td><td data-label="Model" class="cell-strong">Cortex-14B</td><td data-label="Stage" class="muted">SFT</td><td data-label="Loss" class="num">0.68</td><td data-label="Cost" class="num">$18</td><td data-label="Status"><span class="status"><span class="status-dot"></span>Queued</span></td><td><button class="btn btn-icon btn-ghost btn-sm" popovertarget="ex-row-menu" aria-label="Actions for Cortex-14B"><svg class="fi" aria-hidden="true"><use href="#fi-more-horizontal"/></svg></button></td></tr>
+              <tr><td><input type="checkbox" class="checkbox" aria-label="Select Conflux-v1"></td><td data-label="Model" class="cell-strong">Conflux-v1</td><td data-label="Stage" class="muted">GRPO</td><td data-label="Loss" class="num">1.82</td><td data-label="Cost" class="num">$9</td><td data-label="Status"><span class="status"><span class="status-dot status-dot-error"></span>Failed</span></td><td><button class="btn btn-icon btn-ghost btn-sm" popovertarget="ex-row-menu" aria-label="Actions for Conflux-v1"><svg class="fi" aria-hidden="true"><use href="#fi-more-horizontal"/></svg></button></td></tr>
+            </tbody></table>
+          <div class="table-footer"><span data-table-status>4 rows</span><span>Updated just now</span></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+<div class="menu" id="ex-row-menu" popover role="menu" aria-label="Run actions">
+  <button class="menu-item" role="menuitem"><svg class="fi" aria-hidden="true"><use href="#fi-eye"/></svg> View logs</button>
+  <button class="menu-item" role="menuitem"><svg class="fi" aria-hidden="true"><use href="#fi-copy"/></svg> Duplicate</button>
+  <hr class="menu-separator">
+  <button class="menu-item menu-item-danger" role="menuitem" onclick="Forma.confirm({title:'Stop this run?',text:'Progress since the last checkpoint is lost.',confirmLabel:'Stop run',danger:true}).then(function(ok){if(ok)Forma.toast.warning('Run stopped')})"><svg class="fi" aria-hidden="true"><use href="#fi-stop"/></svg> Stop run</button>
+</div>
+<dialog class="dialog" id="ex-new" aria-labelledby="ex-new-t">
+  <form method="dialog" data-forma="validate" novalidate onsubmit="if(this.checkValidity())Forma.toast.success('Run queued',this.elements.run.value)">
+    <header class="dialog-header"><div><h2 class="dialog-title" id="ex-new-t">New training run</h2><p class="dialog-desc">Estimated ≈ 5 h · ≈ $45</p></div><button type="button" class="dialog-close" data-forma-close aria-label="Close"><svg class="fi" aria-hidden="true"><use href="#fi-x"/></svg></button></header>
+    <div class="dialog-body">
+      <div class="field"><label class="field-label" for="ex-run">Run name</label><input class="input" id="ex-run" name="run" required minlength="3" placeholder="forge-14b-dpo"></div>
+      <fieldset class="choice-group"><legend class="field-label">Pipeline</legend>
+        <label class="choice-card"><input type="radio" class="radio" name="pipe" checked><span class="choice-card-body"><span class="choice-card-title">SFT + DPO</span><span class="choice-card-desc">Two-phase alignment</span></span><span class="choice-card-meta">≈ $70</span></label>
+        <label class="choice-card"><input type="radio" class="radio" name="pipe"><span class="choice-card-body"><span class="choice-card-title">SFT + DPO + GRPO</span><span class="choice-card-desc">For reasoning models</span></span><span class="choice-card-meta">≈ $120</span></label></fieldset>
+    </div>
+    <footer class="dialog-footer"><button type="button" class="btn btn-ghost" data-forma-close>Cancel</button><button class="btn btn-accent">Queue run</button></footer>
+  </form>
+</dialog>
+<dialog class="dialog command" id="ex-cmd" data-forma="command" data-hotkey="mod+k" aria-label="Command palette"><div class="dialog-body">
+  <div class="command-input"><svg class="fi fi-lg" aria-hidden="true"><use href="#fi-search"/></svg><input placeholder="Type a command…" aria-label="Search commands"></div>
+  <div class="command-list" role="listbox" aria-label="Commands">
+    <p class="command-group">Actions</p>
+    <div class="command-item" role="option" onclick="Forma.dialog.open('ex-new')"><span class="command-item-icon"><svg class="fi" aria-hidden="true"><use href="#fi-plus"/></svg></span>New run</div>
+    <div class="command-item" role="option" onclick="Forma.mode.toggle()"><span class="command-item-icon"><svg class="fi" aria-hidden="true"><use href="#fi-moon"/></svg></span>Toggle dark mode</div>
+    <p class="command-empty" hidden>No results.</p>
+  </div></div></dialog>

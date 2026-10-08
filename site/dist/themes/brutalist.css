@@ -1,0 +1,49 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Brutalist — Raw structure: hard borders, no radius, offset shadows. */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="brutalist"] {
+  --bg-base: light-dark(#F8F8F8, #060606);
+  --bg-surface: light-dark(#FFFFFF, #0A0A0A);
+  --bg-elevated: light-dark(#FFFFFF, #101010);
+  --bg-subtle: light-dark(#EDEDED, #171717);
+  --bg-hover: light-dark(#E3E3E3, #1E1E1E);
+  --text-primary: light-dark(#121212, #E8E8E8);
+  --text-secondary: light-dark(#555555, #9E9E9E);
+  --text-tertiary: light-dark(#6B6B6B, #808080);
+  --text-disabled: light-dark(#929292, #4D4D4D);
+  --border-control: light-dark(#949494, #606060);
+  --accent: light-dark(#767605, #E7E804);
+  --accent-contrast: light-dark(#FFFFFF, #060606);
+  --accent-hover: light-dark(#676702, #F4F521);
+  --accent-text: light-dark(#626202, #E7E804);
+  --error: light-dark(#A92E2E, #F97770);
+  --success: light-dark(#206B38, #6FB880);
+  --warning: light-dark(#7F5404, #D49838);
+  --info: light-dark(#195F9D, #67AAED);
+  --on-error: light-dark(#FFFFFF, #060606);
+  --on-success: light-dark(#FFFFFF, #060606);
+  --on-warning: light-dark(#FFFFFF, #060606);
+  --on-info: light-dark(#FFFFFF, #060606);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Oswald', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-ui: 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-mono: 'Space Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --radius-scale: 0;
+  --border-width-default: 2px;
+  --weight-display: 700;
+  --tracking-display: -0.01em;
+}
+
+[data-theme="brutalist"] .btn, [data-theme="brutalist"] .card, [data-theme="brutalist"] .input, [data-theme="brutalist"] .select, [data-theme="brutalist"] .textarea, [data-theme="brutalist"] .dialog, [data-theme="brutalist"] .menu, [data-theme="brutalist"] .popover, [data-theme="brutalist"] .table-wrap, [data-theme="brutalist"] .kpi, [data-theme="brutalist"] .widget, [data-theme="brutalist"] .product, [data-theme="brutalist"] .plan { border-color: var(--text-primary); box-shadow: 4px 4px 0 var(--text-primary); }
+[data-theme="brutalist"] .btn:active { box-shadow: none; transform: translate(4px, 4px); }
+[data-theme="brutalist"] .t-display-xl, [data-theme="brutalist"] .t-display-lg, [data-theme="brutalist"] .hero-title, [data-theme="brutalist"] .page-title { text-transform: uppercase; }
+}

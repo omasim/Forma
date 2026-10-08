@@ -1,0 +1,25 @@
+<!--meta {"title":"Assistant","desc":"Full-height AI chat with streaming, reasoning, tool calls and a composer.","theme":"aisystem","mode":"dark","uses":["chat","message","tool-call","composer"]}-->
+<div style="display:grid;grid-template-rows:auto 1fr;block-size:100dvh">
+  <nav class="navbar" aria-label="Main"><a class="navbar-brand" href="#"><svg class="fi fi-lg fi-accent" aria-hidden="true"><use href="#fi-sparkle"/></svg> Forge</a><div class="navbar-end"><select class="select select-sm" style="inline-size:auto" aria-label="Model"><option>forge-14b</option><option>fehm-8b</option></select><button class="btn btn-icon btn-sm btn-ghost" data-forma="mode-toggle" aria-label="Dark mode"><svg class="fi" aria-hidden="true"><use href="#fi-sun-moon"/></svg></button></div></nav>
+  <main id="main" class="container container-md" style="min-block-size:0;padding-block:var(--space-4)">
+    <section class="chat" id="ex-chat" data-forma="chat" aria-label="Assistant">
+      <div class="chat-log" role="log" aria-live="polite">
+        <div class="chat-empty"><span class="icon-tile icon-tile-accent"><svg class="fi fi-lg" aria-hidden="true"><use href="#fi-sparkle"/></svg></span><p class="chat-empty-title">How can I help?</p>
+          <div class="suggestions"><button class="suggestion" data-prompt="Plan a DPO run for Forge-14B">Plan a DPO run</button><button class="suggestion" data-prompt="Why did the GRPO stage fail?">Why did GRPO fail?</button><button class="suggestion" data-prompt="Summarise this week's evals">Summarise evals</button></div></div>
+      </div>
+      <form class="composer"><label class="sr-only" for="ex-msg">Message</label><textarea class="composer-input" id="ex-msg" rows="1" placeholder="Ask Forge…"></textarea>
+        <div class="composer-bar"><button type="button" class="btn btn-icon btn-ghost btn-sm" aria-label="Attach file"><svg class="fi" aria-hidden="true"><use href="#fi-paperclip"/></svg></button><button type="button" class="btn btn-ghost btn-sm"><svg class="fi" aria-hidden="true"><use href="#fi-globe"/></svg> Web</button><button class="btn btn-icon btn-accent btn-sm composer-send" aria-label="Send"><svg class="fi" aria-hidden="true"><use href="#fi-arrow-up"/></svg></button></div></form>
+      <p class="composer-hint">Demo — replies are simulated in the page.</p>
+    </section>
+  </main>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var root = document.getElementById('ex-chat');
+  root.addEventListener('click', function (e) { var s = e.target.closest('[data-prompt]'); if (!s) return; var i = root.querySelector('.composer-input'); i.value = s.dataset.prompt; i.dispatchEvent(new Event('input')); root.querySelector('.composer').requestSubmit(); });
+  root.addEventListener('forma:submit', function (e) {
+    var chat = root._forma; var t = chat.thinking('Checking run history…');
+    setTimeout(function () { t.done(); chat.stream('Forge-14B finished SFT at loss 0.34. For DPO I suggest 15K preference pairs, beta 0.1 and 2 epochs on one A100 — roughly 4 hours and $30. Want me to queue it?'); }, 900);
+  });
+});
+</script>

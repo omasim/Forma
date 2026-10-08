@@ -1,0 +1,42 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Scandinavian — Birch, wool and a muted fjord blue. */
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="scandinavian"] {
+  --bg-base: light-dark(#FAF8F2, #0F0D09);
+  --bg-surface: light-dark(#FFFFFF, #14130F);
+  --bg-elevated: light-dark(#FFFFFF, #1B1915);
+  --bg-subtle: light-dark(#EEECE6, #22201C);
+  --bg-hover: light-dark(#E4E2DC, #292823);
+  --text-primary: light-dark(#14110C, #EBE8DF);
+  --text-secondary: light-dark(#58554E, #A19E96);
+  --text-tertiary: light-dark(#6E6B64, #89877F);
+  --text-disabled: light-dark(#93918C, #5A5853);
+  --border-control: light-dark(#96948F, #676560);
+  --accent: light-dark(#386B7B, #80B4C5);
+  --accent-contrast: light-dark(#FFFFFF, #0F0D09);
+  --accent-hover: light-dark(#2A5D6C, #8CC1D2);
+  --accent-text: light-dark(#306373, #80B4C5);
+  --error: light-dark(#A82D2E, #F97770);
+  --success: light-dark(#1F6A37, #6FB880);
+  --warning: light-dark(#7E5403, #D49838);
+  --info: light-dark(#195F9D, #67AAED);
+  --on-error: light-dark(#FFFFFF, #0F0D09);
+  --on-success: light-dark(#FFFFFF, #0F0D09);
+  --on-warning: light-dark(#FFFFFF, #0F0D09);
+  --on-info: light-dark(#FFFFFF, #0F0D09);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 1.5;
+  --weight-display: 500;
+}
+}

@@ -1,0 +1,46 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Gaming — HUD energy: carbon and electric lime. */
+@import url("https://fonts.googleapis.com/css2?family=Exo+2:wght@600;700;800&family=Roboto:wght@400;500;700&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="gaming"] {
+  --bg-base: light-dark(#F0F6FF, #04070F);
+  --bg-surface: light-dark(#FDFDFF, #070C15);
+  --bg-elevated: light-dark(#FDFDFF, #0D131C);
+  --bg-subtle: light-dark(#E2EAF7, #141A23);
+  --bg-hover: light-dark(#D8E0ED, #1B212A);
+  --text-primary: light-dark(#0A121F, #DCE9FD);
+  --text-secondary: light-dark(#4C5666, #949FB2);
+  --text-tertiary: light-dark(#606A7B, #788394);
+  --text-disabled: light-dark(#88909C, #49505B);
+  --border-control: light-dark(#8D94A1, #5B626D);
+  --accent: light-dark(#407F00, #8EE653);
+  --accent-contrast: light-dark(#FFFFFF, #04070F);
+  --accent-hover: light-dark(#386F03, #9BF461);
+  --accent-text: light-dark(#346900, #8EE653);
+  --error: light-dark(#A62B2C, #F97770);
+  --success: light-dark(#1E6935, #6FB880);
+  --warning: light-dark(#7D5302, #D49838);
+  --info: light-dark(#175E9B, #67AAED);
+  --on-error: light-dark(#FFFFFF, #04070F);
+  --on-success: light-dark(#FFFFFF, #04070F);
+  --on-warning: light-dark(#FFFFFF, #04070F);
+  --on-info: light-dark(#FFFFFF, #04070F);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Exo 2', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-ui: 'Roboto', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 0.5;
+  --weight-display: 800;
+  --tracking-display: 0em;
+}
+[data-theme="gaming"]:not([data-mode]) { color-scheme: dark; }
+
+[data-theme="gaming"] .btn, [data-theme="gaming"] .card, [data-theme="gaming"] .kpi { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }
+}

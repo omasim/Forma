@@ -1,0 +1,26 @@
+/* FORMA Sector · Finance — balances, transactions, tickers, portfolio. */
+.balance { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-6); border-radius: var(--radius-xl); background: var(--bg-elevated); border: var(--border-width-default) solid var(--border-muted); }
+.balance-label { font-size: var(--text-xs); color: var(--text-secondary); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+.balance-amount { font-family: var(--font-display); font-size: var(--text-4xl); font-weight: var(--weight-display); line-height: 1; letter-spacing: var(--tracking-tight); color: var(--text-primary); font-variant-numeric: tabular-nums lining-nums; }
+.balance-amount small { font-size: 0.5em; color: var(--text-secondary); }
+.balance-actions { display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.txns { list-style: none; padding: 0; margin: 0; }
+.txn { display: grid; grid-template-columns: auto 1fr auto; gap: var(--space-3); align-items: center; padding-block: var(--space-3); border-block-end: var(--border-width-default) solid var(--border-faint); }
+.txn-icon { display: grid; place-items: center; inline-size: 36px; block-size: 36px; border-radius: var(--radius-md); background: var(--bg-subtle); color: var(--text-secondary); }
+.txn-title { font-size: var(--text-sm); color: var(--text-primary); }
+.txn-meta { font-size: var(--text-xs); color: var(--text-tertiary); }
+.txn-amount { font-family: var(--font-mono); font-size: var(--text-sm); font-variant-numeric: tabular-nums; color: var(--text-primary); text-align: end; }
+.txn-amount[data-direction="in"] { color: var(--success); }
+.txn-amount[data-direction="in"]::before { content: "+"; }
+.txn-amount[data-direction="out"]::before { content: "−"; }
+.ticker { display: flex; gap: var(--space-6); overflow-x: auto; padding: var(--space-2) var(--space-4); border-block: var(--border-width-default) solid var(--border-default); font-family: var(--font-mono); font-size: var(--text-xs); white-space: nowrap; scrollbar-width: none; }
+.ticker-item { display: inline-flex; gap: var(--space-2); align-items: baseline; }
+.ticker-symbol { color: var(--text-primary); font-weight: var(--weight-medium); }
+.ticker-price { color: var(--text-secondary); }
+.ticker-change[data-trend="up"] { color: var(--success); } .ticker-change[data-trend="up"]::before { content: "▲ "; }
+.ticker-change[data-trend="down"] { color: var(--error); } .ticker-change[data-trend="down"]::before { content: "▼ "; }
+.holding { display: grid; grid-template-columns: 1fr auto; gap: var(--space-1) var(--space-4); padding: var(--space-4); border-radius: var(--radius-lg); background: var(--bg-surface); border: var(--border-width-default) solid var(--border-default); }
+.holding-name { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--text-primary); }
+.holding-symbol { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-tertiary); }
+.holding-value { font-family: var(--font-display); font-size: var(--text-xl); text-align: end; color: var(--text-primary); }
+.holding-alloc { grid-column: 1 / -1; block-size: 4px; border-radius: 2px; background: linear-gradient(90deg, var(--accent) var(--value, 0%), var(--bg-subtle) var(--value, 0%)); }

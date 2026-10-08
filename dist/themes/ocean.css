@@ -1,0 +1,42 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Ocean — Abyssal blues, sea-glass accent. */
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="ocean"] {
+  --bg-base: light-dark(#ECFAFE, #000B10);
+  --bg-surface: light-dark(#FFFFFF, #001117);
+  --bg-elevated: light-dark(#FFFFFF, #03181E);
+  --bg-subtle: light-dark(#D6F0F9, #091F25);
+  --bg-hover: light-dark(#CCE6EF, #11262D);
+  --text-primary: light-dark(#00151C, #C8F0FD);
+  --text-secondary: light-dark(#385B67, #80A6B2);
+  --text-tertiary: light-dark(#4C707C, #658A96);
+  --text-disabled: light-dark(#7D959D, #40575E);
+  --border-control: light-dark(#8099A1, #50676F);
+  --accent: light-dark(#027A6B, #61D5C0);
+  --accent-contrast: light-dark(#FFFFFF, #000B10);
+  --accent-hover: light-dark(#056A5D, #6FE2CD);
+  --accent-text: light-dark(#03695C, #61D5C0);
+  --error: light-dark(#A72C2D, #F97770);
+  --success: light-dark(#1F6A37, #6FB880);
+  --warning: light-dark(#7E5403, #D49838);
+  --info: light-dark(#195F9D, #67AAED);
+  --on-error: light-dark(#FFFFFF, #000B10);
+  --on-success: light-dark(#FFFFFF, #000B10);
+  --on-warning: light-dark(#FFFFFF, #000B10);
+  --on-info: light-dark(#FFFFFF, #000B10);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 2;
+  --weight-display: 500;
+}
+}

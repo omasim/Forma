@@ -1,0 +1,28 @@
+{
+  "name": "forma",
+  "version": "6.0.0",
+  "license": "MIT",
+  "counts": {
+    "components": 101,
+    "sectorComponents": 25,
+    "themes": 59,
+    "sectors": 6,
+    "icons": 277
+  },
+  "sizes": {
+    "forma.min.css": 146.5,
+    "forma.min.js": 52.8,
+    "forma.all.min.css": 164.8
+  },
+  "contrast": {
+    "checks": 1770,
+    "failures": 0
+  },
+  "browsers": [
+    "chrome123",
+    "edge123",
+    "firefox120",
+    "safari17.5"
+  ],
+  "builtAt": "2026-10-08"
+}

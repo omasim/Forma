@@ -1,0 +1,41 @@
+/* Layout primitives & small utilities. @layer forma.utilities — highest FORMA layer. */
+.container { inline-size: 100%; max-inline-size: var(--container-xl); margin-inline: auto; padding-inline: clamp(var(--space-4), 4vw, var(--space-6)); }
+.container-lg { max-inline-size: var(--container-lg); }
+.container-md { max-inline-size: var(--container-md); }
+.container-sm { max-inline-size: var(--container-sm); }
+.container-prose { max-inline-size: var(--container-prose); }
+
+.stack { display: flex; flex-direction: column; gap: var(--gap, var(--space-4)); }
+.cluster { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap, var(--space-3)); }
+.split { display: flex; align-items: center; justify-content: space-between; gap: var(--gap, var(--space-4)); flex-wrap: wrap; }
+.grid { display: grid; gap: var(--gap, var(--space-4)); grid-template-columns: repeat(auto-fill, minmax(min(var(--min, 240px), 100%), 1fr)); }
+.grid-2 { display: grid; gap: var(--gap, var(--space-4)); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { display: grid; gap: var(--gap, var(--space-4)); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4 { display: grid; gap: var(--gap, var(--space-4)); grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 880px) { .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .grid-2, .grid-3, .grid-4 { grid-template-columns: minmax(0, 1fr); } }
+.cq { container-type: inline-size; }
+.grow { flex: 1 1 0; min-inline-size: 0; }
+.shrink-0 { flex-shrink: 0; }
+.ms-auto { margin-inline-start: auto; }
+.w-full { inline-size: 100%; }
+
+.gap-1 { --gap: var(--space-1); } .gap-2 { --gap: var(--space-2); } .gap-3 { --gap: var(--space-3); }
+.gap-4 { --gap: var(--space-4); } .gap-5 { --gap: var(--space-5); } .gap-6 { --gap: var(--space-6); }
+.gap-7 { --gap: var(--space-7); } .gap-8 { --gap: var(--space-8); }
+
+.p-3 { padding: var(--space-3); } .p-4 { padding: var(--space-4); } .p-5 { padding: var(--space-5); } .p-6 { padding: var(--space-6); }
+.mt-4 { margin-block-start: var(--space-4); } .mt-6 { margin-block-start: var(--space-6); } .mb-4 { margin-block-end: var(--space-4); }
+
+.bg-base { background: var(--bg-base); } .bg-surface { background: var(--bg-surface); }
+.bg-elevated { background: var(--bg-elevated); } .bg-subtle { background: var(--bg-subtle); }
+.rounded { border-radius: var(--radius-lg); } .rounded-full { border-radius: var(--radius-full); }
+.bordered { border: var(--border-width-default) solid var(--border-default); }
+
+.sr-only, .visually-hidden {
+  position: absolute !important; inline-size: 1px; block-size: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.skip-link { position: absolute; inset-inline-start: var(--space-3); inset-block-start: -100px; z-index: var(--z-tooltip);
+  padding: var(--space-2) var(--space-4); background: var(--text-primary); color: var(--bg-base); border-radius: var(--radius-md); }
+.skip-link:focus-visible { inset-block-start: var(--space-3); }

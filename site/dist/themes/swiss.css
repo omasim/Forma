@@ -1,0 +1,43 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Swiss — International Typographic Style: grid, Grotesk, red. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="swiss"] {
+  --bg-base: light-dark(#FAFAFA, #070707);
+  --bg-surface: light-dark(#FFFFFF, #0C0C0C);
+  --bg-elevated: light-dark(#FFFFFF, #131313);
+  --bg-subtle: light-dark(#EEEEEE, #191919);
+  --bg-hover: light-dark(#E4E4E4, #202020);
+  --text-primary: light-dark(#121212, #E8E8E8);
+  --text-secondary: light-dark(#555555, #9E9E9E);
+  --text-tertiary: light-dark(#6C6C6C, #818181);
+  --text-disabled: light-dark(#949494, #505050);
+  --border-control: light-dark(#949494, #616161);
+  --accent: light-dark(#D40C1A, #FC4540);
+  --accent-contrast: light-dark(#FFFFFF, #070707);
+  --accent-hover: light-dark(#BB0414, #FF655A);
+  --accent-text: light-dark(#B80313, #FE5048);
+  --error: light-dark(#AA2E2F, #F97770);
+  --success: light-dark(#206B38, #6FB880);
+  --warning: light-dark(#805501, #D49838);
+  --info: light-dark(#1A609E, #67AAED);
+  --on-error: light-dark(#FFFFFF, #070707);
+  --on-success: light-dark(#FFFFFF, #070707);
+  --on-warning: light-dark(#FFFFFF, #070707);
+  --on-info: light-dark(#FFFFFF, #070707);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-ui: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 0;
+  --weight-display: 700;
+  --tracking-display: -0.045em;
+}
+}

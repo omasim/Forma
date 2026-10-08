@@ -1,0 +1,116 @@
+{
+  "$description": "FORMA primitive tokens (W3C Design Tokens Community Group format). Color tokens are not here: they are computed per theme by scripts/lib/palette.mjs and proven against WCAG at build time.",
+  "font": {
+    "display": { "$type": "fontFamily", "$value": "'Cormorant Variable', 'Cormorant', 'Cormorant Garamond', Georgia, 'Times New Roman', serif" },
+    "ui": { "$type": "fontFamily", "$value": "'Syne Variable', 'Syne', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" },
+    "mono": { "$type": "fontFamily", "$value": "'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace" }
+  },
+  "weight": {
+    "light": { "$type": "fontWeight", "$value": 300 },
+    "regular": { "$type": "fontWeight", "$value": 400 },
+    "medium": { "$type": "fontWeight", "$value": 500 },
+    "semibold": { "$type": "fontWeight", "$value": 600 },
+    "display": { "$type": "fontWeight", "$value": 300 }
+  },
+  "text": {
+    "2xs": { "$type": "dimension", "$value": "0.6875rem", "$description": "11px — metadata only, never body copy" },
+    "xs": { "$type": "dimension", "$value": "0.75rem" },
+    "sm": { "$type": "dimension", "$value": "0.875rem" },
+    "base": { "$type": "dimension", "$value": "1rem" },
+    "md": { "$type": "dimension", "$value": "1.125rem" },
+    "lg": { "$type": "dimension", "$value": "1.375rem" },
+    "xl": { "$type": "dimension", "$value": "1.875rem" },
+    "2xl": { "$type": "dimension", "$value": "clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem)" },
+    "3xl": { "$type": "dimension", "$value": "clamp(2.125rem, 1.6rem + 2vw, 3rem)" },
+    "4xl": { "$type": "dimension", "$value": "clamp(2.5rem, 1.7rem + 3.4vw, 4rem)" },
+    "5xl": { "$type": "dimension", "$value": "clamp(3rem, 1.8rem + 5vw, 5.5rem)" }
+  },
+  "leading": {
+    "none": { "$type": "number", "$value": 1 },
+    "tight": { "$type": "number", "$value": 1.1 },
+    "snug": { "$type": "number", "$value": 1.3 },
+    "normal": { "$type": "number", "$value": 1.5 },
+    "relaxed": { "$type": "number", "$value": 1.7 }
+  },
+  "tracking": {
+    "tighter": { "$type": "dimension", "$value": "-0.04em" },
+    "tight": { "$type": "dimension", "$value": "-0.02em" },
+    "normal": { "$type": "dimension", "$value": "0em" },
+    "wide": { "$type": "dimension", "$value": "0.04em" },
+    "wider": { "$type": "dimension", "$value": "0.08em" },
+    "widest": { "$type": "dimension", "$value": "0.14em" }
+  },
+  "space": {
+    "0": { "$type": "dimension", "$value": "0" },
+    "px": { "$type": "dimension", "$value": "1px" },
+    "0-5": { "$type": "dimension", "$value": "2px" },
+    "1": { "$type": "dimension", "$value": "4px" },
+    "2": { "$type": "dimension", "$value": "8px" },
+    "3": { "$type": "dimension", "$value": "12px" },
+    "4": { "$type": "dimension", "$value": "16px" },
+    "5": { "$type": "dimension", "$value": "24px" },
+    "6": { "$type": "dimension", "$value": "32px" },
+    "7": { "$type": "dimension", "$value": "48px" },
+    "8": { "$type": "dimension", "$value": "64px" },
+    "9": { "$type": "dimension", "$value": "96px" },
+    "10": { "$type": "dimension", "$value": "128px" }
+  },
+  "radius": {
+    "none": { "$type": "dimension", "$value": "0" },
+    "sm": { "$type": "dimension", "$value": "calc(2px * var(--radius-scale))" },
+    "md": { "$type": "dimension", "$value": "calc(4px * var(--radius-scale))" },
+    "lg": { "$type": "dimension", "$value": "calc(8px * var(--radius-scale))" },
+    "xl": { "$type": "dimension", "$value": "calc(12px * var(--radius-scale))" },
+    "2xl": { "$type": "dimension", "$value": "calc(18px * var(--radius-scale))" },
+    "full": { "$type": "dimension", "$value": "9999px" },
+    "scale": { "$type": "number", "$value": 1, "$description": "Themes change the whole radius scale through this one number." }
+  },
+  "border-width": {
+    "default": { "$type": "dimension", "$value": "1px" },
+    "strong": { "$type": "dimension", "$value": "2px" }
+  },
+  "control": {
+    "sm": { "$type": "dimension", "$value": "30px" },
+    "md": { "$type": "dimension", "$value": "36px" },
+    "lg": { "$type": "dimension", "$value": "44px" },
+    "touch": { "$type": "dimension", "$value": "44px", "$description": "Minimum pointer target on coarse pointers (WCAG 2.5.8)." }
+  },
+  "duration": {
+    "instant": { "$type": "duration", "$value": "50ms" },
+    "fast": { "$type": "duration", "$value": "100ms" },
+    "base": { "$type": "duration", "$value": "150ms" },
+    "slow": { "$type": "duration", "$value": "250ms" },
+    "slower": { "$type": "duration", "$value": "400ms" }
+  },
+  "ease": {
+    "default": { "$type": "cubicBezier", "$value": [0.16, 1, 0.3, 1] },
+    "in": { "$type": "cubicBezier", "$value": [0.4, 0, 1, 1] },
+    "out": { "$type": "cubicBezier", "$value": [0, 0, 0.2, 1] },
+    "in-out": { "$type": "cubicBezier", "$value": [0.4, 0, 0.2, 1] },
+    "bounce": { "$type": "cubicBezier", "$value": [0.34, 1.56, 0.64, 1] }
+  },
+  "z": {
+    "base": { "$type": "number", "$value": 0 },
+    "raised": { "$type": "number", "$value": 10 },
+    "dropdown": { "$type": "number", "$value": 100 },
+    "sticky": { "$type": "number", "$value": 200 },
+    "overlay": { "$type": "number", "$value": 300 },
+    "modal": { "$type": "number", "$value": 400 },
+    "popover": { "$type": "number", "$value": 500 },
+    "toast": { "$type": "number", "$value": 600 },
+    "tooltip": { "$type": "number", "$value": 700 }
+  },
+  "container": {
+    "sm": { "$type": "dimension", "$value": "640px" },
+    "md": { "$type": "dimension", "$value": "880px" },
+    "lg": { "$type": "dimension", "$value": "1120px" },
+    "xl": { "$type": "dimension", "$value": "1280px" },
+    "prose": { "$type": "dimension", "$value": "68ch" }
+  },
+  "breakpoint": {
+    "$description": "Reference values. CSS custom properties cannot be used inside @media; components prefer container queries.",
+    "sm": { "$type": "dimension", "$value": "640px" },
+    "md": { "$type": "dimension", "$value": "880px" },
+    "lg": { "$type": "dimension", "$value": "1120px" }
+  }
+}

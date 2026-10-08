@@ -1,0 +1,42 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Wabi-Sabi — Imperfect clay, ash and moss. */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,400&family=Karla:wght@400;500;600&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="wabisabi"] {
+  --bg-base: light-dark(#F7F1E8, #110C07);
+  --bg-surface: light-dark(#FCFAF6, #16120C);
+  --bg-elevated: light-dark(#FCFAF6, #1D1912);
+  --bg-subtle: light-dark(#ECE5DC, #242019);
+  --bg-hover: light-dark(#E2DBD2, #2C2720);
+  --text-primary: light-dark(#171007, #F0E6D9);
+  --text-secondary: light-dark(#5C5348, #A69D90);
+  --text-tertiary: light-dark(#6F665B, #8F867A);
+  --text-disabled: light-dark(#918B83, #5D5750);
+  --border-control: light-dark(#969088, #6A655D);
+  --accent: light-dark(#5F6841, #9FAB80);
+  --accent-contrast: light-dark(#FFFFFF, #110C07);
+  --accent-hover: light-dark(#515A33, #ACB78C);
+  --accent-text: light-dark(#555E37, #9FAB80);
+  --error: light-dark(#A4292A, #F97770);
+  --success: light-dark(#1B6734, #6FB880);
+  --warning: light-dark(#7A5103, #D49838);
+  --info: light-dark(#145B99, #67AAED);
+  --on-error: light-dark(#FFFFFF, #110C07);
+  --on-success: light-dark(#FFFFFF, #110C07);
+  --on-warning: light-dark(#FFFFFF, #110C07);
+  --on-info: light-dark(#FFFFFF, #110C07);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'Cormorant', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Karla', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius-scale: 2;
+  --weight-display: 300;
+}
+}

@@ -1,0 +1,2474 @@
+{
+  "$description": "Every FORMA theme is a handful of parameters. Colors are computed and contrast-proven at build time (scripts/lib/palette.mjs). Fonts with `google` load from Google Fonts; the default theme is self-hosted.",
+  "themes": [
+    {
+      "id": "museum",
+      "name": "Museum",
+      "category": "style",
+      "default": true,
+      "description": "The FORMA signature: warm ink, gallery white, a single teal accent.",
+      "fonts": {
+        "display": {
+          "family": "Cormorant Variable",
+          "fallback": "'Cormorant', Georgia, serif"
+        },
+        "ui": {
+          "family": "Syne Variable",
+          "fallback": "'Syne', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "mono": {
+          "family": "JetBrains Mono Variable",
+          "fallback": "'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 95,
+          "c": 0.006
+        },
+        "accent": {
+          "h": 186,
+          "c": 0.12,
+          "dark": 0.8,
+          "light": 0.62
+        }
+      },
+      "shape": {
+        "radius": 1,
+        "displayWeight": 300
+      }
+    },
+    {
+      "id": "african",
+      "name": "African",
+      "category": "cultural",
+      "description": "Kente warmth: ochre, earth and deep green on sand.",
+      "fonts": {
+        "display": {
+          "family": "Playfair Display",
+          "google": "Playfair Display:wght@400;500;600",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Nunito",
+          "google": "Nunito:wght@400;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 55,
+          "c": 0.02,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.965
+          }
+        },
+        "accent": {
+          "h": 55,
+          "c": 0.15,
+          "dark": 0.78,
+          "light": 0.6
+        },
+        "semantic": {
+          "success": {
+            "h": 150,
+            "c": 0.12
+          }
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "displayWeight": 500
+      }
+    },
+    {
+      "id": "anatolia",
+      "name": "Anatolia",
+      "category": "cultural",
+      "description": "Iznik tile blue, carmine and limestone — inscriptional capitals.",
+      "fonts": {
+        "display": {
+          "family": "Cinzel",
+          "google": "Cinzel:wght@400;500;600",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Manrope",
+          "google": "Manrope:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 80,
+          "c": 0.012,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.972
+          }
+        },
+        "accent": {
+          "h": 245,
+          "c": 0.15,
+          "dark": 0.72,
+          "light": 0.5
+        }
+      },
+      "shape": {
+        "radius": 0.75,
+        "displayWeight": 500,
+        "displayTracking": "0.02em"
+      }
+    },
+    {
+      "id": "arabian",
+      "name": "Arabian",
+      "category": "cultural",
+      "description": "Naskh-inspired type, saffron gold on midnight and parchment. RTL-ready.",
+      "fonts": {
+        "display": {
+          "family": "Amiri",
+          "google": "Amiri:ital,wght@0,400;0,700;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Cairo",
+          "google": "Cairo:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 75,
+          "c": 0.02,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.968
+          }
+        },
+        "accent": {
+          "h": 80,
+          "c": 0.13,
+          "dark": 0.8,
+          "light": 0.58
+        }
+      },
+      "shape": {
+        "radius": 1.25,
+        "displayWeight": 400
+      }
+    },
+    {
+      "id": "chinese",
+      "name": "Chinese",
+      "category": "cultural",
+      "description": "Ink, rice paper and vermilion seal red.",
+      "fonts": {
+        "display": {
+          "family": "Noto Serif SC",
+          "google": "Noto Serif SC:wght@400;500;600",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Noto Sans SC",
+          "google": "Noto Sans SC:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 70,
+          "c": 0.008,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.972
+          }
+        },
+        "accent": {
+          "h": 28,
+          "c": 0.17,
+          "dark": 0.66,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 500
+      }
+    },
+    {
+      "id": "indian",
+      "name": "Indian",
+      "category": "cultural",
+      "description": "Marigold, peacock and indigo; Devanagari-ready display.",
+      "fonts": {
+        "display": {
+          "family": "Tiro Devanagari Hindi",
+          "google": "Tiro Devanagari Hindi:ital@0;1",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Poppins",
+          "google": "Poppins:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 60,
+          "c": 0.015,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 65,
+          "c": 0.16,
+          "dark": 0.78,
+          "light": 0.58
+        }
+      },
+      "shape": {
+        "radius": 1.25,
+        "displayWeight": 400
+      }
+    },
+    {
+      "id": "japanese",
+      "name": "Japanese",
+      "category": "cultural",
+      "description": "Ma — generous space, sumi ink and a quiet shu red.",
+      "fonts": {
+        "display": {
+          "family": "Noto Serif JP",
+          "google": "Noto Serif JP:wght@300;400;500",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Noto Sans JP",
+          "google": "Noto Sans JP:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 85,
+          "c": 0.006,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 30,
+          "c": 0.15,
+          "dark": 0.68,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 300
+      }
+    },
+    {
+      "id": "latin",
+      "name": "Latin",
+      "category": "cultural",
+      "description": "Papel picado brights on terracotta and cream.",
+      "fonts": {
+        "display": {
+          "family": "Abril Fatface",
+          "google": "Abril Fatface:wght@400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Nunito Sans",
+          "google": "Nunito Sans:wght@400;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 45,
+          "c": 0.02,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 355,
+          "c": 0.17,
+          "dark": 0.72,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "displayWeight": 400,
+        "displayTracking": "0em"
+      }
+    },
+    {
+      "id": "mediterranean",
+      "name": "Mediterranean",
+      "category": "cultural",
+      "description": "Whitewash, Aegean blue and olive.",
+      "fonts": {
+        "display": {
+          "family": "Lora",
+          "google": "Lora:ital,wght@0,400;0,500;0,600;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Manrope",
+          "google": "Manrope:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 230,
+          "c": 0.012,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 240,
+          "c": 0.13,
+          "dark": 0.74,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "displayWeight": 500
+      }
+    },
+    {
+      "id": "scandinavian",
+      "name": "Scandinavian",
+      "category": "cultural",
+      "description": "Birch, wool and a muted fjord blue.",
+      "fonts": {
+        "display": {
+          "family": "Lora",
+          "google": "Lora:wght@400;500;600",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Manrope",
+          "google": "Manrope:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 90,
+          "c": 0.008,
+          "dark": {
+            "base": 0.16
+          },
+          "light": {
+            "base": 0.978
+          }
+        },
+        "accent": {
+          "h": 220,
+          "c": 0.06,
+          "dark": 0.74,
+          "light": 0.5
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "displayWeight": 500
+      }
+    },
+    {
+      "id": "desert",
+      "name": "Desert",
+      "category": "cultural",
+      "description": "Dune sand, adobe and turquoise stone.",
+      "fonts": {
+        "display": {
+          "family": "Libre Baskerville",
+          "google": "Libre Baskerville:ital,wght@0,400;0,700;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Karla",
+          "google": "Karla:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 65,
+          "c": 0.022,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.965
+          }
+        },
+        "accent": {
+          "h": 40,
+          "c": 0.13,
+          "dark": 0.74,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 1,
+        "displayWeight": 400
+      }
+    },
+    {
+      "id": "wabisabi",
+      "name": "Wabi-Sabi",
+      "category": "cultural",
+      "description": "Imperfect clay, ash and moss.",
+      "fonts": {
+        "display": {
+          "family": "Cormorant",
+          "google": "Cormorant:ital,wght@0,300;0,400;0,500;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Karla",
+          "google": "Karla:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 75,
+          "c": 0.014,
+          "dark": {
+            "base": 0.16
+          },
+          "light": {
+            "base": 0.96
+          }
+        },
+        "accent": {
+          "h": 120,
+          "c": 0.06,
+          "dark": 0.72,
+          "light": 0.5
+        }
+      },
+      "shape": {
+        "radius": 2,
+        "displayWeight": 300
+      }
+    },
+    {
+      "id": "artdeco",
+      "name": "Art Deco",
+      "category": "style",
+      "description": "Gilded geometry: gold on black lacquer.",
+      "fonts": {
+        "display": {
+          "family": "Cinzel",
+          "google": "Cinzel:wght@400;500;600;700",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Raleway",
+          "google": "Raleway:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 80,
+          "c": 0.01,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.972
+          }
+        },
+        "accent": {
+          "h": 85,
+          "c": 0.12,
+          "dark": 0.8,
+          "light": 0.56
+        }
+      },
+      "shape": {
+        "radius": 0,
+        "displayWeight": 500,
+        "displayTracking": "0.06em"
+      },
+      "css": ".btn, .badge, .tab, .field-label { letter-spacing: 0.08em; text-transform: uppercase; } .card { border-width: 1px; box-shadow: inset 0 0 0 3px var(--bg-surface), inset 0 0 0 4px var(--border-default); }"
+    },
+    {
+      "id": "artnouveau",
+      "name": "Art Nouveau",
+      "category": "style",
+      "description": "Organic curves, sage and copper.",
+      "fonts": {
+        "display": {
+          "family": "Cormorant Garamond",
+          "google": "Cormorant Garamond:ital,wght@0,300;0,400;0,500;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Lato",
+          "google": "Lato:wght@400;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 110,
+          "c": 0.014,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 50,
+          "c": 0.11,
+          "dark": 0.74,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 2.5,
+        "displayWeight": 400
+      }
+    },
+    {
+      "id": "bauhaus",
+      "name": "Bauhaus",
+      "category": "style",
+      "description": "Primary color, grid and geometry.",
+      "fonts": {
+        "display": {
+          "family": "Montserrat",
+          "google": "Montserrat:wght@500;600;700;800",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Roboto",
+          "google": "Roboto:wght@400;500;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 90,
+          "c": 0.004,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 25,
+          "c": 0.2,
+          "dark": 0.68,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 0,
+        "displayWeight": 700,
+        "displayTracking": "-0.03em"
+      }
+    },
+    {
+      "id": "brutalist",
+      "name": "Brutalist",
+      "category": "style",
+      "description": "Raw structure: hard borders, no radius, offset shadows.",
+      "fonts": {
+        "display": {
+          "family": "Oswald",
+          "google": "Oswald:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Space Mono",
+          "google": "Space Mono:wght@400;700",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        },
+        "mono": {
+          "family": "Space Mono",
+          "google": "Space Mono:wght@400;700",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 90,
+          "c": 0,
+          "dark": {
+            "base": 0.12
+          },
+          "light": {
+            "base": 0.98
+          }
+        },
+        "accent": {
+          "h": 110,
+          "c": 0.2,
+          "dark": 0.9,
+          "light": 0.62
+        }
+      },
+      "shape": {
+        "radius": 0,
+        "borderWidth": "2px",
+        "displayWeight": 700,
+        "displayTracking": "-0.01em"
+      },
+      "css": ".btn, .card, .input, .select, .textarea, .dialog, .menu, .popover, .table-wrap, .kpi, .widget, .product, .plan { border-color: var(--text-primary); box-shadow: 4px 4px 0 var(--text-primary); } .btn:active { box-shadow: none; transform: translate(4px, 4px); } .t-display-xl, .t-display-lg, .hero-title, .page-title { text-transform: uppercase; }"
+    },
+    {
+      "id": "cottagecore",
+      "name": "Cottagecore",
+      "category": "style",
+      "description": "Linen, wildflowers and rose.",
+      "fonts": {
+        "display": {
+          "family": "Lora",
+          "google": "Lora:ital,wght@0,400;0,500;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Nunito",
+          "google": "Nunito:wght@400;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 70,
+          "c": 0.02,
+          "dark": {
+            "base": 0.16
+          },
+          "light": {
+            "base": 0.972
+          }
+        },
+        "accent": {
+          "h": 5,
+          "c": 0.11,
+          "dark": 0.76,
+          "light": 0.56
+        }
+      },
+      "shape": {
+        "radius": 2.5,
+        "displayWeight": 500
+      }
+    },
+    {
+      "id": "dopamine",
+      "name": "Dopamine",
+      "category": "style",
+      "description": "Joyful saturation and rounded everything.",
+      "fonts": {
+        "display": {
+          "family": "Fredoka",
+          "google": "Fredoka:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Quicksand",
+          "google": "Quicksand:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 300,
+          "c": 0.02,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 330,
+          "c": 0.22,
+          "dark": 0.74,
+          "light": 0.58
+        }
+      },
+      "shape": {
+        "radius": 3,
+        "displayWeight": 600,
+        "displayTracking": "-0.01em"
+      }
+    },
+    {
+      "id": "glass",
+      "name": "Glass",
+      "category": "style",
+      "description": "Frosted, translucent layers over a soft gradient.",
+      "fonts": {
+        "display": {
+          "family": "Nunito",
+          "google": "Nunito:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "DM Sans",
+          "google": "DM Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 260,
+          "c": 0.02,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 265,
+          "c": 0.16,
+          "dark": 0.76,
+          "light": 0.56
+        }
+      },
+      "shape": {
+        "radius": 2,
+        "displayWeight": 600
+      },
+      "css": "& { background: radial-gradient(1200px 600px at 10% -10%, color-mix(in oklab, var(--accent) 22%, transparent), transparent), radial-gradient(900px 500px at 110% 10%, color-mix(in oklab, var(--data-5) 18%, transparent), transparent), var(--bg-base); background-attachment: fixed; } .card, .widget, .kpi, .navbar, .sidebar, .dialog, .menu, .popover, .table-wrap, .chart { background: color-mix(in oklab, var(--bg-surface) 70%, transparent); backdrop-filter: blur(18px) saturate(1.4); }"
+    },
+    {
+      "id": "gothic",
+      "name": "Gothic",
+      "category": "style",
+      "description": "Candlelight, blackletter mood and oxblood.",
+      "fonts": {
+        "display": {
+          "family": "IM Fell English",
+          "google": "IM Fell English:ital@0;1",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Crimson Pro",
+          "google": "Crimson Pro:wght@400;500;600",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 20,
+          "c": 0.01,
+          "dark": {
+            "base": 0.12
+          },
+          "light": {
+            "base": 0.965
+          }
+        },
+        "accent": {
+          "h": 15,
+          "c": 0.15,
+          "dark": 0.66,
+          "light": 0.45
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 400,
+        "displayTracking": "0em"
+      }
+    },
+    {
+      "id": "memphis",
+      "name": "Memphis",
+      "category": "style",
+      "description": "80s Milan: squiggles, primaries and bold outlines.",
+      "fonts": {
+        "display": {
+          "family": "Rubik",
+          "google": "Rubik:wght@600;700;800",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Space Grotesk",
+          "google": "Space Grotesk:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 90,
+          "c": 0.01,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 200,
+          "c": 0.15,
+          "dark": 0.76,
+          "light": 0.56
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "borderWidth": "2px",
+        "displayWeight": 800
+      },
+      "css": ".card, .btn, .kpi, .plan { border-color: var(--text-primary); } .card, .kpi { box-shadow: 6px 6px 0 var(--data-4); }"
+    },
+    {
+      "id": "neomorphism",
+      "name": "Neomorphism",
+      "category": "style",
+      "description": "Soft extruded surfaces, single tone.",
+      "fonts": {
+        "display": {
+          "family": "Inter",
+          "google": "Inter:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 240,
+          "c": 0.015,
+          "dark": {
+            "base": 0.22
+          },
+          "light": {
+            "base": 0.93
+          }
+        },
+        "accent": {
+          "h": 255,
+          "c": 0.14,
+          "dark": 0.76,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 2.5,
+        "displayWeight": 600
+      },
+      "css": ".card, .btn:not(.btn-ghost, .btn-link, .btn-primary, .btn-accent, .btn-danger, .btn-soft), .kpi, .widget, .input, .select { border-color: transparent; background: var(--bg-base); box-shadow: 6px 6px 14px color-mix(in oklab, black 22%, transparent), -6px -6px 14px color-mix(in oklab, white 55%, transparent); } [data-mode=\"dark\"] .card, [data-mode=\"dark\"] .kpi { box-shadow: 6px 6px 14px oklch(0 0 0 / 0.5), -4px -4px 12px oklch(1 0 0 / 0.04); } .input, .select { box-shadow: inset 3px 3px 8px color-mix(in oklab, black 18%, transparent), inset -3px -3px 8px color-mix(in oklab, white 45%, transparent); }"
+    },
+    {
+      "id": "noir",
+      "name": "Noir",
+      "category": "style",
+      "description": "Black, white and one red — film-noir contrast.",
+      "fonts": {
+        "display": {
+          "family": "Playfair Display",
+          "google": "Playfair Display:ital,wght@0,400;0,500;0,600;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "DM Sans",
+          "google": "DM Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 0,
+          "c": 0,
+          "dark": {
+            "base": 0.1
+          },
+          "light": {
+            "base": 0.98
+          }
+        },
+        "accent": {
+          "h": 25,
+          "c": 0.2,
+          "dark": 0.66,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 500
+      }
+    },
+    {
+      "id": "psychedelic",
+      "name": "Psychedelic",
+      "category": "style",
+      "description": "Liquid color, warped type, violet heat.",
+      "fonts": {
+        "display": {
+          "family": "Bungee",
+          "google": "Bungee:wght@400",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Quicksand",
+          "google": "Quicksand:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 300,
+          "c": 0.04,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.96
+          }
+        },
+        "accent": {
+          "h": 310,
+          "c": 0.24,
+          "dark": 0.72,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 2.5,
+        "displayWeight": 400,
+        "displayTracking": "0em"
+      }
+    },
+    {
+      "id": "quietluxury",
+      "name": "Quiet Luxury",
+      "category": "style",
+      "description": "Cashmere neutrals, no logos, whispered serif.",
+      "fonts": {
+        "display": {
+          "family": "Cormorant",
+          "google": "Cormorant:ital,wght@0,300;0,400;0,500;1,300",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 70,
+          "c": 0.012,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 60,
+          "c": 0.04,
+          "dark": 0.72,
+          "light": 0.5
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 300,
+        "labelTracking": "0.16em"
+      }
+    },
+    {
+      "id": "swiss",
+      "name": "Swiss",
+      "category": "style",
+      "description": "International Typographic Style: grid, Grotesk, red.",
+      "fonts": {
+        "display": {
+          "family": "Inter",
+          "google": "Inter:wght@500;600;700;800",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 0,
+          "c": 0,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.985
+          }
+        },
+        "accent": {
+          "h": 27,
+          "c": 0.22,
+          "dark": 0.66,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 0,
+        "displayWeight": 700,
+        "displayTracking": "-0.045em"
+      }
+    },
+    {
+      "id": "minimal",
+      "name": "Minimal",
+      "category": "style",
+      "description": "Pure neutrals, system type, nothing extra.",
+      "fonts": {
+        "display": {
+          "family": "system-ui",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "system-ui",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "mono": {
+          "family": "ui-monospace",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 0,
+          "c": 0,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.985
+          }
+        },
+        "accent": {
+          "h": 255,
+          "c": 0.16,
+          "dark": 0.72,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "displayWeight": 600,
+        "displayTracking": "-0.02em"
+      }
+    },
+    {
+      "id": "aisystem",
+      "name": "AI System",
+      "category": "industry",
+      "description": "Model-lab clarity: graphite, signal violet, plex mono.",
+      "fonts": {
+        "display": {
+          "family": "Inter",
+          "google": "Inter:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "IBM Plex Sans",
+          "google": "IBM Plex Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "mono": {
+          "family": "IBM Plex Mono",
+          "google": "IBM Plex Mono:wght@400;500",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 270,
+          "c": 0.008,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.98
+          }
+        },
+        "accent": {
+          "h": 285,
+          "c": 0.16,
+          "dark": 0.74,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "displayWeight": 600,
+        "displayTracking": "-0.03em"
+      }
+    },
+    {
+      "id": "civic",
+      "name": "Civic",
+      "category": "industry",
+      "description": "Public service: trustworthy navy, accessible by default.",
+      "fonts": {
+        "display": {
+          "family": "Merriweather",
+          "google": "Merriweather:wght@400;700",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Source Sans 3",
+          "google": "Source Sans 3:wght@400;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 250,
+          "c": 0.01,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.98
+          }
+        },
+        "accent": {
+          "h": 255,
+          "c": 0.14,
+          "dark": 0.74,
+          "light": 0.45
+        }
+      },
+      "shape": {
+        "radius": 0.75,
+        "displayWeight": 700,
+        "displayTracking": "-0.01em"
+      }
+    },
+    {
+      "id": "ecommerce",
+      "name": "E-commerce",
+      "category": "industry",
+      "description": "Conversion-friendly: clean, warm CTA orange.",
+      "fonts": {
+        "display": {
+          "family": "Inter",
+          "google": "Inter:wght@600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "DM Sans",
+          "google": "DM Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 60,
+          "c": 0.004,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.985
+          }
+        },
+        "accent": {
+          "h": 45,
+          "c": 0.18,
+          "dark": 0.74,
+          "light": 0.6
+        }
+      },
+      "shape": {
+        "radius": 2,
+        "displayWeight": 700,
+        "displayTracking": "-0.03em"
+      }
+    },
+    {
+      "id": "editorial",
+      "name": "Editorial",
+      "category": "industry",
+      "description": "Magazine serif, newsprint and ink red.",
+      "fonts": {
+        "display": {
+          "family": "Playfair Display",
+          "google": "Playfair Display:ital,wght@0,400;0,600;0,700;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Source Serif 4",
+          "google": "Source Serif 4:wght@400;600",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 80,
+          "c": 0.01,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 22,
+          "c": 0.17,
+          "dark": 0.66,
+          "light": 0.5
+        }
+      },
+      "shape": {
+        "radius": 0,
+        "displayWeight": 600
+      }
+    },
+    {
+      "id": "education",
+      "name": "Education",
+      "category": "industry",
+      "description": "Friendly, legible and encouraging green.",
+      "fonts": {
+        "display": {
+          "family": "Nunito",
+          "google": "Nunito:wght@600;700;800",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Open Sans",
+          "google": "Open Sans:wght@400;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 140,
+          "c": 0.008,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.978
+          }
+        },
+        "accent": {
+          "h": 150,
+          "c": 0.14,
+          "dark": 0.76,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 2,
+        "displayWeight": 700
+      }
+    },
+    {
+      "id": "finance",
+      "name": "Finance",
+      "category": "industry",
+      "description": "Institutional calm: plex serif, ledger green.",
+      "fonts": {
+        "display": {
+          "family": "IBM Plex Serif",
+          "google": "IBM Plex Serif:wght@300;400;500",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "IBM Plex Sans",
+          "google": "IBM Plex Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "mono": {
+          "family": "IBM Plex Mono",
+          "google": "IBM Plex Mono:wght@400;500",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 220,
+          "c": 0.01,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.978
+          }
+        },
+        "accent": {
+          "h": 160,
+          "c": 0.11,
+          "dark": 0.74,
+          "light": 0.5
+        }
+      },
+      "shape": {
+        "radius": 0.75,
+        "displayWeight": 400
+      }
+    },
+    {
+      "id": "gaming",
+      "name": "Gaming",
+      "category": "industry",
+      "description": "HUD energy: carbon and electric lime.",
+      "fonts": {
+        "display": {
+          "family": "Exo 2",
+          "google": "Exo 2:wght@600;700;800",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Roboto",
+          "google": "Roboto:wght@400;500;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 260,
+          "c": 0.02,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 135,
+          "c": 0.2,
+          "dark": 0.84,
+          "light": 0.58
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 800,
+        "displayTracking": "0em"
+      },
+      "mode": "dark",
+      "css": ".btn, .card, .kpi { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px)); }"
+    },
+    {
+      "id": "luxurybrand",
+      "name": "Luxury Brand",
+      "category": "industry",
+      "description": "Maison codes: Didone display, black & ivory.",
+      "fonts": {
+        "display": {
+          "family": "Bodoni Moda",
+          "google": "Bodoni Moda:ital,wght@0,400;0,500;0,600;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Jost",
+          "google": "Jost:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 80,
+          "c": 0.006,
+          "dark": {
+            "base": 0.12
+          },
+          "light": {
+            "base": 0.98
+          }
+        },
+        "accent": {
+          "h": 80,
+          "c": 0.05,
+          "dark": 0.8,
+          "light": 0.45
+        }
+      },
+      "shape": {
+        "radius": 0,
+        "displayWeight": 400,
+        "displayTracking": "0.01em",
+        "labelTracking": "0.2em"
+      }
+    },
+    {
+      "id": "medical",
+      "name": "Medical",
+      "category": "industry",
+      "description": "Clinical clarity, calm teal-blue, high legibility.",
+      "fonts": {
+        "display": {
+          "family": "Inter",
+          "google": "Inter:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Source Sans 3",
+          "google": "Source Sans 3:wght@400;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 210,
+          "c": 0.01,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.982
+          }
+        },
+        "accent": {
+          "h": 215,
+          "c": 0.13,
+          "dark": 0.74,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "displayWeight": 600,
+        "displayTracking": "-0.02em"
+      }
+    },
+    {
+      "id": "music",
+      "name": "Music",
+      "category": "industry",
+      "description": "Stage light: deep purple with magenta pulse.",
+      "fonts": {
+        "display": {
+          "family": "Poppins",
+          "google": "Poppins:wght@600;700;800",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "DM Sans",
+          "google": "DM Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 290,
+          "c": 0.025,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 340,
+          "c": 0.2,
+          "dark": 0.72,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 2,
+        "displayWeight": 700,
+        "displayTracking": "-0.03em"
+      }
+    },
+    {
+      "id": "sport",
+      "name": "Sport",
+      "category": "industry",
+      "description": "Scoreboard type, track orange, motion.",
+      "fonts": {
+        "display": {
+          "family": "Oswald",
+          "google": "Oswald:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Roboto",
+          "google": "Roboto:wght@400;500;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 240,
+          "c": 0.01,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.978
+          }
+        },
+        "accent": {
+          "h": 40,
+          "c": 0.19,
+          "dark": 0.76,
+          "light": 0.6
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 700,
+        "displayTracking": "0em"
+      },
+      "css": ".hero-title, .page-title, .t-display-xl, .t-display-lg { text-transform: uppercase; font-style: italic; }"
+    },
+    {
+      "id": "startup",
+      "name": "Startup",
+      "category": "industry",
+      "description": "Product-led: crisp Inter, electric indigo.",
+      "fonts": {
+        "display": {
+          "family": "Inter",
+          "google": "Inter:wght@600;700;800",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "DM Sans",
+          "google": "DM Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 265,
+          "c": 0.008,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.985
+          }
+        },
+        "accent": {
+          "h": 275,
+          "c": 0.19,
+          "dark": 0.72,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 2,
+        "displayWeight": 700,
+        "displayTracking": "-0.04em"
+      }
+    },
+    {
+      "id": "legal",
+      "name": "Legal",
+      "category": "industry",
+      "description": "Counsel serif, oxford blue, documents first.",
+      "fonts": {
+        "display": {
+          "family": "Libre Baskerville",
+          "google": "Libre Baskerville:wght@400;700",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Source Sans 3",
+          "google": "Source Sans 3:wght@400;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 250,
+          "c": 0.01,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.978
+          }
+        },
+        "accent": {
+          "h": 260,
+          "c": 0.1,
+          "dark": 0.72,
+          "light": 0.42
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 400
+      }
+    },
+    {
+      "id": "biopunk",
+      "name": "Biopunk",
+      "category": "retro",
+      "description": "Bioluminescent green on wet black.",
+      "fonts": {
+        "display": {
+          "family": "Rajdhani",
+          "google": "Rajdhani:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Space Mono",
+          "google": "Space Mono:wght@400;700",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        },
+        "mono": {
+          "family": "Space Mono",
+          "google": "Space Mono:wght@400;700",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 150,
+          "c": 0.02,
+          "dark": {
+            "base": 0.12
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 145,
+          "c": 0.2,
+          "dark": 0.86,
+          "light": 0.58
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 600,
+        "displayTracking": "0.02em"
+      },
+      "mode": "dark"
+    },
+    {
+      "id": "cyberpunk",
+      "name": "Cyberpunk",
+      "category": "retro",
+      "description": "Neon on asphalt: hot pink, cyan glow.",
+      "fonts": {
+        "display": {
+          "family": "Orbitron",
+          "google": "Orbitron:wght@500;600;700;800",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Rajdhani",
+          "google": "Rajdhani:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "mono": {
+          "family": "Share Tech Mono",
+          "google": "Share Tech Mono:wght@400",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 280,
+          "c": 0.03,
+          "dark": {
+            "base": 0.12
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 340,
+          "c": 0.24,
+          "dark": 0.72,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 0,
+        "displayWeight": 700,
+        "displayTracking": "0.04em"
+      },
+      "mode": "dark",
+      "css": ".hero-title, .page-title { text-shadow: 0 0 18px color-mix(in oklab, var(--accent) 55%, transparent); } .btn-accent, .btn-primary { box-shadow: 0 0 16px color-mix(in oklab, var(--accent) 45%, transparent); }"
+    },
+    {
+      "id": "industrial",
+      "name": "Industrial",
+      "category": "retro",
+      "description": "Steel, rivets and safety yellow.",
+      "fonts": {
+        "display": {
+          "family": "Oswald",
+          "google": "Oswald:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Roboto",
+          "google": "Roboto:wght@400;500;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "mono": {
+          "family": "Roboto Mono",
+          "google": "Roboto Mono:wght@400;500",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 240,
+          "c": 0.006,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.965
+          }
+        },
+        "accent": {
+          "h": 95,
+          "c": 0.17,
+          "dark": 0.86,
+          "light": 0.6
+        }
+      },
+      "shape": {
+        "radius": 0.25,
+        "displayWeight": 600,
+        "displayTracking": "0.01em"
+      }
+    },
+    {
+      "id": "lofi",
+      "name": "Lo-Fi",
+      "category": "retro",
+      "description": "Warm desaturated pastels, dusk study session.",
+      "fonts": {
+        "display": {
+          "family": "Karla",
+          "google": "Karla:wght@600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 40,
+          "c": 0.018,
+          "dark": {
+            "base": 0.17
+          },
+          "light": {
+            "base": 0.965
+          }
+        },
+        "accent": {
+          "h": 15,
+          "c": 0.08,
+          "dark": 0.78,
+          "light": 0.56
+        }
+      },
+      "shape": {
+        "radius": 2,
+        "displayWeight": 700
+      }
+    },
+    {
+      "id": "nightsky",
+      "name": "Night Sky",
+      "category": "retro",
+      "description": "Deep navy with starlight gold.",
+      "fonts": {
+        "display": {
+          "family": "Space Grotesk",
+          "google": "Space Grotesk:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 260,
+          "c": 0.04,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 90,
+          "c": 0.13,
+          "dark": 0.86,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "displayWeight": 500
+      },
+      "mode": "dark"
+    },
+    {
+      "id": "quantum",
+      "name": "Quantum",
+      "category": "retro",
+      "description": "Lab-grade cyan on cold graphite.",
+      "fonts": {
+        "display": {
+          "family": "Space Grotesk",
+          "google": "Space Grotesk:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "mono": {
+          "family": "JetBrains Mono",
+          "google": "JetBrains Mono:wght@400;500",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 230,
+          "c": 0.015,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.98
+          }
+        },
+        "accent": {
+          "h": 200,
+          "c": 0.15,
+          "dark": 0.8,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 1,
+        "displayWeight": 500,
+        "displayTracking": "-0.03em"
+      }
+    },
+    {
+      "id": "retro",
+      "name": "Retro",
+      "category": "retro",
+      "description": "70s diner: mustard, teal and cream.",
+      "fonts": {
+        "display": {
+          "family": "Righteous",
+          "google": "Righteous:wght@400",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Outfit",
+          "google": "Outfit:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 70,
+          "c": 0.03,
+          "dark": {
+            "base": 0.16
+          },
+          "light": {
+            "base": 0.965
+          }
+        },
+        "accent": {
+          "h": 55,
+          "c": 0.15,
+          "dark": 0.8,
+          "light": 0.58
+        }
+      },
+      "shape": {
+        "radius": 2.5,
+        "displayWeight": 400,
+        "displayTracking": "0em"
+      }
+    },
+    {
+      "id": "solarpunk",
+      "name": "Solarpunk",
+      "category": "retro",
+      "description": "Hopeful futures: leaf green and sunlight.",
+      "fonts": {
+        "display": {
+          "family": "Outfit",
+          "google": "Outfit:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "DM Sans",
+          "google": "DM Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 110,
+          "c": 0.02,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 135,
+          "c": 0.15,
+          "dark": 0.78,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 2.5,
+        "displayWeight": 600
+      }
+    },
+    {
+      "id": "soviet",
+      "name": "Constructivist",
+      "category": "retro",
+      "description": "Russian avant-garde: red wedges, diagonal energy.",
+      "fonts": {
+        "display": {
+          "family": "Oswald",
+          "google": "Oswald:wght@500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Roboto",
+          "google": "Roboto:wght@400;500;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 70,
+          "c": 0.015,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.965
+          }
+        },
+        "accent": {
+          "h": 27,
+          "c": 0.2,
+          "dark": 0.66,
+          "light": 0.5
+        }
+      },
+      "shape": {
+        "radius": 0,
+        "displayWeight": 700,
+        "displayTracking": "0.01em"
+      },
+      "css": ".hero-title, .page-title, .section-title { text-transform: uppercase; }"
+    },
+    {
+      "id": "space",
+      "name": "Space",
+      "category": "retro",
+      "description": "Mission control: void black, telemetry orange.",
+      "fonts": {
+        "display": {
+          "family": "Exo 2",
+          "google": "Exo 2:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 250,
+          "c": 0.015,
+          "dark": {
+            "base": 0.11
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 45,
+          "c": 0.17,
+          "dark": 0.76,
+          "light": 0.58
+        }
+      },
+      "shape": {
+        "radius": 0.75,
+        "displayWeight": 600,
+        "displayTracking": "0.02em"
+      },
+      "mode": "dark"
+    },
+    {
+      "id": "steampunk",
+      "name": "Steampunk",
+      "category": "retro",
+      "description": "Brass, leather and engine-room serif.",
+      "fonts": {
+        "display": {
+          "family": "Spectral",
+          "google": "Spectral:ital,wght@0,400;0,500;0,600;1,400",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Fira Sans",
+          "google": "Fira Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 55,
+          "c": 0.025,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.955
+          }
+        },
+        "accent": {
+          "h": 65,
+          "c": 0.12,
+          "dark": 0.76,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 0.75,
+        "displayWeight": 500
+      }
+    },
+    {
+      "id": "synthwave",
+      "name": "Synthwave",
+      "category": "retro",
+      "description": "Outrun sunset: magenta grid, chrome type.",
+      "fonts": {
+        "display": {
+          "family": "Audiowide",
+          "google": "Audiowide:wght@400",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Rajdhani",
+          "google": "Rajdhani:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 295,
+          "c": 0.05,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.965
+          }
+        },
+        "accent": {
+          "h": 330,
+          "c": 0.22,
+          "dark": 0.74,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 0.5,
+        "displayWeight": 400,
+        "displayTracking": "0.04em"
+      },
+      "mode": "dark",
+      "css": ".hero-title { background: linear-gradient(180deg, var(--data-4), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }"
+    },
+    {
+      "id": "terminal",
+      "name": "Terminal",
+      "category": "retro",
+      "description": "Phosphor green on CRT black, monospace everywhere.",
+      "fonts": {
+        "display": {
+          "family": "VT323",
+          "google": "VT323:wght@400",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        },
+        "ui": {
+          "family": "Share Tech Mono",
+          "google": "Share Tech Mono:wght@400",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        },
+        "mono": {
+          "family": "Share Tech Mono",
+          "google": "Share Tech Mono:wght@400",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 145,
+          "c": 0.03,
+          "dark": {
+            "base": 0.12
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 145,
+          "c": 0.2,
+          "dark": 0.84,
+          "light": 0.5
+        }
+      },
+      "shape": {
+        "radius": 0,
+        "displayWeight": 400,
+        "displayTracking": "0em"
+      },
+      "mode": "dark",
+      "css": "& { --font-display: var(--font-mono); } .hero-title, .t-display-xl, .t-display-lg { text-shadow: 0 0 8px color-mix(in oklab, var(--accent) 50%, transparent); }"
+    },
+    {
+      "id": "vaporwave",
+      "name": "Vaporwave",
+      "category": "retro",
+      "description": "Pastel nostalgia: pink, cyan, marble.",
+      "fonts": {
+        "display": {
+          "family": "Monoton",
+          "google": "Monoton:wght@400",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "DM Sans",
+          "google": "DM Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 310,
+          "c": 0.04,
+          "dark": {
+            "base": 0.16
+          },
+          "light": {
+            "base": 0.965
+          }
+        },
+        "accent": {
+          "h": 195,
+          "c": 0.14,
+          "dark": 0.82,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 1,
+        "displayWeight": 400,
+        "displayTracking": "0.02em"
+      }
+    },
+    {
+      "id": "y2k",
+      "name": "Y2K",
+      "category": "retro",
+      "description": "Chrome bubbles, iridescent blue, techno-optimism.",
+      "fonts": {
+        "display": {
+          "family": "Audiowide",
+          "google": "Audiowide:wght@400",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 230,
+          "c": 0.03,
+          "dark": {
+            "base": 0.15
+          },
+          "light": {
+            "base": 0.97
+          }
+        },
+        "accent": {
+          "h": 225,
+          "c": 0.17,
+          "dark": 0.78,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 3,
+        "displayWeight": 400,
+        "displayTracking": "0.01em"
+      }
+    },
+    {
+      "id": "ocean",
+      "name": "Ocean",
+      "category": "retro",
+      "description": "Abyssal blues, sea-glass accent.",
+      "fonts": {
+        "display": {
+          "family": "Lora",
+          "google": "Lora:wght@400;500;600",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Manrope",
+          "google": "Manrope:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 220,
+          "c": 0.03,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.975
+          }
+        },
+        "accent": {
+          "h": 180,
+          "c": 0.11,
+          "dark": 0.8,
+          "light": 0.52
+        }
+      },
+      "shape": {
+        "radius": 2,
+        "displayWeight": 500
+      }
+    },
+    {
+      "id": "nage",
+      "name": "Nage",
+      "category": "brand",
+      "description": "Nage AI: navy, teal and amber.",
+      "fonts": {
+        "display": {
+          "family": "DM Serif Display",
+          "google": "DM Serif Display:ital@0;1",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "DM Sans",
+          "google": "DM Sans:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "mono": {
+          "family": "JetBrains Mono",
+          "google": "JetBrains Mono:wght@400;500",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 245,
+          "c": 0.025,
+          "dark": {
+            "base": 0.14
+          },
+          "light": {
+            "base": 0.978
+          }
+        },
+        "accent": {
+          "h": 186,
+          "c": 0.12,
+          "dark": 0.8,
+          "light": 0.55
+        }
+      },
+      "shape": {
+        "radius": 1.5,
+        "displayWeight": 400,
+        "displayTracking": "-0.01em"
+      }
+    },
+    {
+      "id": "autorite",
+      "name": "Autorité",
+      "category": "brand",
+      "description": "Autorité standards: authoritative serif, ink and ultramarine.",
+      "fonts": {
+        "display": {
+          "family": "DM Serif Display",
+          "google": "DM Serif Display:ital@0;1",
+          "fallback": "Georgia, 'Times New Roman', serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 260,
+          "c": 0.01,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.98
+          }
+        },
+        "accent": {
+          "h": 265,
+          "c": 0.17,
+          "dark": 0.7,
+          "light": 0.48
+        }
+      },
+      "shape": {
+        "radius": 0.75,
+        "displayWeight": 400
+      }
+    },
+    {
+      "id": "tuti",
+      "name": "tuti lab",
+      "category": "brand",
+      "description": "tuti lab: research paper white, lab orange.",
+      "fonts": {
+        "display": {
+          "family": "Space Grotesk",
+          "google": "Space Grotesk:wght@400;500;600;700",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "ui": {
+          "family": "Inter",
+          "google": "Inter:wght@400;500;600",
+          "fallback": "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif"
+        },
+        "mono": {
+          "family": "JetBrains Mono",
+          "google": "JetBrains Mono:wght@400;500",
+          "fallback": "ui-monospace, 'SF Mono', Menlo, monospace"
+        }
+      },
+      "palette": {
+        "neutral": {
+          "h": 70,
+          "c": 0.006,
+          "dark": {
+            "base": 0.13
+          },
+          "light": {
+            "base": 0.985
+          }
+        },
+        "accent": {
+          "h": 45,
+          "c": 0.18,
+          "dark": 0.76,
+          "light": 0.58
+        }
+      },
+      "shape": {
+        "radius": 1,
+        "displayWeight": 600,
+        "displayTracking": "-0.035em"
+      }
+    }
+  ]
+}

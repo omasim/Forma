@@ -1,0 +1,43 @@
+/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/* Theme: Gothic — Candlelight, blackletter mood and oxblood. */
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Crimson+Pro:wght@400;500;600&display=swap");
+@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
+@layer forma.themes {
+[data-theme="gothic"] {
+  --bg-base: light-dark(#FAF1F1, #090505);
+  --bg-surface: light-dark(#FEFBFB, #0E0908);
+  --bg-elevated: light-dark(#FEFBFB, #150F0F);
+  --bg-subtle: light-dark(#EEE5E5, #1C1515);
+  --bg-hover: light-dark(#E5DBDB, #231C1C);
+  --text-primary: light-dark(#180F0F, #F2E4E4);
+  --text-secondary: light-dark(#5D5252, #A89B9A);
+  --text-tertiary: light-dark(#716565, #897D7C);
+  --text-disabled: light-dark(#948B8B, #524B4B);
+  --border-control: light-dark(#999090, #665E5E);
+  --accent: light-dark(#962339, #DE6674);
+  --accent-contrast: light-dark(#FFFFFF, #090505);
+  --accent-hover: light-dark(#850E2C, #EC7380);
+  --accent-text: light-dark(#962339, #E16977);
+  --error: light-dark(#A5292B, #F97770);
+  --success: light-dark(#1B6734, #6FB880);
+  --warning: light-dark(#7B5204, #D49838);
+  --info: light-dark(#155C9A, #67AAED);
+  --on-error: light-dark(#FFFFFF, #090505);
+  --on-success: light-dark(#FFFFFF, #090505);
+  --on-warning: light-dark(#FFFFFF, #090505);
+  --on-info: light-dark(#FFFFFF, #090505);
+  --data-1: light-dark(#2A78D6, #3987E5);
+  --data-2: light-dark(#EB6834, #D95926);
+  --data-3: light-dark(#1BAF7A, #199E70);
+  --data-4: light-dark(#EDA100, #C98500);
+  --data-5: light-dark(#E87BA4, #D55181);
+  --data-6: light-dark(#008300, #008300);
+  --data-7: light-dark(#4A3AA7, #9085E9);
+  --data-8: light-dark(#E34948, #E66767);
+  --font-display: 'IM Fell English', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  --radius-scale: 0.5;
+  --weight-display: 400;
+  --tracking-display: 0em;
+}
+}
