@@ -1,0 +1,21 @@
+# Publishes to npm when a GitHub Release is published (not on every tag).
+# Needs a repository secret NPM_TOKEN (an npm automation token with publish rights to @nage).
+name: Release
+on:
+  release: { types: [published] }
+permissions: { contents: read, id-token: write }
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, registry-url: 'https://registry.npmjs.org' }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - run: npm test
+      - name: Tag matches package.json
+        run: test "v$(node -p "require('./package.json').version")" = "${{ github.event.release.tag_name }}"
+      - run: npm publish --access public --provenance
+        env: { NODE_AUTH_TOKEN: '${{ secrets.NPM_TOKEN }}' }

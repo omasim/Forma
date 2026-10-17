@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Industrial — Steel, rivets and safety yellow. */
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@400;500&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -40,5 +40,11 @@
   --radius-scale: 0.25;
   --weight-display: 600;
   --tracking-display: 0.01em;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="industrial"] { --bg-base: #F0F4F7; --bg-surface: #FAFCFD; --bg-elevated: #FAFCFD; --bg-subtle: #E4E8EB; --bg-hover: #DBDFE2; --text-primary: #0E1215; --text-secondary: #51565A; --text-tertiary: #64696D; --text-disabled: #8A8E91; --border-control: #909396; --accent: #846E06; --accent-contrast: #FFFFFF; --accent-hover: #736004; --accent-text: #6C5A02; --error: #A5292B; --success: #1B6734; --warning: #7B5204; --info: #155C9A; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="industrial"]:not([data-mode="light"]) { --bg-base: #090C0D; --bg-surface: #0E1113; --bg-elevated: #15181A; --bg-subtle: #1C1E21; --bg-hover: #232628; --text-primary: #E3E9ED; --text-secondary: #9A9FA3; --text-tertiary: #80868A; --text-disabled: #525658; --border-control: #616567; --accent: #F4CE23; --accent-contrast: #090C0D; --accent-hover: #FFDC4F; --accent-text: #F4CE23; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #090C0D; --on-success: #090C0D; --on-warning: #090C0D; --on-info: #090C0D; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="industrial"][data-mode="dark"], [data-theme="industrial"] [data-mode="dark"] { --bg-base: #090C0D; --bg-surface: #0E1113; --bg-elevated: #15181A; --bg-subtle: #1C1E21; --bg-hover: #232628; --text-primary: #E3E9ED; --text-secondary: #9A9FA3; --text-tertiary: #80868A; --text-disabled: #525658; --border-control: #616567; --accent: #F4CE23; --accent-contrast: #090C0D; --accent-hover: #FFDC4F; --accent-text: #F4CE23; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #090C0D; --on-success: #090C0D; --on-warning: #090C0D; --on-info: #090C0D; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="industrial"][data-mode="light"], [data-theme="industrial"] [data-mode="light"] { --bg-base: #F0F4F7; --bg-surface: #FAFCFD; --bg-elevated: #FAFCFD; --bg-subtle: #E4E8EB; --bg-hover: #DBDFE2; --text-primary: #0E1215; --text-secondary: #51565A; --text-tertiary: #64696D; --text-disabled: #8A8E91; --border-control: #909396; --accent: #846E06; --accent-contrast: #FFFFFF; --accent-hover: #736004; --accent-text: #6C5A02; --error: #A5292B; --success: #1B6734; --warning: #7B5204; --info: #155C9A; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 }

@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Retro — 70s diner: mustard, teal and cream. */
 @import url("https://fonts.googleapis.com/css2?family=Righteous:wght@400&family=Outfit:wght@400;500;600&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -39,5 +39,11 @@
   --radius-scale: 2.5;
   --weight-display: 400;
   --tracking-display: 0em;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="retro"] { --bg-base: #FEF1E3; --bg-surface: #FEFBF7; --bg-elevated: #FEFBF7; --bg-subtle: #F5E5D3; --bg-hover: #EBDBC9; --text-primary: #1C0E00; --text-secondary: #66513A; --text-tertiary: #79644C; --text-disabled: #9A8B7A; --border-control: #9F907F; --accent: #AD5802; --accent-contrast: #FFFFFF; --accent-hover: #984D01; --accent-text: #8F4803; --error: #A5292B; --success: #1C6834; --warning: #7C5200; --info: #155C9A; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="retro"]:not([data-mode="light"]) { --bg-base: #150B01; --bg-surface: #1B1004; --bg-elevated: #221709; --bg-subtle: #2A1E10; --bg-hover: #312517; --text-primary: #FCE3C8; --text-secondary: #B19A81; --text-tertiary: #9A846B; --text-disabled: #635546; --border-control: #716353; --accent: #FFA666; --accent-contrast: #150B01; --accent-hover: #FFB98A; --accent-text: #FFA666; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #150B01; --on-success: #150B01; --on-warning: #150B01; --on-info: #150B01; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="retro"][data-mode="dark"], [data-theme="retro"] [data-mode="dark"] { --bg-base: #150B01; --bg-surface: #1B1004; --bg-elevated: #221709; --bg-subtle: #2A1E10; --bg-hover: #312517; --text-primary: #FCE3C8; --text-secondary: #B19A81; --text-tertiary: #9A846B; --text-disabled: #635546; --border-control: #716353; --accent: #FFA666; --accent-contrast: #150B01; --accent-hover: #FFB98A; --accent-text: #FFA666; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #150B01; --on-success: #150B01; --on-warning: #150B01; --on-info: #150B01; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="retro"][data-mode="light"], [data-theme="retro"] [data-mode="light"] { --bg-base: #FEF1E3; --bg-surface: #FEFBF7; --bg-elevated: #FEFBF7; --bg-subtle: #F5E5D3; --bg-hover: #EBDBC9; --text-primary: #1C0E00; --text-secondary: #66513A; --text-tertiary: #79644C; --text-disabled: #9A8B7A; --border-control: #9F907F; --accent: #AD5802; --accent-contrast: #FFFFFF; --accent-hover: #984D01; --accent-text: #8F4803; --error: #A5292B; --success: #1C6834; --warning: #7C5200; --info: #155C9A; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 }

@@ -1,0 +1,14 @@
+name: Component or feature request
+description: Propose a new component, variant, theme or tool
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes: { label: What are you building, and what is missing? }
+    validations: { required: true }
+  - type: textarea
+    id: proposal
+    attributes: { label: Proposed markup or API, render: html }
+  - type: textarea
+    id: a11y
+    attributes: { label: Keyboard and screen-reader behaviour, description: "Which WAI-ARIA pattern applies, if any?" }

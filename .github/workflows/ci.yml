@@ -1,0 +1,27 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+permissions: { contents: read }
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run build
+      - name: Committed build output is up to date
+        run: git diff --exit-code --stat -- dist site llms.txt llms-full.txt forma-spec.json AGENTS.md .cursor .github/copilot-instructions.md
+      - run: npm test
+      - run: npm run test:types
+      # Baselines were rendered with Playwright's Chromium on Linux. Font rasterising can differ
+      # slightly between machines, so a mismatch is reported (diffs uploaded below) but doesn't
+      # block the build until baselines are regenerated on this runner: `npm run test:visual -- --update`.
+      - run: npm run test:visual
+        continue-on-error: true
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with: { name: visual-diffs, path: tests/visual/*.actual.png, if-no-files-found: ignore }

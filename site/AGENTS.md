@@ -1,4 +1,4 @@
-# FORMA v6.0.0 — rules for writing markup
+# FORMA v6.0.1 — rules for writing markup
 
 FORMA is a CSS design system with an optional JS behaviour layer. Follow these rules when generating UI.
 
@@ -11,6 +11,7 @@ FORMA is a CSS design system with an optional JS behaviour layer. Follow these r
 7. **Modes and themes:** `data-mode="light|dark"` (omit to follow the OS) and `data-theme="<id>"` after loading `themes/<id>.css`. Never use `data-theme="dark"` — that was v5.
 8. **Layout:** `.container`, `.stack`, `.cluster`, `.split`, `.grid` (`--min`), `.grid-2/3/4`, `.dash` + `.span-N`; gaps via `.gap-N` or `--gap`.
 9. **Charts:** `<figure class="chart" data-forma="chart" data-type="line|area|bar|donut" data-labels="…" data-series='[{"name":"A","values":[…]}]'>` with a `.chart-canvas` child. Never two y-axes.
-10. **Validate before you finish:** run `npx @nage/forma lint file.html` or the MCP tool `validate_html`.
+10. **Validate before you finish:** run `npx @nage/forma lint file.html` (add `--fix` to upgrade v5 classes) or the MCP tool `validate_html`.
+11. **React:** prefer plain markup with `data-forma`; use `@nage/forma/react` (`FormaProvider`, `Chart`, `Icon`, `useFormaEvent`) for theme/mode, charts and events.
 
 Components: 126 · Themes: 59 · Docs: https://forma-design-five.vercel.app/llms-full.txt

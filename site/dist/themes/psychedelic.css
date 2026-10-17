@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Psychedelic — Liquid color, warped type, violet heat. */
 @import url("https://fonts.googleapis.com/css2?family=Bungee:wght@400&family=Quicksand:wght@400;500;600;700&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -39,5 +39,11 @@
   --radius-scale: 2.5;
   --weight-display: 400;
   --tracking-display: 0em;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="psychedelic"] { --bg-base: #F4EFFF; --bg-surface: #FBF9FF; --bg-elevated: #FBF9FF; --bg-subtle: #EAE1FE; --bg-hover: #E0D7F4; --text-primary: #160928; --text-secondary: #5A4E72; --text-tertiary: #6D6186; --text-disabled: #9087A1; --border-control: #968DA8; --accent: #9C2FD6; --accent-contrast: #FFFFFF; --accent-hover: #8C16C5; --accent-text: #8A12C3; --error: #A4292A; --success: #1A6633; --warning: #795001; --info: #145B99; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="psychedelic"]:not([data-mode="light"]) { --bg-base: #0E0719; --bg-surface: #130C1F; --bg-elevated: #1A1327; --bg-subtle: #211A2E; --bg-hover: #282136; --text-primary: #EBE3FE; --text-secondary: #A496BF; --text-tertiary: #8C7FA6; --text-disabled: #585069; --border-control: #686079; --accent: #CA7BFF; --accent-contrast: #0E0719; --accent-hover: #D190FF; --accent-text: #CA7BFF; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #0E0719; --on-success: #0E0719; --on-warning: #0E0719; --on-info: #0E0719; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="psychedelic"][data-mode="dark"], [data-theme="psychedelic"] [data-mode="dark"] { --bg-base: #0E0719; --bg-surface: #130C1F; --bg-elevated: #1A1327; --bg-subtle: #211A2E; --bg-hover: #282136; --text-primary: #EBE3FE; --text-secondary: #A496BF; --text-tertiary: #8C7FA6; --text-disabled: #585069; --border-control: #686079; --accent: #CA7BFF; --accent-contrast: #0E0719; --accent-hover: #D190FF; --accent-text: #CA7BFF; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #0E0719; --on-success: #0E0719; --on-warning: #0E0719; --on-info: #0E0719; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="psychedelic"][data-mode="light"], [data-theme="psychedelic"] [data-mode="light"] { --bg-base: #F4EFFF; --bg-surface: #FBF9FF; --bg-elevated: #FBF9FF; --bg-subtle: #EAE1FE; --bg-hover: #E0D7F4; --text-primary: #160928; --text-secondary: #5A4E72; --text-tertiary: #6D6186; --text-disabled: #9087A1; --border-control: #968DA8; --accent: #9C2FD6; --accent-contrast: #FFFFFF; --accent-hover: #8C16C5; --accent-text: #8A12C3; --error: #A4292A; --success: #1A6633; --warning: #795001; --info: #145B99; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 }

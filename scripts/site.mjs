@@ -19,6 +19,7 @@ export async function buildSite({ ROOT, manifest, components, sectorMeta, themes
   fs.mkdirSync(path.join(SITE, 'assets'), { recursive: true });
   fs.copyFileSync(path.join(ROOT, 'site-src/site.css'), path.join(SITE, 'assets/site.css'));
   const V = manifest.version;
+  const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
   const all = [...components, ...sectorMeta];
   const categories = [...new Set(all.map((c) => c.category))];
   const byCat = (cat) => all.filter((c) => c.category === cat);
@@ -155,13 +156,36 @@ Forma.theme.set('swiss');            // loads themes/swiss.css on demand</code><
   <h2 id="layers">Cascade layers</h2>
   <p>Everything sits in <code>@layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities</code>. Your own unlayered CSS always wins — no specificity battles, no <code>!important</code>.</p>
   <h2 id="browsers">Browser support</h2>
-  <p>Chrome/Edge 123+, Firefox 120+, Safari 17.5+ (2024 and newer). FORMA relies on <code>light-dark()</code>, <code>color-mix()</code>, <code>@layer</code>, <code>:has()</code>, container queries, <code>&lt;dialog&gt;</code> and the Popover API. Logical properties throughout, so <code>dir="rtl"</code> works.</p>
+  <p>Chrome/Edge 123+, Firefox 120+, Safari 17.5+ (2024 and newer). FORMA relies on <code>light-dark()</code>, <code>color-mix()</code>, <code>@layer</code>, <code>:has()</code>, container queries, <code>&lt;dialog&gt;</code> and the Popover API. Older browsers that lack <code>light-dark()</code> get plain light and dark color values from an <code>@supports</code> fallback, so text stays readable.</p>
+  <h2 id="rtl">Right-to-left and High Contrast</h2>
+  <p>Logical properties throughout, so <code>dir="rtl"</code> mirrors layouts, switches, sliders, menus and arrow-key navigation. Code, keyboard keys and shortcuts stay left-to-right inside RTL text. In Windows High Contrast (forced colors) switches, checkboxes, progress bars and selected tabs, menu items and nav links are redrawn with system colors. Both are covered by the test suite.</p>
+  <h2 id="frameworks">React and TypeScript</h2>
+  <p>Types ship with the package (<code>types/forma.d.ts</code>), including every <code>forma:*</code> event. React bindings are optional and have no build step:</p>
+  <pre tabindex="0" class="code-block"><code>import { FormaProvider, Chart, Icon, useFormaEvent, toast } from '@nage/forma/react';
+
+&lt;FormaProvider theme="swiss" mode="dark"&gt;
+  &lt;Chart type="bar" labels={months} series={[{ name: 'Runs', values }]} title="Runs per month" /&gt;
+&lt;/FormaProvider&gt;
+
+useFormaEvent(boardRef, 'move', (e) =&gt; save(e.detail.card.id, e.detail.to.id));</code></pre>
+  <p>Elements with <code>data-forma</code> that React renders are set up automatically, once, so markup-driven components (tabs, menus, combobox, kanban…) need no wrapper.</p>
+  <h2 id="fonts">Self-hosting theme fonts</h2>
+  <p>Museum's fonts ship in <code>dist/fonts/</code>. Other themes load theirs from Google Fonts. To serve them yourself (no third-party requests, works offline, GDPR-friendly), download them once from Fontsource (OFL) and use the generated stylesheet instead of <code>themes/&lt;id&gt;.css</code>:</p>
+  <pre tabindex="0" class="code-block"><code>npx @nage/forma fonts swiss editorial --out public/forma --subsets latin,latin-ext
+&lt;link rel="stylesheet" href="/forma/swiss.css"&gt;   &lt;!-- @font-face + theme, fonts in /forma/fonts/ --&gt;</code></pre>
+  <h2 id="native">Figma, iOS and Android</h2>
+  <p>Every theme exports to the platforms your designers and app teams use. <code>dist/tokens/</code> holds Museum; any other theme is one command away.</p>
+  <pre tabindex="0" class="code-block"><code>npx @nage/forma tokens dtcg cyberpunk --out tokens/     # W3C DTCG, one file per mode (Figma variables, Tokens Studio)
+npx @nage/forma tokens swift cyberpunk --out ios/       # SwiftUI Color with light/dark, spacing, radii
+npx @nage/forma tokens kotlin cyberpunk --out android/  # Jetpack Compose palettes, dp/sp scales
+npx @nage/forma tokens json cyberpunk                   # flat JSON for anything else</code></pre>
   <h2 id="a11y">Accessibility commitments</h2>
   <ul><li>WCAG 2.2 AA contrast proven for every theme in both modes (${manifest.contrast.checks} checks).</li><li>One <code>:focus-visible</code> rule components never override.</li><li>Native elements first: <code>&lt;dialog&gt;</code>, <code>[popover]</code>, <code>&lt;details&gt;</code>, real checkboxes and radios.</li><li>WAI-ARIA patterns for tabs, menu, combobox, tree, grid date picker; full keyboard support.</li><li>Reduced motion respected; spinners keep moving slowly so state stays visible.</li><li>No user text is ever inserted as HTML by forma.js.</li></ul>
   <h2 id="migration">Migrating from v5</h2>
   <p>v6 is a rewrite. Most class names survive; these changed:</p>
   <div class="table-wrap not-prose"><table class="table table-compact"><thead><tr><th scope="col">Component</th><th scope="col">v5</th><th scope="col">v6</th></tr></thead><tbody>${migrations.map(([c, a, b]) => `<tr><td class="muted">${esc(c)}</td><td><code>${esc(a)}</code></td><td><code>${esc(b)}</code></td></tr>`).join('')}</tbody></table></div>
-  <p>Also: <code>data-theme="dark|light"</code> is now <code>data-mode</code>; <code>data-theme</code> names a visual theme. JS globals moved under <code>Forma.*</code>. Run <code>npx forma lint "**/*.html"</code> to find v5 classes in your markup.</p>
+  <p>Also: <code>data-theme="dark|light"</code> is now <code>data-mode</code>; <code>data-theme</code> names a visual theme. JS globals moved under <code>Forma.*</code>. Run <code>npx @nage/forma lint --fix "**/*.html"</code>: it rewrites every class with a one-to-one v6 replacement and lists the few that need new markup (a <code>&lt;dialog&gt;</code>, a popover, an ARIA attribute).</p>
+  <p>Still on v5? Its documentation stays online at <a href="${pkg.forma?.v5Docs || '#'}">the v5 archive</a>.</p>
 </div></main></div>`;
   write(path.join(SITE, 'docs/index.html'), page({ root: '../', title: 'Docs — FORMA', desc: 'Install, tokens, themes, migration.', active: 'Docs', body: docsBody }));
 

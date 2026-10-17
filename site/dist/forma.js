@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 var Forma = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -19,8 +19,8 @@ var Forma = (() => {
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
   // src/js/index.js
-  var js_exports = {};
-  __export(js_exports, {
+  var index_exports = {};
+  __export(index_exports, {
     announce: () => announce,
     calendar: () => calendar,
     chart: () => chart,
@@ -356,7 +356,8 @@ var Forma = (() => {
     });
   }
   function position(panel, anchor, { placement = "bottom-start", offset = 6, x, y } = {}) {
-    const pr = panel.getBoundingClientRect();
+    Object.assign(panel.style, { position: "fixed", margin: "0", insetInline: "auto", insetBlock: "auto" });
+    const pr = { width: panel.offsetWidth, height: panel.offsetHeight };
     const vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
     let top, left;
     if (x != null) {
@@ -1873,7 +1874,7 @@ var Forma = (() => {
    * a few interactive components. Auto-initialises [data-forma] elements, including ones
    * added later (MutationObserver).
    */
-  var version = true ? "6.0.0" : "dev";
+  var version = true ? "6.0.1" : "dev";
   async function copy(text) {
     try {
       await navigator.clipboard.writeText(text);
@@ -1895,6 +1896,6 @@ var Forma = (() => {
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start, { once: true });
     else start();
   }
-  return __toCommonJS(js_exports);
+  return __toCommonJS(index_exports);
 })();
 window.Forma=Forma;

@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Bauhaus — Primary color, grid and geometry. */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -39,5 +39,11 @@
   --radius-scale: 0;
   --weight-display: 700;
   --tracking-display: -0.03em;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="bauhaus"] { --bg-base: #F8F7F4; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #ECEBE8; --bg-hover: #E2E1DE; --text-primary: #13110F; --text-secondary: #565552; --text-tertiary: #6C6A67; --text-disabled: #91908E; --border-control: #959492; --accent: #CC272E; --accent-contrast: #FFFFFF; --accent-hover: #BB061E; --accent-text: #B8011C; --error: #A82C2D; --success: #1F6A37; --warning: #7E5403; --info: #185E9C; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="bauhaus"]:not([data-mode="light"]) { --bg-base: #0A0907; --bg-surface: #0F0E0C; --bg-elevated: #161513; --bg-subtle: #1C1C1A; --bg-hover: #232321; --text-primary: #E9E8E3; --text-secondary: #A09E9A; --text-tertiary: #858480; --text-disabled: #535250; --border-control: #636360; --accent: #FC5855; --accent-contrast: #0A0907; --accent-hover: #FF726B; --accent-text: #FE5B58; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #0A0907; --on-success: #0A0907; --on-warning: #0A0907; --on-info: #0A0907; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="bauhaus"][data-mode="dark"], [data-theme="bauhaus"] [data-mode="dark"] { --bg-base: #0A0907; --bg-surface: #0F0E0C; --bg-elevated: #161513; --bg-subtle: #1C1C1A; --bg-hover: #232321; --text-primary: #E9E8E3; --text-secondary: #A09E9A; --text-tertiary: #858480; --text-disabled: #535250; --border-control: #636360; --accent: #FC5855; --accent-contrast: #0A0907; --accent-hover: #FF726B; --accent-text: #FE5B58; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #0A0907; --on-success: #0A0907; --on-warning: #0A0907; --on-info: #0A0907; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="bauhaus"][data-mode="light"], [data-theme="bauhaus"] [data-mode="light"] { --bg-base: #F8F7F4; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #ECEBE8; --bg-hover: #E2E1DE; --text-primary: #13110F; --text-secondary: #565552; --text-tertiary: #6C6A67; --text-disabled: #91908E; --border-control: #959492; --accent: #CC272E; --accent-contrast: #FFFFFF; --accent-hover: #BB061E; --accent-text: #B8011C; --error: #A82C2D; --success: #1F6A37; --warning: #7E5403; --info: #185E9C; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 }

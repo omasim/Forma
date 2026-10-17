@@ -113,3 +113,32 @@ code, kbd, samp, pre { font-family: var(--font-mono); font-size: 0.92em; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ── Bidirectional text ─────────────────────────────────────────────────── */
+/* Code, keys and identifiers are left-to-right even inside RTL pages, so `.menu` never reads "menu." */
+code, kbd, samp, pre, .kbd, .badge-mono, .menu-shortcut, .code-inline, .code-block, .query-code { unicode-bidi: isolate; direction: ltr; }
+pre, .code-block { text-align: left; }
+
+/* ── Forced colors (Windows High Contrast) ──────────────────────────────── */
+/* Backgrounds are replaced by Canvas in this mode, so anything that shows state only through a
+   background (switch thumb, checkmarks, fills, selected items) is redrawn with system colors. */
+@media (forced-colors: active) {
+  .switch, .checkbox, .radio { forced-color-adjust: none; background: Canvas; border-color: CanvasText; }
+  .switch::before { background: CanvasText; }
+  .switch:checked, .checkbox:checked, .checkbox:indeterminate, .radio:checked { background: Highlight; border-color: Highlight; }
+  .switch:checked::before, .checkbox:checked::before, .checkbox:indeterminate::before, .radio:checked::before { background: HighlightText; }
+  .switch:disabled, .checkbox:disabled, .radio:disabled { border-color: GrayText; }
+  .progress-track { forced-color-adjust: none; background: Canvas; border: 1px solid CanvasText; }
+  .progress-fill { forced-color-adjust: none; background: Highlight; }
+  .range { forced-color-adjust: none; }
+  .range::-webkit-slider-runnable-track { background: linear-gradient(to right, Highlight var(--_pct), GrayText var(--_pct)); }
+  .range:dir(rtl)::-webkit-slider-runnable-track { background: linear-gradient(to left, Highlight var(--_pct), GrayText var(--_pct)); }
+  .range::-webkit-slider-thumb { background: Canvas; border-color: Highlight; }
+  .range:focus-visible::-webkit-slider-thumb, .range:focus-visible::-moz-range-thumb { outline: 2px solid Highlight; outline-offset: 2px; }
+  .status-dot, .avatar-status, .chart-swatch { forced-color-adjust: none; }
+  :where([aria-selected="true"], [aria-current]:not([aria-current="false"]), [aria-pressed="true"]):not(input, [role="option"] *) {
+    outline: 2px solid Highlight; outline-offset: -2px;
+  }
+  :focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+  .skeleton { border: 1px dashed GrayText; }
+}

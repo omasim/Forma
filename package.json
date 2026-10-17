@@ -1,13 +1,15 @@
 {
   "name": "@nage/forma",
-  "version": "6.0.0",
-  "description": "FORMA — a museum-grade, token-driven design system. One CSS file, 55 contrast-proven themes, accessible components, AI-native docs.",
+  "version": "6.0.1",
+  "description": "FORMA — a museum-grade, token-driven design system. One CSS file, 59 contrast-proven themes, 126 accessible components, AI-native docs.",
   "main": "dist/forma.esm.js",
   "scripts": {
     "build": "node scripts/build.mjs",
     "test": "node scripts/test.mjs",
     "lint": "node bin/forma.mjs lint --css site/assets/site.css \"site/**/*.html\"",
-    "preview": "npx -y serve site"
+    "preview": "npx -y serve site",
+    "test:visual": "node scripts/test-visual.mjs",
+    "test:types": "tsc --noEmit --strict --lib es2022,dom types/forma.d.ts && tsc -p tests/types"
   },
   "author": "Ömer Asım",
   "license": "MIT",
@@ -15,26 +17,33 @@
     "@fontsource-variable/cormorant": "^5.3.0",
     "@fontsource-variable/jetbrains-mono": "^5.3.0",
     "@fontsource-variable/syne": "^5.3.0",
+    "@types/react": "18.3.12",
     "axe-core": "^4.10.2",
-    "esbuild": "^0.24.0",
-    "lucide-static": "^0.460.0"
+    "esbuild": "^0.25.12",
+    "lucide-static": "^0.460.0",
+    "playwright": "1.56.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "typescript": "5.6.3"
   },
   "type": "module",
   "module": "dist/forma.esm.js",
   "style": "dist/forma.css",
   "unpkg": "dist/forma.min.js",
   "files": [
-    "dist",
-    "lib",
-    "mcp",
+    "AGENTS.md",
+    "CHANGELOG.md",
     "bin",
+    "dist",
+    "forma-spec.json",
+    "lib",
+    "llms-full.txt",
+    "llms.txt",
+    "mcp",
+    "react",
     "themes",
     "tokens",
-    "llms.txt",
-    "llms-full.txt",
-    "forma-spec.json",
-    "AGENTS.md",
-    "CHANGELOG.md"
+    "types"
   ],
   "bin": {
     "forma": "bin/forma.mjs"
@@ -53,22 +62,45 @@
   ],
   "exports": {
     ".": {
+      "types": "./types/forma.d.ts",
       "import": "./dist/forma.esm.js",
       "default": "./dist/forma.min.js"
+    },
+    "./react": {
+      "types": "./react/index.d.ts",
+      "import": "./react/index.js"
     },
     "./css": "./dist/forma.css",
     "./dist/*": "./dist/*",
     "./themes/*": "./dist/themes/*",
+    "./tokens/*": "./dist/tokens/*",
     "./spec": "./forma-spec.json",
     "./lint": "./lib/lint.mjs",
-    "./color": "./lib/color.mjs"
+    "./color": "./lib/color.mjs",
+    "./tokens": "./lib/tokens.mjs",
+    "./fonts": "./lib/fonts.mjs"
   },
   "engines": {
     "node": ">=18"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/omerasim/forma.git"
+    "url": "git+https://github.com/omasim/Forma.git"
   },
-  "homepage": "https://forma-design-five.vercel.app"
+  "homepage": "https://forma-design-five.vercel.app",
+  "bugs": {
+    "url": "https://github.com/omasim/Forma/issues"
+  },
+  "types": "types/forma.d.ts",
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "forma": {
+    "v5Docs": "https://forma-design-4zrph4xe2-nageai.vercel.app/"
+  }
 }

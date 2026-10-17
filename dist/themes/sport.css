@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Sport — Scoreboard type, track orange, motion. */
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Roboto:wght@400;500;700&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -39,6 +39,12 @@
   --radius-scale: 0.5;
   --weight-display: 700;
   --tracking-display: 0em;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="sport"] { --bg-base: #F2F9FE; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #E6EDF2; --bg-hover: #DDE3E8; --text-primary: #0C1318; --text-secondary: #4E575D; --text-tertiary: #636C73; --text-disabled: #8C9397; --border-control: #8F969A; --accent: #CA4604; --accent-contrast: #FFFFFF; --accent-hover: #B23D04; --accent-text: #A53701; --error: #A82D2E; --success: #1F6A37; --warning: #7E5403; --info: #195F9D; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="sport"]:not([data-mode="light"]) { --bg-base: #060A0D; --bg-surface: #0A0F12; --bg-elevated: #111619; --bg-subtle: #181C20; --bg-hover: #1F2427; --text-primary: #DFE9F1; --text-secondary: #96A0A7; --text-tertiary: #7B858B; --text-disabled: #4E5358; --border-control: #5E6468; --accent: #FF8D65; --accent-contrast: #060A0D; --accent-hover: #FFA383; --accent-text: #FF8D65; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #060A0D; --on-success: #060A0D; --on-warning: #060A0D; --on-info: #060A0D; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="sport"][data-mode="dark"], [data-theme="sport"] [data-mode="dark"] { --bg-base: #060A0D; --bg-surface: #0A0F12; --bg-elevated: #111619; --bg-subtle: #181C20; --bg-hover: #1F2427; --text-primary: #DFE9F1; --text-secondary: #96A0A7; --text-tertiary: #7B858B; --text-disabled: #4E5358; --border-control: #5E6468; --accent: #FF8D65; --accent-contrast: #060A0D; --accent-hover: #FFA383; --accent-text: #FF8D65; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #060A0D; --on-success: #060A0D; --on-warning: #060A0D; --on-info: #060A0D; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="sport"][data-mode="light"], [data-theme="sport"] [data-mode="light"] { --bg-base: #F2F9FE; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #E6EDF2; --bg-hover: #DDE3E8; --text-primary: #0C1318; --text-secondary: #4E575D; --text-tertiary: #636C73; --text-disabled: #8C9397; --border-control: #8F969A; --accent: #CA4604; --accent-contrast: #FFFFFF; --accent-hover: #B23D04; --accent-text: #A53701; --error: #A82D2E; --success: #1F6A37; --warning: #7E5403; --info: #195F9D; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 
 [data-theme="sport"] .hero-title, [data-theme="sport"] .page-title, [data-theme="sport"] .t-display-xl, [data-theme="sport"] .t-display-lg { text-transform: uppercase; font-style: italic; }

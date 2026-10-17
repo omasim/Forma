@@ -12,7 +12,7 @@
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <nav class="navbar navbar-sticky" aria-label="Main">
-  <a class="navbar-brand" href="index.html"><span>Forma</span><span class="badge badge-mono">v6.0.0</span></a>
+  <a class="navbar-brand" href="index.html"><span>Forma</span><span class="badge badge-mono">v6.0.1</span></a>
   <ul class="navbar-nav navbar-collapse"><li><a class="navbar-link" href="docs/">Docs</a></li><li><a class="navbar-link" href="components/">Components</a></li><li><a class="navbar-link" href="themes.html">Themes</a></li><li><a class="navbar-link" href="examples/">Examples</a></li><li><a class="navbar-link" href="ai.html">AI</a></li></ul>
   <div class="navbar-end">
     <button class="btn btn-sm btn-ghost" data-forma-open="cmdk" aria-label="Search"><svg class="fi " aria-hidden="true"><use href="dist/forma-icons.svg#fi-search"/></svg><kbd class="kbd">⌘K</kbd></button>
@@ -28,6 +28,34 @@
 </div></dialog>
 <main id="main" class="container container-md" style="padding-block:var(--space-7) var(--space-9)"><div class="prose"><p class="article-kicker">Changelog</p><h1>Version history</h1>
 
+<h2>6.0.1 — October 2026</h2>
+
+<p>Everything found in the post-release review, fixed.</p>
+
+<h3>Accessibility</h3>
+<ul><li><strong>Windows High Contrast (forced colors):</strong> switches, checkboxes, radios, progress bars and sliders are redrawn with system colors; selected tabs, menu items and current nav links get a Highlight outline. Before, a switch's on/off state was invisible in this mode.</li>
+<li><strong>Right-to-left:</strong> code, <code>kbd</code>, menu shortcuts and mono badges stay left-to-right inside RTL text (<code>.menu</code> no longer reads &quot;menu.&quot;); large switches and range fills mirror.</li>
+<li>Popovers and menus were placed up to 2% off their invoker because the size was measured mid-animation; they now line up exactly in both directions.</li>
+<li>Settings rows put the description under the label instead of running them together.</li>
+</ul>
+<h3>Compatibility</h3>
+<ul><li>Browsers without <code>light-dark()</code> (before Chrome 123, Firefox 120, Safari 17.5) get plain light/dark values from an <code>@supports</code> fallback instead of losing every color.</li>
+</ul>
+<h3>New</h3>
+<ul><li><strong>TypeScript types</strong> for the whole <code>Forma.*</code> API and every <code>forma:*</code> event (<code>types/forma.d.ts</code>).</li>
+<li><strong>React bindings</strong> (<code>@nage/forma/react</code>): <code>FormaProvider</code>, <code>useFormaTheme</code>, <code>useFormaEvent</code>, <code>Chart</code>, <code>Icon</code>, <code>useDialog</code>. React is an optional peer dependency.</li>
+<li><strong><code>forma lint --fix</code></strong> rewrites v5 classes with a one-to-one v6 replacement and lists the rest. The v5→v6 map no longer contains HTML tag names or broken shorthand entries.</li>
+<li><strong><code>forma tokens &lt;dtcg|swift|kotlin|json&gt; [theme]</code></strong> exports any theme for Figma (W3C DTCG, one file per mode), SwiftUI, Jetpack Compose or plain JSON. Museum is prebuilt in <code>dist/tokens/</code>.</li>
+<li><strong><code>forma fonts &lt;theme…&gt;</code></strong> self-hosts a theme's fonts from Fontsource and writes a stylesheet without the Google Fonts import.</li>
+</ul>
+<h3>Quality</h3>
+<ul><li>Test suite now also covers keyboard patterns (tabs, menu, combobox, tree, date picker, kanban, dialog), RTL, forced colors, the <code>light-dark()</code> fallback, the React bindings, lint <code>--fix</code> and token exports.</li>
+<li>Visual regression: <code>npm run test:visual</code> compares every theme × mode with baselines in <code>tests/visual/</code>.</li>
+<li>Continuous integration on GitHub Actions; npm releases are published from GitHub Releases with provenance.</li>
+<li>The build is reproducible (no build timestamp), and CI fails if committed <code>dist/</code> or <code>site/</code> is out of date.</li>
+<li><code>package.json</code> now states the real counts and repository.</li>
+<li>esbuild 0.25 (dev only).</li>
+</ul>
 <h2>6.0.0 — October 2026</h2>
 
 <p>A ground-up rewrite. Same museum voice; new engine.</p>
@@ -79,7 +107,7 @@
   <div class="stack gap-3"><span class="navbar-brand">Forma</span><p class="t-body-sm t-secondary" style="max-inline-size:36ch">A museum-grade, token-driven design system. Every color proven against WCAG at build time.</p></div>
   <div><p class="footer-title">Product</p><ul class="footer-links"><li><a href="components/">Components</a></li><li><a href="themes.html">Themes</a></li><li><a href="examples/">Examples</a></li><li><a href="changelog.html">Changelog</a></li></ul></div>
   <div><p class="footer-title">Developers</p><ul class="footer-links"><li><a href="docs/">Docs</a></li><li><a href="llms.txt">llms.txt</a></li><li><a href="forma-spec.json">forma-spec.json</a></li><li><a href="ai.html">MCP server</a></li></ul></div>
-  </div><div class="footer-bottom"><span>FORMA v6.0.0 · MIT · 126 components · 59 themes · 1770 contrast checks</span><span>Built to <a class="link link-quiet" href="https://autorite.net">Autorité</a> standards by <a class="link link-quiet" href="https://omerasim.com">Ömer Asım</a> in Istanbul</span></div></div></footer>
+  </div><div class="footer-bottom"><span>FORMA v6.0.1 · MIT · 126 components · 59 themes · 1770 contrast checks</span><span>Built to <a class="link link-quiet" href="https://autorite.net">Autorité</a> standards by <a class="link link-quiet" href="https://omerasim.com">Ömer Asım</a> in Istanbul</span></div></div></footer>
 <script src="dist/forma.min.js"></script>
 <script>
 addEventListener('load',function(){document.querySelectorAll('.preview').forEach(function(el){if(el.scrollWidth>el.clientWidth+1||el.scrollHeight>el.clientHeight+1){el.tabIndex=0;el.setAttribute('role','region');el.setAttribute('aria-label','Example')}})});

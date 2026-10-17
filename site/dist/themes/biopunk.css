@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Biopunk — Bioluminescent green on wet black. */
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -42,4 +42,9 @@
   --tracking-display: 0.02em;
 }
 [data-theme="biopunk"]:not([data-mode]) { color-scheme: dark; }
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="biopunk"] { --bg-base: #020703; --bg-surface: #050C06; --bg-elevated: #0A130C; --bg-subtle: #111A12; --bg-hover: #172119; --text-primary: #DBEEDE; --text-secondary: #92A495; --text-tertiary: #748677; --text-disabled: #465047; --border-control: #586359; --accent: #6EF278; --accent-contrast: #020703; --accent-hover: #81FF89; --accent-text: #6EF278; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #020703; --on-success: #020703; --on-warning: #020703; --on-info: #020703; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="biopunk"][data-mode="dark"], [data-theme="biopunk"] [data-mode="dark"] { --bg-base: #020703; --bg-surface: #050C06; --bg-elevated: #0A130C; --bg-subtle: #111A12; --bg-hover: #172119; --text-primary: #DBEEDE; --text-secondary: #92A495; --text-tertiary: #748677; --text-disabled: #465047; --border-control: #586359; --accent: #6EF278; --accent-contrast: #020703; --accent-hover: #81FF89; --accent-text: #6EF278; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #020703; --on-success: #020703; --on-warning: #020703; --on-info: #020703; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="biopunk"][data-mode="light"], [data-theme="biopunk"] [data-mode="light"] { --bg-base: #ECF9EE; --bg-surface: #FBFFFB; --bg-elevated: #FBFFFB; --bg-subtle: #E1EEE3; --bg-hover: #D7E4D9; --text-primary: #07150A; --text-secondary: #4A5A4D; --text-tertiary: #5D6E60; --text-disabled: #879389; --border-control: #8B978D; --accent: #048322; --accent-contrast: #FFFFFF; --accent-hover: #04731D; --accent-text: #036C1B; --error: #A82C2D; --success: #1E6935; --warning: #7D5302; --info: #185E9C; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+}
 }

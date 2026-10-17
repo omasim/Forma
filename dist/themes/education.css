@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Education — Friendly, legible and encouraging green. */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Open+Sans:wght@400;600;700&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -38,5 +38,11 @@
   --font-ui: 'Open Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --radius-scale: 2;
   --weight-display: 700;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="education"] { --bg-base: #F5F9F4; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #E9EDE8; --bg-hover: #DFE4DF; --text-primary: #0F130E; --text-secondary: #525751; --text-tertiary: #676C66; --text-disabled: #8F938E; --border-control: #929691; --accent: #1C8742; --accent-contrast: #FFFFFF; --accent-hover: #057836; --accent-text: #026D30; --error: #A82D2E; --success: #1F6A37; --warning: #7E5403; --info: #195F9D; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="education"]:not([data-mode="light"]) { --bg-base: #090C09; --bg-surface: #0F110E; --bg-elevated: #151815; --bg-subtle: #1C1F1B; --bg-hover: #232623; --text-primary: #E4EAE2; --text-secondary: #9BA099; --text-tertiary: #818780; --text-disabled: #535652; --border-control: #616561; --accent: #68CA80; --accent-contrast: #090C09; --accent-hover: #75D78D; --accent-text: #68CA80; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #090C09; --on-success: #090C09; --on-warning: #090C09; --on-info: #090C09; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="education"][data-mode="dark"], [data-theme="education"] [data-mode="dark"] { --bg-base: #090C09; --bg-surface: #0F110E; --bg-elevated: #151815; --bg-subtle: #1C1F1B; --bg-hover: #232623; --text-primary: #E4EAE2; --text-secondary: #9BA099; --text-tertiary: #818780; --text-disabled: #535652; --border-control: #616561; --accent: #68CA80; --accent-contrast: #090C09; --accent-hover: #75D78D; --accent-text: #68CA80; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #090C09; --on-success: #090C09; --on-warning: #090C09; --on-info: #090C09; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="education"][data-mode="light"], [data-theme="education"] [data-mode="light"] { --bg-base: #F5F9F4; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #E9EDE8; --bg-hover: #DFE4DF; --text-primary: #0F130E; --text-secondary: #525751; --text-tertiary: #676C66; --text-disabled: #8F938E; --border-control: #929691; --accent: #1C8742; --accent-contrast: #FFFFFF; --accent-hover: #057836; --accent-text: #026D30; --error: #A82D2E; --success: #1F6A37; --warning: #7E5403; --info: #195F9D; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 }

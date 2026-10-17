@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Gothic — Candlelight, blackletter mood and oxblood. */
 @import url("https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Crimson+Pro:wght@400;500;600&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -39,5 +39,11 @@
   --radius-scale: 0.5;
   --weight-display: 400;
   --tracking-display: 0em;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="gothic"] { --bg-base: #FAF1F1; --bg-surface: #FEFBFB; --bg-elevated: #FEFBFB; --bg-subtle: #EEE5E5; --bg-hover: #E5DBDB; --text-primary: #180F0F; --text-secondary: #5D5252; --text-tertiary: #716565; --text-disabled: #948B8B; --border-control: #999090; --accent: #962339; --accent-contrast: #FFFFFF; --accent-hover: #850E2C; --accent-text: #962339; --error: #A5292B; --success: #1B6734; --warning: #7B5204; --info: #155C9A; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="gothic"]:not([data-mode="light"]) { --bg-base: #090505; --bg-surface: #0E0908; --bg-elevated: #150F0F; --bg-subtle: #1C1515; --bg-hover: #231C1C; --text-primary: #F2E4E4; --text-secondary: #A89B9A; --text-tertiary: #897D7C; --text-disabled: #524B4B; --border-control: #665E5E; --accent: #DE6674; --accent-contrast: #090505; --accent-hover: #EC7380; --accent-text: #E16977; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #090505; --on-success: #090505; --on-warning: #090505; --on-info: #090505; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="gothic"][data-mode="dark"], [data-theme="gothic"] [data-mode="dark"] { --bg-base: #090505; --bg-surface: #0E0908; --bg-elevated: #150F0F; --bg-subtle: #1C1515; --bg-hover: #231C1C; --text-primary: #F2E4E4; --text-secondary: #A89B9A; --text-tertiary: #897D7C; --text-disabled: #524B4B; --border-control: #665E5E; --accent: #DE6674; --accent-contrast: #090505; --accent-hover: #EC7380; --accent-text: #E16977; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #090505; --on-success: #090505; --on-warning: #090505; --on-info: #090505; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="gothic"][data-mode="light"], [data-theme="gothic"] [data-mode="light"] { --bg-base: #FAF1F1; --bg-surface: #FEFBFB; --bg-elevated: #FEFBFB; --bg-subtle: #EEE5E5; --bg-hover: #E5DBDB; --text-primary: #180F0F; --text-secondary: #5D5252; --text-tertiary: #716565; --text-disabled: #948B8B; --border-control: #999090; --accent: #962339; --accent-contrast: #FFFFFF; --accent-hover: #850E2C; --accent-text: #962339; --error: #A5292B; --success: #1B6734; --warning: #7B5204; --info: #155C9A; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 }

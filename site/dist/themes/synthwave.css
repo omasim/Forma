@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Synthwave — Outrun sunset: magenta grid, chrome type. */
 @import url("https://fonts.googleapis.com/css2?family=Audiowide:wght@400&family=Rajdhani:wght@400;500;600;700&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -41,6 +41,11 @@
   --tracking-display: 0.04em;
 }
 [data-theme="synthwave"]:not([data-mode]) { color-scheme: dark; }
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="synthwave"] { --bg-base: #0B041B; --bg-surface: #100921; --bg-elevated: #170F29; --bg-subtle: #1E1630; --bg-hover: #251D38; --text-primary: #E9E4FF; --text-secondary: #A195C9; --text-tertiary: #877BAC; --text-disabled: #544D6C; --border-control: #655E7D; --accent: #F46DEB; --accent-contrast: #0B041B; --accent-hover: #FF7EF6; --accent-text: #F46DEB; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #0B041B; --on-success: #0B041B; --on-warning: #0B041B; --on-info: #0B041B; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="synthwave"][data-mode="dark"], [data-theme="synthwave"] [data-mode="dark"] { --bg-base: #0B041B; --bg-surface: #100921; --bg-elevated: #170F29; --bg-subtle: #1E1630; --bg-hover: #251D38; --text-primary: #E9E4FF; --text-secondary: #A195C9; --text-tertiary: #877BAC; --text-disabled: #544D6C; --border-control: #655E7D; --accent: #F46DEB; --accent-contrast: #0B041B; --accent-hover: #FF7EF6; --accent-text: #F46DEB; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #0B041B; --on-success: #0B041B; --on-warning: #0B041B; --on-info: #0B041B; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="synthwave"][data-mode="light"], [data-theme="synthwave"] [data-mode="light"] { --bg-base: #F4F1FF; --bg-surface: #FCFBFE; --bg-elevated: #FCFBFE; --bg-subtle: #E9E4FE; --bg-hover: #E0D8FD; --text-primary: #15072E; --text-secondary: #584C7B; --text-tertiary: #6D6191; --text-disabled: #8F88AA; --border-control: #958EAF; --accent: #B229AD; --accent-contrast: #FFFFFF; --accent-hover: #A20F9D; --accent-text: #9F089A; --error: #A5292B; --success: #1B6734; --warning: #7B5204; --info: #155C9A; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+}
 
 [data-theme="synthwave"] .hero-title { background: linear-gradient(180deg, var(--data-4), var(--accent)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 }

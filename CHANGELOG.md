@@ -1,5 +1,33 @@
 # Changelog
 
+## 6.0.1 — October 2026
+
+Everything found in the post-release review, fixed.
+
+### Accessibility
+- **Windows High Contrast (forced colors):** switches, checkboxes, radios, progress bars and sliders are redrawn with system colors; selected tabs, menu items and current nav links get a Highlight outline. Before, a switch's on/off state was invisible in this mode.
+- **Right-to-left:** code, `kbd`, menu shortcuts and mono badges stay left-to-right inside RTL text (`.menu` no longer reads "menu."); large switches and range fills mirror.
+- Popovers and menus were placed up to 2% off their invoker because the size was measured mid-animation; they now line up exactly in both directions.
+- Settings rows put the description under the label instead of running them together.
+
+### Compatibility
+- Browsers without `light-dark()` (before Chrome 123, Firefox 120, Safari 17.5) get plain light/dark values from an `@supports` fallback instead of losing every color.
+
+### New
+- **TypeScript types** for the whole `Forma.*` API and every `forma:*` event (`types/forma.d.ts`).
+- **React bindings** (`@nage/forma/react`): `FormaProvider`, `useFormaTheme`, `useFormaEvent`, `Chart`, `Icon`, `useDialog`. React is an optional peer dependency.
+- **`forma lint --fix`** rewrites v5 classes with a one-to-one v6 replacement and lists the rest. The v5→v6 map no longer contains HTML tag names or broken shorthand entries.
+- **`forma tokens <dtcg|swift|kotlin|json> [theme]`** exports any theme for Figma (W3C DTCG, one file per mode), SwiftUI, Jetpack Compose or plain JSON. Museum is prebuilt in `dist/tokens/`.
+- **`forma fonts <theme…>`** self-hosts a theme's fonts from Fontsource and writes a stylesheet without the Google Fonts import.
+
+### Quality
+- Test suite now also covers keyboard patterns (tabs, menu, combobox, tree, date picker, kanban, dialog), RTL, forced colors, the `light-dark()` fallback, the React bindings, lint `--fix` and token exports.
+- Visual regression: `npm run test:visual` compares every theme × mode with baselines in `tests/visual/`.
+- Continuous integration on GitHub Actions; npm releases are published from GitHub Releases with provenance.
+- The build is reproducible (no build timestamp), and CI fails if committed `dist/` or `site/` is out of date.
+- `package.json` now states the real counts and repository.
+- esbuild 0.25 (dev only).
+
 ## 6.0.0 — October 2026
 
 A ground-up rewrite. Same museum voice; new engine.

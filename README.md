@@ -14,7 +14,8 @@
 | Components | 101 core + 25 in six sector modules (health, finance, education, CRM, publishing, data) |
 | Themes | 59. Each one is about ten parameters, and each is proven in light and dark (1,770 contrast checks) |
 | Runtime dependencies | none |
-| Browsers | Chrome/Edge 123+, Firefox 120+, Safari 17.5+ |
+| Browsers | Chrome/Edge 123+, Firefox 120+, Safari 17.5+ (older browsers get a plain light/dark color fallback) |
+| Works with | Plain HTML, React (`@nage/forma/react`), TypeScript (types included), Figma / SwiftUI / Compose via token export |
 | Licence | MIT. Icons: Lucide (ISC). Fonts: OFL |
 
 ## Why v6 is different
@@ -27,7 +28,7 @@
   The build fails if any check falls short.
 - **Native first.** Overlays use `<dialog>` and the Popover API, accordions use `<details>`, and form controls are real inputs. The browser provides focus traps, Escape handling and the top layer.
 - **Modern CSS.** `light-dark()` lets `data-mode` work on any subtree. Layers are ordered `reset, tokens, base, components, sectors, themes, utilities`, so your own CSS always wins. Logical properties make RTL work without extra CSS.
-- **Accessible by test.** `npm test` loads every docs page and example in light and dark mode and runs axe (WCAG 2.2 AA). It reports zero serious or critical violations.
+- **Accessible by test.** `npm test` loads every docs page and example in light and dark mode and runs axe (WCAG 2.2 AA), then drives the keyboard patterns (tabs, menu, combobox, tree, date picker, kanban, dialog) and checks RTL and Windows High Contrast. `npm run test:visual` compares every theme × mode with a baseline.
 - **AI-native.** It ships `llms.txt`, `llms-full.txt`, `forma-spec.json`, `AGENTS.md`, Cursor and Copilot rules, a zero-dependency **MCP server** and **`forma lint`**, which checks HTML that agents write.
 
 ## Develop
@@ -35,7 +36,9 @@
 ```bash
 npm install          # dev tools only: esbuild, lucide-static, fontsource, axe-core
 npm run build        # → dist/, site/, llms*.txt, forma-spec.json, AGENTS.md
-npm test             # contrast · lint · MCP · browser + axe (needs Playwright)
+npm test             # contrast · lint · MCP · keyboard · RTL · forced colors · axe · React
+npm run test:types   # TypeScript declarations
+npm run test:visual  # every theme × mode vs tests/visual/ (--update to accept)
 npm run preview      # serve site/
 ```
 
@@ -47,8 +50,10 @@ src/components/<group>.css      component styles
 src/components/<group>.meta.js  classes, examples, a11y, JS API, v5 migration  ← single source for docs & AI
 src/sectors/                    six optional sector modules
 src/js/                         ESM behaviour layer → dist/forma.js / forma.esm.js
+types/forma.d.ts                TypeScript declarations for Forma.* and forma:* events
+react/                          optional React bindings (@nage/forma/react)
 scripts/                        build, palette solver, icons, site, AI files, tests
-lib/                            color engine + linter (shipped, used by CLI & MCP)
+lib/                            color engine, linter, token exporters, font self-hosting (used by CLI & MCP)
 mcp/server.mjs                  MCP server (stdio)
 bin/forma.mjs                   CLI: lint · contrast · theme · mcp
 site-src/                       docs-only CSS and example pages
@@ -59,6 +64,9 @@ site-src/                       docs-only CSS and example pages
 ```bash
 npx @nage/forma lint "src/**/*.html"            # unknown / v5 classes, missing names, unlabeled inputs
 npx @nage/forma lint --css app.css "**/*.html"  # also accept your own classes
+npx @nage/forma lint --fix "**/*.html"          # rewrite v5 classes that have a 1:1 v6 replacement
+npx @nage/forma tokens swift cyberpunk --out ios/   # dtcg (Figma) · swift · kotlin · json
+npx @nage/forma fonts swiss --out public/forma  # self-host a theme's fonts, no Google Fonts
 npx @nage/forma contrast "#4BD7C9" "#090806"    # 11.4:1  AA pass
 npx @nage/forma theme cyberpunk                 # computed tokens
 npx @nage/forma mcp                             # MCP server on stdio
@@ -68,6 +76,6 @@ npx @nage/forma mcp                             # MCP server on stdio
 
 - `data-theme="dark|light"` is now `data-mode`. `data-theme` now names a visual theme.
 - JS globals are now under `Forma.*`. `switchTab()` and the other tab helpers became automatic `data-forma="tabs"`. `FormaToast.show()` became `Forma.toast()`.
-- Each renamed class is listed on its component's page and in `forma-spec.json → deprecated`. `forma lint` flags them and suggests the v6 replacement.
+- Each renamed class is listed on its component's page and in `forma-spec.json → deprecated`. `forma lint --fix` rewrites the one-to-one renames and lists the few that need new markup.
 
-See `CHANGELOG.md` for the full list.
+See `CHANGELOG.md` for the full list. Contributing: `CONTRIBUTING.md`. Security: `SECURITY.md`.

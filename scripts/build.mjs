@@ -71,6 +71,24 @@ export function themeDeclarations(theme) {
   return { decl, palette: pal };
 }
 
+/**
+ * Browsers without light-dark() (Safari < 17.5, Chrome < 123, Firefox < 120) would drop every
+ * color token. This block gives them plain light/dark values, keyed off data-mode and the OS.
+ */
+export function legacyColorCss(sel, pal, defaultMode) {
+  const block = (m) => Object.keys(pal[m].tokens).map((n) => `--${n}: ${pal[m].tokens[n]};`).join(' ');
+  const L = block('light'), D = block('dark');
+  const root = sel === ':root';
+  const S = (suffix) => `${root ? ':root' : sel}${suffix}`;
+  const nest = (x) => (root ? x : `${sel} ${x}`);
+  let css = '@supports not (color: light-dark(#000, #fff)) {\n';
+  css += `${S('')} { ${defaultMode === 'dark' ? D : L} }\n`;
+  if (defaultMode !== 'dark') css += `@media (prefers-color-scheme: dark) { ${S(':not([data-mode="light"])')} { ${D} } }\n`;
+  css += `${root ? '[data-mode="dark"]' : `${sel}[data-mode="dark"], ${nest('[data-mode="dark"]')}`} { ${D} }\n`;
+  css += `${root ? '[data-mode="light"]' : `${sel}[data-mode="light"], ${nest('[data-mode="light"]')}`} { ${L} }\n`;
+  return css + '}';
+}
+
 function scopeCss(css, sel) {
   // Prefix each top-level rule with the theme selector. Supports `&` for the theme root itself.
   return css.replace(/(^|})\s*([^{}@]+)\{/g, (m, end, selectors) =>
@@ -85,6 +103,7 @@ export function themeCss(theme) {
   if (font) css += `@import url("${font}");\n`;
   css += `${LAYERS}\n@layer forma.themes {\n${sel} {\n  ${decl.join('\n  ')}\n}\n`;
   if (theme.mode) css += `${sel}:not([data-mode]) { color-scheme: ${theme.mode}; }\n`;
+  css += legacyColorCss(sel, palette, theme.mode) + '\n';
   if (theme.css) css += scopeCss(theme.css, sel) + '\n';
   css += '}\n';
   return { css, palette };
@@ -148,7 +167,7 @@ export async function buildCss() {
     BANNER,
     LAYERS,
     `@layer forma.reset {\n${read(r('src/css/reset.css'))}\n}`,
-    `@layer forma.tokens {\n${baseFontFaces()}\n:root {\n  ${prims.map((t) => `--${t.name}: ${tokenValue(t)};`).join('\n  ')}\n  --label-transform: uppercase;\n  --label-tracking: var(--tracking-wider);\n  ${baseDecl.join('\n  ')}\n}\n}`,
+    `@layer forma.tokens {\n${baseFontFaces()}\n:root {\n  ${prims.map((t) => `--${t.name}: ${tokenValue(t)};`).join('\n  ')}\n  --label-transform: uppercase;\n  --label-tracking: var(--tracking-wider);\n  ${baseDecl.join('\n  ')}\n}\n${legacyColorCss(':root', palette)}\n}`,
     `@layer forma.base {\n${read(r('src/css/base.css'))}\n}`,
     `@layer forma.components {\n${compCss}\n}`,
     `@layer forma.utilities {\n${read(r('src/css/utilities.css'))}\n}`,
@@ -224,7 +243,8 @@ async function main() {
     sizes: { 'forma.min.css': size('forma.min.css'), 'forma.min.js': size('forma.min.js'), 'forma.all.min.css': size('forma.all.min.css') },
     contrast: { checks: report.length, failures: failures.length },
     browsers: TARGET,
-    builtAt: new Date().toISOString().slice(0, 10),
+    // Release date from the newest CHANGELOG heading, not the clock, so a rebuild is byte-identical.
+    released: (read(r('CHANGELOG.md')).match(/^## [\d.]+ — (.+)$/m) || [])[1] || null,
   };
   write(r('dist/forma.manifest.json'), JSON.stringify(manifest, null, 2));
 

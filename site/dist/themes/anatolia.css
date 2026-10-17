@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Anatolia — Iznik tile blue, carmine and limestone — inscriptional capitals. */
 @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -39,5 +39,11 @@
   --radius-scale: 0.75;
   --weight-display: 500;
   --tracking-display: 0.02em;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="anatolia"] { --bg-base: #FAF5ED; --bg-surface: #FEFEFD; --bg-elevated: #FEFEFD; --bg-subtle: #EEE9E1; --bg-hover: #E4E0D8; --text-primary: #161108; --text-secondary: #5B544A; --text-tertiary: #6F695E; --text-disabled: #948F88; --border-control: #98938C; --accent: #0568A4; --accent-contrast: #FFFFFF; --accent-hover: #03598F; --accent-text: #045F96; --error: #A62B2C; --success: #1E6935; --warning: #7D5302; --info: #175D9B; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="anatolia"]:not([data-mode="light"]) { --bg-base: #0E0B06; --bg-surface: #13100B; --bg-elevated: #1A1711; --bg-subtle: #211E18; --bg-hover: #28251F; --text-primary: #EEE7DB; --text-secondary: #A49D92; --text-tertiary: #8B857A; --text-disabled: #59554E; --border-control: #68645D; --accent: #43ACFB; --accent-contrast: #0E0B06; --accent-hover: #63B9FE; --accent-text: #43ACFB; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #0E0B06; --on-success: #0E0B06; --on-warning: #0E0B06; --on-info: #0E0B06; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="anatolia"][data-mode="dark"], [data-theme="anatolia"] [data-mode="dark"] { --bg-base: #0E0B06; --bg-surface: #13100B; --bg-elevated: #1A1711; --bg-subtle: #211E18; --bg-hover: #28251F; --text-primary: #EEE7DB; --text-secondary: #A49D92; --text-tertiary: #8B857A; --text-disabled: #59554E; --border-control: #68645D; --accent: #43ACFB; --accent-contrast: #0E0B06; --accent-hover: #63B9FE; --accent-text: #43ACFB; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #0E0B06; --on-success: #0E0B06; --on-warning: #0E0B06; --on-info: #0E0B06; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="anatolia"][data-mode="light"], [data-theme="anatolia"] [data-mode="light"] { --bg-base: #FAF5ED; --bg-surface: #FEFEFD; --bg-elevated: #FEFEFD; --bg-subtle: #EEE9E1; --bg-hover: #E4E0D8; --text-primary: #161108; --text-secondary: #5B544A; --text-tertiary: #6F695E; --text-disabled: #948F88; --border-control: #98938C; --accent: #0568A4; --accent-contrast: #FFFFFF; --accent-hover: #03598F; --accent-text: #045F96; --error: #A62B2C; --success: #1E6935; --warning: #7D5302; --info: #175D9B; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 }

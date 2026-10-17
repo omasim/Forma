@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Cyberpunk — Neon on asphalt: hot pink, cyan glow. */
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono:wght@400&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -42,6 +42,11 @@
   --tracking-display: 0.04em;
 }
 [data-theme="cyberpunk"]:not([data-mode]) { color-scheme: dark; }
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="cyberpunk"] { --bg-base: #040411; --bg-surface: #080816; --bg-elevated: #0E0F1D; --bg-subtle: #141625; --bg-hover: #1B1D2C; --text-primary: #E3E6FE; --text-secondary: #989CBB; --text-tertiary: #7A7E9B; --text-disabled: #4A4C5E; --border-control: #5D5F72; --accent: #FF57D2; --accent-contrast: #040411; --accent-hover: #FE79D7; --accent-text: #FF57D2; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #040411; --on-success: #040411; --on-warning: #040411; --on-info: #040411; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="cyberpunk"][data-mode="dark"], [data-theme="cyberpunk"] [data-mode="dark"] { --bg-base: #040411; --bg-surface: #080816; --bg-elevated: #0E0F1D; --bg-subtle: #141625; --bg-hover: #1B1D2C; --text-primary: #E3E6FE; --text-secondary: #989CBB; --text-tertiary: #7A7E9B; --text-disabled: #4A4C5E; --border-control: #5D5F72; --accent: #FF57D2; --accent-contrast: #040411; --accent-hover: #FE79D7; --accent-text: #FF57D2; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #040411; --on-success: #040411; --on-warning: #040411; --on-info: #040411; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="cyberpunk"][data-mode="light"], [data-theme="cyberpunk"] [data-mode="light"] { --bg-base: #F3F4FF; --bg-surface: #FDFDFF; --bg-elevated: #FDFDFF; --bg-subtle: #E5E8FE; --bg-hover: #DBDEF4; --text-primary: #0E0F25; --text-secondary: #50536E; --text-tertiary: #646784; --text-disabled: #8B8EA2; --border-control: #9092A7; --accent: #C2029C; --accent-contrast: #FFFFFF; --accent-hover: #AA0389; --accent-text: #A40283; --error: #A62B2C; --success: #1D6835; --warning: #7C5200; --info: #175D9B; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+}
 
 [data-theme="cyberpunk"] .hero-title, [data-theme="cyberpunk"] .page-title { text-shadow: 0 0 18px color-mix(in oklab, var(--accent) 55%, transparent); }
 [data-theme="cyberpunk"] .btn-accent, [data-theme="cyberpunk"] .btn-primary { box-shadow: 0 0 16px color-mix(in oklab, var(--accent) 45%, transparent); }

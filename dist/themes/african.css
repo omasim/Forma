@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: African — Kente warmth: ochre, earth and deep green on sand. */
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Nunito:wght@400;600;700&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -38,5 +38,11 @@
   --font-ui: 'Nunito', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --radius-scale: 1.5;
   --weight-display: 500;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="african"] { --bg-base: #FFF0E7; --bg-surface: #FEFBF9; --bg-elevated: #FEFBF9; --bg-subtle: #F3E5DC; --bg-hover: #E9DBD2; --text-primary: #1C0E05; --text-secondary: #635146; --text-tertiary: #776458; --text-disabled: #988B82; --border-control: #9D9087; --accent: #AD5802; --accent-contrast: #FFFFFF; --accent-hover: #984D01; --accent-text: #8F4803; --error: #A62A2C; --success: #0C682F; --warning: #7C5200; --info: #165D9A; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="african"]:not([data-mode="light"]) { --bg-base: #120904; --bg-surface: #170E08; --bg-elevated: #1E150E; --bg-subtle: #261C15; --bg-hover: #2D231C; --text-primary: #F9E3D5; --text-secondary: #AE9A8D; --text-tertiary: #958275; --text-disabled: #5E534B; --border-control: #6E625A; --accent: #FF9B52; --accent-contrast: #120904; --accent-hover: #FEB079; --accent-text: #FF9B52; --error: #F97770; --success: #69BA7C; --warning: #D49838; --info: #67AAED; --on-error: #120904; --on-success: #120904; --on-warning: #120904; --on-info: #120904; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="african"][data-mode="dark"], [data-theme="african"] [data-mode="dark"] { --bg-base: #120904; --bg-surface: #170E08; --bg-elevated: #1E150E; --bg-subtle: #261C15; --bg-hover: #2D231C; --text-primary: #F9E3D5; --text-secondary: #AE9A8D; --text-tertiary: #958275; --text-disabled: #5E534B; --border-control: #6E625A; --accent: #FF9B52; --accent-contrast: #120904; --accent-hover: #FEB079; --accent-text: #FF9B52; --error: #F97770; --success: #69BA7C; --warning: #D49838; --info: #67AAED; --on-error: #120904; --on-success: #120904; --on-warning: #120904; --on-info: #120904; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="african"][data-mode="light"], [data-theme="african"] [data-mode="light"] { --bg-base: #FFF0E7; --bg-surface: #FEFBF9; --bg-elevated: #FEFBF9; --bg-subtle: #F3E5DC; --bg-hover: #E9DBD2; --text-primary: #1C0E05; --text-secondary: #635146; --text-tertiary: #776458; --text-disabled: #988B82; --border-control: #9D9087; --accent: #AD5802; --accent-contrast: #FFFFFF; --accent-hover: #984D01; --accent-text: #8F4803; --error: #A62A2C; --success: #0C682F; --warning: #7C5200; --info: #165D9A; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 }

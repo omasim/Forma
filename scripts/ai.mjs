@@ -28,7 +28,8 @@ FORMA is a CSS design system with an optional JS behaviour layer. Follow these r
 7. **Modes and themes:** \`data-mode="light|dark"\` (omit to follow the OS) and \`data-theme="<id>"\` after loading \`themes/<id>.css\`. Never use \`data-theme="dark"\` — that was v5.
 8. **Layout:** \`.container\`, \`.stack\`, \`.cluster\`, \`.split\`, \`.grid\` (\`--min\`), \`.grid-2/3/4\`, \`.dash\` + \`.span-N\`; gaps via \`.gap-N\` or \`--gap\`.
 9. **Charts:** \`<figure class="chart" data-forma="chart" data-type="line|area|bar|donut" data-labels="…" data-series='[{"name":"A","values":[…]}]'>\` with a \`.chart-canvas\` child. Never two y-axes.
-10. **Validate before you finish:** run \`npx @nage/forma lint file.html\` or the MCP tool \`validate_html\`.
+10. **Validate before you finish:** run \`npx @nage/forma lint file.html\` (add \`--fix\` to upgrade v5 classes) or the MCP tool \`validate_html\`.
+11. **React:** prefer plain markup with \`data-forma\`; use \`@nage/forma/react\` (\`FormaProvider\`, \`Chart\`, \`Icon\`, \`useFormaEvent\`) for theme/mode, charts and events.
 
 Components: ${manifest.counts.components + manifest.counts.sectorComponents} · Themes: ${manifest.counts.themes} · Docs: https://forma-design-five.vercel.app/llms-full.txt
 `;
@@ -42,11 +43,15 @@ export async function buildAiFiles({ ROOT, SITE, manifest, components, sectorMet
 
   // v5 → v6 map, derived from each component's migration notes.
   const deprecated = {};
+  const NOT_CLASSES = new Set(['is', 'on', 'demo', 'static', 'standalone', 'span', 'div', 'label', 'input', 'button', 'select', 'dialog', 'details', 'summary', 'ul', 'li', 'nav', 'table', 'tr', 'td', 'th', 'img', 'svg', 'form', 'and', 'or', 'with', 'the']);
   for (const c of all) for (const [old, now] of Object.entries(c.v5 || {})) {
-    const olds = old.split(' / '), nows = now.split(' / ');
+    const olds = old.replace(/\([^)]*\)/g, ' ').split(' / '), nows = now.split(' / ');
+    // "empty-state-icon / -title / -text" → the shorthand parts share the first part's stem
+    const stem = nows[0].replace(/-[a-z0-9]+$/, '');
+    const full = nows.map((n) => (n.startsWith('-') ? stem + n : n));
     olds.forEach((part, i) => {
-      const target = olds.length === nows.length ? nows[i] : now;
-      for (const tok of part.split(/[\s.(),]+/)) if (/^[a-z][a-z0-9-]+$/.test(tok) && !known.has(tok) && !['is', 'on', 'demo', 'static', 'standalone'].includes(tok)) deprecated[tok] ||= target;
+      const target = olds.length === full.length ? full[i] : now;
+      for (const tok of part.split(/[\s.(),+]+/)) if (/^[a-z][a-z0-9-]+$/.test(tok) && !known.has(tok) && !NOT_CLASSES.has(tok)) deprecated[tok] ||= target;
     });
   }
   Object.assign(deprecated, { 'kpi-card': 'kpi', 'kpi-trend': 'metric-delta', 'kpi-up': 'metric-delta[data-trend=up]', 'cselect': 'combobox', 'sw': 'switch', 'picon': 'avatar avatar-square', 'data-table': 'table', 'tab-item': 'tab', 'page-btn': 'page-link', 'modal-wrap': 'dialog.dialog', 'h-bar-list': 'hbars' });
@@ -55,14 +60,14 @@ export async function buildAiFiles({ ROOT, SITE, manifest, components, sectorMet
   const tokens = primitiveTokens().map((t) => ({ name: `--${t.name}`, type: t.type, value: Array.isArray(t.value) ? `cubic-bezier(${t.value.join(', ')})` : t.value, ...(t.description ? { description: t.description } : {}) }));
   const spec = {
     $schema: 'https://forma-design-five.vercel.app/forma-spec.schema.json',
-    name: 'FORMA', version: V, license: 'MIT', generated: manifest.builtAt,
+    name: 'FORMA', version: V, license: 'MIT', released: manifest.released,
     browsers: manifest.browsers,
     install: { css: 'dist/forma.min.css', js: 'dist/forma.min.js', esm: 'dist/forma.esm.js', themes: 'dist/themes/<id>.css', sectors: 'dist/sectors/forma-<sector>.css', icons: 'dist/forma-icons.svg', cdn: `https://cdn.jsdelivr.net/npm/@nage/forma@${V}/dist/` },
     layers: ['forma.reset', 'forma.tokens', 'forma.base', 'forma.components', 'forma.sectors', 'forma.themes', 'forma.utilities'],
     modes: { attribute: 'data-mode', values: ['light', 'dark'], default: 'follows prefers-color-scheme' },
     counts: manifest.counts,
     components: all.map(({ group, ...c }) => c),
-    themes: themes.map((t) => { const p = buildPalette(t.palette || {}); return { id: t.id, name: t.name, category: t.category, description: t.description, default: !!t.default, mode: t.mode || null, fonts: Object.fromEntries(Object.entries(t.fonts || {}).map(([k, f]) => [k, typeof f === 'string' ? f : f.family.replace(' Variable', '')])), colors: { light: p.light.tokens, dark: p.dark.tokens } }; }),
+    themes: themes.map((t) => { const p = buildPalette(t.palette || {}); return { id: t.id, name: t.name, category: t.category, description: t.description, default: !!t.default, mode: t.mode || null, fonts: Object.fromEntries(Object.entries(t.fonts || {}).map(([k, f]) => [k, typeof f === 'string' ? f : f.family.replace(' Variable', '')])), shape: { radiusScale: Number(t.shape?.radius ?? 1), borderWidth: t.shape?.borderWidth || '1px' }, colors: { light: p.light.tokens, dark: p.dark.tokens } }; }),
     tokens,
     classes,
     deprecated,
@@ -165,6 +170,9 @@ ${spec.themes.map((t) => `| ${t.id} | ${t.name} | ${t.category} | ${t.fonts.disp
   for (const [name, content] of out) { write(path.join(ROOT, name), content); write(path.join(SITE, name), content); }
   // Text mirrors so editor-rule files are viewable on the site.
   write(path.join(SITE, 'rules/forma.mdc.txt'), mdc);
+  // Native token exports for the default theme (any theme: `forma tokens <format> <theme>`).
+  const { exportTheme, FORMATS } = await import('../lib/tokens.mjs');
+  for (const f of FORMATS) for (const { file, content } of exportTheme(spec, 'museum', f)) { write(path.join(ROOT, 'dist/tokens', file), content); write(path.join(SITE, 'dist/tokens', file), content); }
   return {
     tools: TOOLS,
     files: out.map(([name, content, forWhat]) => ({ name, for: forWhat, kb: kb(content), href: name.startsWith('.') ? (name.endsWith('.mdc') ? 'rules/forma.mdc.txt' : 'AGENTS.md') : name })),

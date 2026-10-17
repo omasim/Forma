@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Luxury Brand — Maison codes: Didone display, black & ivory. */
 @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@400;500;600&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -40,5 +40,11 @@
   --weight-display: 400;
   --tracking-display: 0.01em;
   --label-tracking: 0.2em;
+}
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="luxurybrand"] { --bg-base: #FBF8F4; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #EFECE8; --bg-hover: #E5E2DE; --text-primary: #14110D; --text-secondary: #585550; --text-tertiary: #6E6B65; --text-disabled: #94928E; --border-control: #969491; --accent: #645235; --accent-contrast: #FFFFFF; --accent-hover: #564527; --accent-text: #645235; --error: #A82D2E; --success: #206B37; --warning: #7F5404; --info: #195F9D; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { [data-theme="luxurybrand"]:not([data-mode="light"]) { --bg-base: #070604; --bg-surface: #0B0A08; --bg-elevated: #12100E; --bg-subtle: #191714; --bg-hover: #201E1B; --text-primary: #EBE7E1; --text-secondary: #A19E98; --text-tertiary: #83807A; --text-disabled: #4F4D49; --border-control: #62605D; --accent: #CFBB9A; --accent-contrast: #070604; --accent-hover: #DCC8A6; --accent-text: #CFBB9A; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #070604; --on-success: #070604; --on-warning: #070604; --on-info: #070604; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-theme="luxurybrand"][data-mode="dark"], [data-theme="luxurybrand"] [data-mode="dark"] { --bg-base: #070604; --bg-surface: #0B0A08; --bg-elevated: #12100E; --bg-subtle: #191714; --bg-hover: #201E1B; --text-primary: #EBE7E1; --text-secondary: #A19E98; --text-tertiary: #83807A; --text-disabled: #4F4D49; --border-control: #62605D; --accent: #CFBB9A; --accent-contrast: #070604; --accent-hover: #DCC8A6; --accent-text: #CFBB9A; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #070604; --on-success: #070604; --on-warning: #070604; --on-info: #070604; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="luxurybrand"][data-mode="light"], [data-theme="luxurybrand"] [data-mode="light"] { --bg-base: #FBF8F4; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #EFECE8; --bg-hover: #E5E2DE; --text-primary: #14110D; --text-secondary: #585550; --text-tertiary: #6E6B65; --text-disabled: #94928E; --border-control: #969491; --accent: #645235; --accent-contrast: #FFFFFF; --accent-hover: #564527; --accent-text: #645235; --error: #A82D2E; --success: #206B37; --warning: #7F5404; --info: #195F9D; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
 }
 }

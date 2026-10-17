@@ -13,7 +13,9 @@ import path from 'node:path';
 import { spawn } from 'node:child_process';
 import http from 'node:http';
 import { fileURLToPath } from 'node:url';
-import { lint } from '../lib/lint.mjs';
+import { lint, fix } from '../lib/lint.mjs';
+import { exportTheme } from '../lib/tokens.mjs';
+import { parseGoogleSpec } from '../lib/fonts.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = path.join(ROOT, 'site');
@@ -23,6 +25,13 @@ const ok = (name, cond, detail = '') => { console.log(`${cond ? '✓' : '✗'} $
 // 1. Contrast
 const report = JSON.parse(fs.readFileSync(path.join(ROOT, 'dist/contrast-report.json'), 'utf8'));
 ok('contrast: all theme × mode checks pass', report.failures.length === 0, `${report.checks} checks`);
+
+// 1b. Package metadata matches the build (counts can't drift)
+const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'dist/forma.manifest.json'), 'utf8'));
+const pkg = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+const total = manifest.counts.components + manifest.counts.sectorComponents;
+ok('package.json description matches the manifest', pkg.description.includes(`${manifest.counts.themes} `) && pkg.description.includes(`${total} `), pkg.description);
+ok('package.json version matches the build', manifest.version === pkg.version);
 
 // 2. Lint the site
 const spec = JSON.parse(fs.readFileSync(path.join(ROOT, 'forma-spec.json'), 'utf8'));
@@ -41,6 +50,19 @@ ok('lint catches typos', lint('<button class="btn btn-primry">x</button>', spec)
 ok('lint catches unnamed icon buttons', found.includes('accessible-name'));
 ok('lint catches unlabeled inputs', found.includes('form-label'));
 ok('lint ignores author classes', lint('<div class="hero my-thing"><p class="lede">x</p></div>', spec).length === 0);
+
+// 3b. lint --fix
+const fx = fix('<div class="modal-hd x">a</div><span class="pb-pro">b</span><div class="popover-wrap">c</div>', spec);
+ok('lint --fix renames 1:1 v5 classes, keeps author classes', fx.html.includes('class="dialog-header x"') && fx.html.includes('class="badge badge-plan badge-accent"'), fx.html);
+ok('lint --fix leaves markup changes for a human', fx.manual.some((m) => m.from === 'popover-wrap') && fx.html.includes('popover-wrap'));
+ok('deprecated map has no HTML tag names', !['span', 'div', 'label', 'input'].some((t) => t in spec.deprecated));
+
+// 3c. Token exports
+const dt = JSON.parse(exportTheme(spec, 'museum', 'dtcg')[0].content);
+ok('tokens: DTCG color has srgb components + hex', dt.color.accent.default.$value.colorSpace === 'srgb' && /^#[0-9A-F]{6}$/i.test(dt.color.accent.default.$value.hex));
+ok('tokens: radius follows the theme scale', JSON.parse(exportTheme(spec, 'brutalist', 'dtcg')[0].content).radius.lg.$value.value === 0);
+ok('tokens: Swift + Kotlin export every color', ['swift', 'kotlin'].every((f) => Object.keys(spec.themes[0].colors.light).every((k) => exportTheme(spec, 'museum', f)[0].content.includes(k.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase())))));
+ok('fonts: Google spec parsing', JSON.stringify(parseGoogleSpec('Lora:ital,wght@0,400;1,400').faces) === JSON.stringify([{ weight: 400, italic: false }, { weight: 400, italic: true }]));
 
 // 4. MCP
 await new Promise((resolve) => {
@@ -97,6 +119,16 @@ else {
   ok(`browser: ${rel.length} pages × 2 modes load without JS errors`, errors.length === 0, errors.slice(0, 5).join('; '));
   const vids = Object.keys(violations);
   ok('axe: no serious/critical WCAG violations', vids.length === 0, vids.map((id) => `${id} (${violations[id].length}) e.g. ${violations[id][0]}`).join('\n    '));
+  const { runInteractionTests } = await import('./test-interaction.mjs');
+  await runInteractionTests({ browser, base, ok });
+
+  // React bindings: bundle a tiny app and drive it.
+  let esbuild; try { esbuild = await import('esbuild'); fs.accessSync(path.join(ROOT, 'node_modules/react')); } catch { esbuild = null; }
+  if (!esbuild) console.log('– react test skipped (react not installed)');
+  else {
+    const { runReactTest } = await import('./test-react.mjs');
+    await runReactTest({ browser, esbuild, ROOT, ok });
+  }
   await browser.close(); server.close();
 }
 

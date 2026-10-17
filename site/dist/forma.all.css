@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
 
@@ -224,6 +224,12 @@ summary::-webkit-details-marker { display: none; }
   --radius-scale: 1;
   --weight-display: 300;
 }
+@supports not (color: light-dark(#000, #fff)) {
+:root { --bg-base: #F8F7F2; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #ECEBE7; --bg-hover: #E2E1DD; --text-primary: #13120D; --text-secondary: #575550; --text-tertiary: #6C6A64; --text-disabled: #92918D; --border-control: #959490; --accent: #027F76; --accent-contrast: #FFFFFF; --accent-hover: #076F67; --accent-text: #026962; --error: #A82C2D; --success: #1F6A37; --warning: #7E5403; --info: #185E9C; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+@media (prefers-color-scheme: dark) { :root:not([data-mode="light"]) { --bg-base: #090806; --bg-surface: #0E0D0A; --bg-elevated: #151411; --bg-subtle: #1B1B17; --bg-hover: #22221E; --text-primary: #EAE8E1; --text-secondary: #A09E98; --text-tertiary: #84837D; --text-disabled: #52514D; --border-control: #63625E; --accent: #4BD7C9; --accent-contrast: #090806; --accent-hover: #5BE4D6; --accent-text: #4BD7C9; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #090806; --on-success: #090806; --on-warning: #090806; --on-info: #090806; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; } }
+[data-mode="dark"] { --bg-base: #090806; --bg-surface: #0E0D0A; --bg-elevated: #151411; --bg-subtle: #1B1B17; --bg-hover: #22221E; --text-primary: #EAE8E1; --text-secondary: #A09E98; --text-tertiary: #84837D; --text-disabled: #52514D; --border-control: #63625E; --accent: #4BD7C9; --accent-contrast: #090806; --accent-hover: #5BE4D6; --accent-text: #4BD7C9; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #090806; --on-success: #090806; --on-warning: #090806; --on-info: #090806; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-mode="light"] { --bg-base: #F8F7F2; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #ECEBE7; --bg-hover: #E2E1DD; --text-primary: #13120D; --text-secondary: #575550; --text-tertiary: #6C6A64; --text-disabled: #92918D; --border-control: #959490; --accent: #027F76; --accent-contrast: #FFFFFF; --accent-hover: #076F67; --accent-text: #026962; --error: #A82C2D; --success: #1F6A37; --warning: #7E5403; --info: #185E9C; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+}
 }
 
 @layer forma.base {
@@ -341,6 +347,35 @@ code, kbd, samp, pre { font-family: var(--font-mono); font-size: 0.92em; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ── Bidirectional text ─────────────────────────────────────────────────── */
+/* Code, keys and identifiers are left-to-right even inside RTL pages, so `.menu` never reads "menu." */
+code, kbd, samp, pre, .kbd, .badge-mono, .menu-shortcut, .code-inline, .code-block, .query-code { unicode-bidi: isolate; direction: ltr; }
+pre, .code-block { text-align: left; }
+
+/* ── Forced colors (Windows High Contrast) ──────────────────────────────── */
+/* Backgrounds are replaced by Canvas in this mode, so anything that shows state only through a
+   background (switch thumb, checkmarks, fills, selected items) is redrawn with system colors. */
+@media (forced-colors: active) {
+  .switch, .checkbox, .radio { forced-color-adjust: none; background: Canvas; border-color: CanvasText; }
+  .switch::before { background: CanvasText; }
+  .switch:checked, .checkbox:checked, .checkbox:indeterminate, .radio:checked { background: Highlight; border-color: Highlight; }
+  .switch:checked::before, .checkbox:checked::before, .checkbox:indeterminate::before, .radio:checked::before { background: HighlightText; }
+  .switch:disabled, .checkbox:disabled, .radio:disabled { border-color: GrayText; }
+  .progress-track { forced-color-adjust: none; background: Canvas; border: 1px solid CanvasText; }
+  .progress-fill { forced-color-adjust: none; background: Highlight; }
+  .range { forced-color-adjust: none; }
+  .range::-webkit-slider-runnable-track { background: linear-gradient(to right, Highlight var(--_pct), GrayText var(--_pct)); }
+  .range:dir(rtl)::-webkit-slider-runnable-track { background: linear-gradient(to left, Highlight var(--_pct), GrayText var(--_pct)); }
+  .range::-webkit-slider-thumb { background: Canvas; border-color: Highlight; }
+  .range:focus-visible::-webkit-slider-thumb, .range:focus-visible::-moz-range-thumb { outline: 2px solid Highlight; outline-offset: 2px; }
+  .status-dot, .avatar-status, .chart-swatch { forced-color-adjust: none; }
+  :where([aria-selected="true"], [aria-current]:not([aria-current="false"]), [aria-pressed="true"]):not(input, [role="option"] *) {
+    outline: 2px solid Highlight; outline-offset: -2px;
+  }
+  :focus-visible { outline: 2px solid Highlight; outline-offset: 2px; }
+  .skeleton { border: 1px dashed GrayText; }
 }
 
 }
@@ -715,14 +750,16 @@ progress.progress-native::-moz-progress-bar { background: var(--accent); }
 .switch-lg { inline-size: 44px; block-size: 26px; }
 .switch-lg::before { inline-size: 18px; block-size: 18px; }
 .switch-lg:checked::before { translate: 18px 0; }
+.switch-lg:checked:dir(rtl)::before { translate: -18px 0; }
 .setting-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-5); padding-block: var(--space-4); border-block-end: var(--border-width-default) solid var(--border-faint); }
 .setting-row:last-child { border-block-end: 0; }
-.setting-row-label { font-size: var(--text-sm); color: var(--text-primary); font-weight: var(--weight-medium); }
-.setting-row-desc { font-size: var(--text-xs); color: var(--text-secondary); margin-block-start: 2px; }
+.setting-row-label { display: block; font-size: var(--text-sm); color: var(--text-primary); font-weight: var(--weight-medium); }
+.setting-row-desc { display: block; font-size: var(--text-xs); color: var(--text-secondary); margin-block-start: 2px; }
 
 /* ═══ Range ════════════════════════════════════════════════════════════════ */
 .range { --_pct: 50%; appearance: none; inline-size: 100%; block-size: 20px; background: transparent; cursor: pointer; margin: 0; }
 .range::-webkit-slider-runnable-track { block-size: 4px; border-radius: var(--radius-full); background: linear-gradient(to right, var(--accent) var(--_pct), var(--bg-hover) var(--_pct)); }
+.range:dir(rtl)::-webkit-slider-runnable-track { background: linear-gradient(to left, var(--accent) var(--_pct), var(--bg-hover) var(--_pct)); }
 .range::-moz-range-track { block-size: 4px; border-radius: var(--radius-full); background: var(--bg-hover); }
 .range::-moz-range-progress { block-size: 4px; border-radius: var(--radius-full); background: var(--accent); }
 .range::-webkit-slider-thumb { appearance: none; inline-size: 18px; block-size: 18px; margin-block-start: -7px; border-radius: 50%; background: var(--bg-elevated); border: var(--border-width-strong) solid var(--accent); box-shadow: var(--shadow-sm); transition: transform var(--duration-fast); }

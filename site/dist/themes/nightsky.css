@@ -1,4 +1,4 @@
-/*! FORMA v6.0.0 | MIT | https://forma-design-five.vercel.app */
+/*! FORMA v6.0.1 | MIT | https://forma-design-five.vercel.app */
 /* Theme: Night Sky — Deep navy with starlight gold. */
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap");
 @layer forma.reset, forma.tokens, forma.base, forma.components, forma.sectors, forma.themes, forma.utilities;
@@ -40,4 +40,9 @@
   --weight-display: 500;
 }
 [data-theme="nightsky"]:not([data-mode]) { color-scheme: dark; }
+@supports not (color: light-dark(#000, #fff)) {
+[data-theme="nightsky"] { --bg-base: #020819; --bg-surface: #050E1F; --bg-elevated: #0A1527; --bg-subtle: #101C2E; --bg-hover: #172336; --text-primary: #DCE9FE; --text-secondary: #89A0C4; --text-tertiary: #6E84A8; --text-disabled: #465369; --border-control: #55637A; --accent: #F2CD64; --accent-contrast: #020819; --accent-hover: #FFDA74; --accent-text: #F2CD64; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #020819; --on-success: #020819; --on-warning: #020819; --on-info: #020819; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="nightsky"][data-mode="dark"], [data-theme="nightsky"] [data-mode="dark"] { --bg-base: #020819; --bg-surface: #050E1F; --bg-elevated: #0A1527; --bg-subtle: #101C2E; --bg-hover: #172336; --text-primary: #DCE9FE; --text-secondary: #89A0C4; --text-tertiary: #6E84A8; --text-disabled: #465369; --border-control: #55637A; --accent: #F2CD64; --accent-contrast: #020819; --accent-hover: #FFDA74; --accent-text: #F2CD64; --error: #F97770; --success: #6FB880; --warning: #D49838; --info: #67AAED; --on-error: #020819; --on-success: #020819; --on-warning: #020819; --on-info: #020819; --data-1: #3987E5; --data-2: #D95926; --data-3: #199E70; --data-4: #C98500; --data-5: #D55181; --data-6: #008300; --data-7: #9085E9; --data-8: #E66767; }
+[data-theme="nightsky"][data-mode="light"], [data-theme="nightsky"] [data-mode="light"] { --bg-base: #F3F7FE; --bg-surface: #FFFFFF; --bg-elevated: #FFFFFF; --bg-subtle: #E0ECFF; --bg-hover: #D2E2FD; --text-primary: #02102B; --text-secondary: #425677; --text-tertiary: #566B8E; --text-disabled: #8392AA; --border-control: #8695AD; --accent: #8B6E01; --accent-contrast: #FFFFFF; --accent-hover: #7A6001; --accent-text: #735A00; --error: #A82C2D; --success: #1F6A37; --warning: #7D5302; --info: #195F9D; --on-error: #FFFFFF; --on-success: #FFFFFF; --on-warning: #FFFFFF; --on-info: #FFFFFF; --data-1: #2A78D6; --data-2: #EB6834; --data-3: #1BAF7A; --data-4: #EDA100; --data-5: #E87BA4; --data-6: #008300; --data-7: #4A3AA7; --data-8: #E34948; }
+}
 }

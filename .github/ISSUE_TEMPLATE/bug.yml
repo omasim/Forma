@@ -1,0 +1,29 @@
+name: Bug report
+description: Something renders or behaves wrong
+labels: [bug]
+body:
+  - type: input
+    id: version
+    attributes: { label: FORMA version, placeholder: "6.0.1" }
+    validations: { required: true }
+  - type: input
+    id: where
+    attributes: { label: Component and theme, placeholder: "Menu · Swiss · dark" }
+    validations: { required: true }
+  - type: textarea
+    id: repro
+    attributes: { label: Minimal HTML that shows it, render: html }
+    validations: { required: true }
+  - type: textarea
+    id: expected
+    attributes: { label: What you expected and what happened }
+    validations: { required: true }
+  - type: input
+    id: browser
+    attributes: { label: Browser and OS, placeholder: "Safari 18.1 · macOS 15" }
+  - type: checkboxes
+    id: a11y
+    attributes:
+      label: Accessibility
+      options:
+        - label: This affects keyboard, screen reader, High Contrast or RTL users

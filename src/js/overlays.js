@@ -58,7 +58,10 @@ export function confirm({ title = 'Are you sure?', text = '', confirmLabel = 'Co
 /* ── Positioning ─────────────────────────────────────────────────────────── */
 /** Place a fixed-position panel next to an anchor, flipping/shifting to stay in the viewport. */
 export function position(panel, anchor, { placement = 'bottom-start', offset = 6, x, y } = {}) {
-  const pr = panel.getBoundingClientRect();
+  // Take the panel out of the UA's centred popover layout first, so its measured size is final.
+  Object.assign(panel.style, { position: 'fixed', margin: '0', insetInline: 'auto', insetBlock: 'auto' });
+  // offset* ignores the opening scale animation, which getBoundingClientRect() would include.
+  const pr = { width: panel.offsetWidth, height: panel.offsetHeight };
   const vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
   let top, left;
   if (x != null) { top = y; left = x; }
